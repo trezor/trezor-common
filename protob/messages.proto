@@ -72,6 +72,7 @@ enum MessageType {
 	MessageType_GetECDHSessionKey = 61 [(wire_in) = true];
 	MessageType_ECDHSessionKey = 62 [(wire_out) = true];
 	MessageType_SetU2FCounter = 63 [(wire_in) = true];
+	MessageType_InitializeOpenPGP = 64 [(wire_in) = true];
 	MessageType_DebugLinkDecision = 100 [(wire_debug_in) = true];
 	MessageType_DebugLinkGetState = 101 [(wire_debug_in) = true];
 	MessageType_DebugLinkState = 102 [(wire_debug_out) = true];
@@ -706,6 +707,19 @@ message ECDHSessionKey {
  */
 message SetU2FCounter {
 	optional uint32 u2f_counter = 1;		// counter
+}
+
+//////////////////////
+// OpenPGP messages //
+//////////////////////
+
+/**
+ * Request: Initialize OpenPGP ECC keys
+ * @next Success
+ */
+message InitializeOpenPGP {
+	optional uint32 time = 1;				// creation time
+	optional string ecdsa_curve_name = 2;	// ECDSA curve name to use
 }
 
 /////////////////////////
