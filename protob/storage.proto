@@ -30,6 +30,9 @@ message Storage {
 	/* OpenPGP card */
 	optional string name = 12;
 	optional ISO5218 sex = 13;
+
+	optional string openpgp_curve_name = 14;
+	optional uint32 openpgp_timestamp = 15;
 }
 
 /**
