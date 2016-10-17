@@ -77,6 +77,10 @@ enum MessageType {
 	MessageType_SteemTxSignature = 66 [(wire_out) = true];
 	MessageType_SteemSignTx = 67 [(wire_in) = true];
 	MessageType_SteemOperationTransfer = 68 [(wire_in) = true];
+	MessageType_SteemOperationAccountUpdate = 69 [(wire_in) = true];
+	MessageType_SteemPermission = 70 [(wire_in) = true];
+	MessageType_SteemAccountAccountAuth = 71 [(wire_in) = true];
+	MessageType_SteemAccountKeyAuth = 72 [(wire_in) = true];
 
 	MessageType_DebugLinkDecision = 100 [(wire_debug_in) = true];
 	MessageType_DebugLinkGetState = 101 [(wire_debug_in) = true];
@@ -816,6 +820,31 @@ message DebugLinkFlashErase {
 /**
  * Steem related message
  */
+message SteemAccountKeyAuth {
+	required bytes pubkey = 1;
+	required uint32 weight = 2; // uint16
+}
+
+message SteemAccountAccountAuth {
+	required string account = 1;
+	required uint32 weight = 2; // uint16
+}
+
+message SteemPermission {
+	required uint32 weight_threshold = 1;
+	repeated SteemAccountAccountAuth account_auths = 2;
+	repeated SteemAccountKeyAuth key_auths = 3;
+}
+
+message SteemOperationAccountUpdate {
+	required string account = 1;
+	required bytes memo_key = 2;
+	required string json_metadata = 3;
+	optional SteemPermission owner = 4;
+	optional SteemPermission active = 5;
+	optional SteemPermission posting = 6;
+}
+
 message SteemOperationTransfer {
 	required string from = 1;
 	required string to = 2;
@@ -832,6 +861,7 @@ message SteemSignTx {
 	// trezor to single-operation transactions
 	// and pick one out of the following ops:
 	optional SteemOperationTransfer transfer = 4;
+	optional SteemOperationAccountUpdate account_update = 5;
 }
 
 message SteemTxSignature {
