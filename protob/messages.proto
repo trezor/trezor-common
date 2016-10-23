@@ -388,6 +388,8 @@ message RecoveryDevice {
 	optional string language = 4 [default='english'];	// device language
 	optional string label = 5;				// device label
 	optional bool enforce_wordlist = 6;			// enforce BIP-39 wordlist during the process
+	// 7 reserved for keepkey recovery method
+	optional uint32 type = 8;				// supported recovery type (see RecoveryType)
 }
 
 /**
@@ -397,6 +399,7 @@ message RecoveryDevice {
  * @prev WordAck
  */
 message WordRequest {
+	optional WordRequestType type = 1;
 }
 
 /**
