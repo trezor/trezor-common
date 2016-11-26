@@ -720,8 +720,10 @@ message SetU2FCounter {
  * @next Failure
  */
 message InitializeOpenPGP {
-	optional uint32 time = 1;		// creation time
-	optional string ecdsa_curve_name = 2;	// ECDSA curve name to use
+	optional uint32 time = 1;			// Creation time
+	optional string ecdsa_curve_name = 2;		// ECDSA curve name to use
+	optional string user_id = 3;			// User ID
+	optional OpenPGPDerivationType derivation = 4;	// Derivation method
 }
 
 /**

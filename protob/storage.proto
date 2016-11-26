@@ -33,6 +33,9 @@ message Storage {
 
 	optional string openpgp_curve_name = 14;
 	optional uint32 openpgp_timestamp = 15;
+
+	optional OpenPGPDerivationType openpgp_derivation = 16;
+	optional string openpgp_user_id = 17;
 }
 
 /**
