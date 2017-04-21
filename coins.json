@@ -137,4 +137,41 @@
 		"Normal": 10
 	},
   "dust_limit": 546
+}, {
+	"coin_name": "IoP",
+	"coin_shortcut": "IOP",
+	"address_type": 117,
+	"maxfee_kb": 300000,
+	"address_type_p2sh": 174,
+	"address_type_p2wpkh": null,
+	"address_type_p2wsh": null,
+	"signed_message_header": "IoP Signed Message:\n",
+	"hash_genesis_block": "00000000bf5f2ee556cb9be8be64e0776af14933438dbb1af72c41bfb6c82db3",
+	"xpub_magic": "2780915f",
+	"xprv_magic": "ae3416f6",
+	"bip44": 0,
+	"default_fee_b": {
+		"Low": 10,
+		"Economy": 20,
+		"Normal": 30,
+		"High": 40
+	},
+  "dust_limit": 546
+}, {
+	"coin_name": "IoP Testnet",
+	"coin_shortcut": "IOPT",
+	"address_type": 130,
+	"maxfee_kb": 10000000,
+	"address_type_p2sh": 49,
+	"address_type_p2wpkh": null,
+	"address_type_p2wsh": null,
+	"signed_message_header": "IoP Signed Message:\n",
+	"hash_genesis_block": "000000006f2bb863230cda4f4fbee520314077e599a90b9c6072ea2018d7f3a3",
+	"xpub_magic": "bb8f4852",
+	"xprv_magic": "2b7fa42a",
+	"bip44": 1,
+	"default_fee_b": {
+		"Normal": 10
+	},
+  "dust_limit": 546
 }]
