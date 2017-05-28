@@ -131,6 +131,15 @@ enum WordRequestType {
 	WordRequestType_Matrix6 = 2;
 }
 
+enum OpenPGPDerivationType {
+	// Relies on timestamp for derivation
+	OpenPGPDerivation_Simple = 0;
+
+	// https://github.com/romanz/trezor-agent/blob/master/trezor_agent/gpg/client.py
+	// Relies on User ID for derivation
+	OpenPGPDerivation_SLIP13 = 1;
+}
+
 /**
  * Structure representing BIP32 (hierarchical deterministic) node
  * Used for imports of private key into the device and exporting public key out of device

@@ -26,4 +26,25 @@ message Storage {
 	optional bool imported = 9;			// was storage imported from an external source?
 	optional bytes homescreen = 10;			// image used as homescreen (logo + label is used when not set)
 	optional uint32 u2f_counter = 11;		// sequence number for u2f authentications
+
+	/* OpenPGP card */
+	optional string name = 12;
+	optional ISO5218 sex = 13;
+
+	optional string openpgp_curve_name = 14;
+	optional uint32 openpgp_timestamp = 15;
+
+	optional OpenPGPDerivationType openpgp_derivation = 16;
+	optional string openpgp_user_id = 17;
+}
+
+/**
+ * Representation of human's sex required for OpenPGP card support
+ * @used_in Storage
+ */
+enum ISO5218 {
+	ISO5218_NotKnown = 0;
+	ISO5218_Male = 1;
+	ISO5218_Female = 2;
+	ISO5218_NotApplicable = 9;
 }
