@@ -149,7 +149,7 @@
 	"hash_genesis_block": "298e5cc3d985bfe7f81dc135f360abe089edd4396b86d2de66b0cef42b21d980",
 	"xpub_magic": "02fda926",
 	"xprv_magic": "02fda4e8",
-	"bip44": 42,
+	"bip44": 20,
 	"segwit": false,
 	"default_fee_b": {
 		"Normal": 10
@@ -168,7 +168,7 @@
 	"hash_genesis_block": "298e5cc3d985bfe7f81dc135f360abe089edd4396b86d2de66b0cef42b21d980",
 	"xpub_magic": "043587d1",
 	"xprv_magic": "04358397",
-	"bip44": 1,
+	"bip44": 11,
 	"segwit": false,
 	"default_fee_b": {
 		"Normal": 10
