@@ -81,7 +81,9 @@ enum MessageType {
 	MessageType_DebugLinkMemoryRead = 110 [(wire_debug_in) = true];
 	MessageType_DebugLinkMemory = 111 [(wire_debug_out) = true];
 	MessageType_DebugLinkMemoryWrite = 112 [(wire_debug_in) = true];
-	MessageType_DebugLinkFlashErase = 113 [(wire_debug_in) = true];
+  MessageType_DebugLinkFlashErase = 113 [(wire_debug_in) = true];
+  MessageType_DecredLoadDevice = 114 [(wire_in) = true];
+
 }
 
 ////////////////////
@@ -347,6 +349,23 @@ message LoadDevice {
 	optional bool skip_checksum = 7;			// do not test mnemonic for valid BIP-39 checksum
 	optional uint32 u2f_counter = 8;			// U2F counter
 }
+
+/**
+ * Request: Load Decred seed PGP word list from the computer
+ * @next ButtonRequest
+ * @next Success
+ * @next Failure
+ */
+message DecredLoadDevice {
+	optional string mnemonic = 1;				// seed encoded as BIP-39 mnemonic (12, 18 or 24 words)
+	optional HDNodeType node = 2;				// BIP-32 node
+	optional string pin = 3;				// set PIN protection
+	optional bool passphrase_protection = 4;		// enable master node encryption using passphrase
+	optional string language = 5 [default='english'];	// device language
+	optional string label = 6;				// device label
+	optional uint32 u2f_counter = 7;			// U2F counter
+}
+
 
 /**
  * Request: Ask device to do initialization involving user interaction
