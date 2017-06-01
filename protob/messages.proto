@@ -85,6 +85,7 @@ enum MessageType {
   MessageType_DecredLoadDevice = 114 [(wire_in) = true];
   MessageType_DecredGetAddress = 115 [(wire_in) = true];
   MessageType_DecredAddress = 116 [(wire_out) = true];
+  MessageType_DecredEntropyAck = 117 [(wire_in) = true];
 }
 
 ////////////////////
@@ -383,7 +384,16 @@ message DecredGetAddress {
  * @prev DecredGetAddress
  */
 message DecredAddress {
-	required string address = 1;		// Base58 encoded address string
+  required string address = 1;        // Base58 encoded address string
+}
+
+/**
+ * Request: Provide additional entropy for seed generation function (Decred variant)
+ * @prev EntropyRequest
+ * @next ButtonRequest
+ */
+message DecredEntropyAck {
+	optional bytes entropy = 1;				// 256 bits (32 bytes) of random data
 }
 
 
