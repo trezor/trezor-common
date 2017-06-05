@@ -86,6 +86,9 @@ enum MessageType {
   MessageType_DecredGetAddress = 115 [(wire_in) = true];
   MessageType_DecredAddress = 116 [(wire_out) = true];
   MessageType_DecredEntropyAck = 117 [(wire_in) = true];
+  MessageType_DecredSignMessage = 118 [(wire_in) = true];
+  MessageType_DecredVerifyMessage = 119 [(wire_in) = true];
+  MessageType_DecredSignTx = 120 [(wire_in) = true];
 }
 
 ////////////////////
@@ -396,6 +399,40 @@ message DecredEntropyAck {
 	optional bytes entropy = 1;				// 256 bits (32 bytes) of random data
 }
 
+/**
+ * Request: Ask device to sign message (Decred variant)
+ * @next MessageSignature
+ * @next Failure
+ */
+message DecredSignMessage {
+	repeated uint32 address_n = 1;				// BIP-32 path to derive the key from master node
+	required bytes message = 2;				// message to be signed
+}
+
+/**
+ * Request: Ask device to verify message (Decred variant)
+ * @next Success
+ * @next Failure
+ */
+message DecredVerifyMessage {
+	optional string address = 1;				// address to verify
+	optional bytes signature = 2;				// signature to verify
+	optional bytes message = 3;				// message to verify
+}
+
+/**
+ * Request: Ask device to sign transaction (Decred variant)
+ * @next PassphraseRequest
+ * @next PinMatrixRequest
+ * @next TxRequest
+ * @next Failure
+ */
+message DecredSignTx {
+	required uint32 outputs_count = 1;			// number of transaction outputs
+	required uint32 inputs_count = 2;			// number of transaction inputs
+	optional uint32 version = 4 [default=1];		// transaction version
+	optional uint32 lock_time = 5 [default=0];		// transaction lock_time
+}
 
 /**
  * Request: Ask device to do initialization involving user interaction
