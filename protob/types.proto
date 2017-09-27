@@ -267,3 +267,78 @@ message IdentityType {
 	optional string path = 5;			// path part of URI
 	optional uint32 index = 6 [default=0];		// identity index
 }
+
+
+/**
+ * Structure representing a decred data type that is used to track previous
+ * transaction outputs.
+ * @used_in DecredTxInType
+ */
+message DecredOutPointType {
+  required bytes hash = 1;
+  required uint64 index = 2;
+  optional bytes tree = 3;
+}
+
+/**
+ * Structure representing decred transaction input
+ * @used_in SimpleSignTx
+ * @used_in DecredTransactionType
+ */
+message DecredTxInType {
+  // Non-witness
+  required DecredOutPointType previous_out_point = 1;
+  required uint32 sequence = 2 [default=0xffffffff];
+
+  // Witness
+  required int64 value_in = 3;
+  required uint32 block_height = 4;
+  required uint32 block_index = 5;
+  required bytes signature_script = 6; // FIXME ATM this has a fixed size set in - should be dynamic length/pointer
+
+  required bytes prev_hash = 7;						// XXX remove me, I may not be needed
+  optional InputScriptType script_type = 8 [default=SPENDADDRESS];	// defines template of input script
+	optional MultisigRedeemScriptType multisig = 9;				// Filled if input is going to spend multisig tx
+	optional uint64 amount = 10;						// amount of previous transaction output (for segwit only)
+  repeated uint32 address_n = 11;						// BIP-32 path to derive the key from master node
+	required uint32 prev_index = 12;						// index of previous output to spend
+	optional bytes script_sig = 13;						// script signature, unset for tx to sign
+}
+
+/**
+ * Structure representing decred transaction output
+ * @used_in SimpleSignTx
+ * @used_in DecredTransactionType
+ */
+message DecredTxOutType {
+  required int64 value = 1;
+  required uint32 version = 2;
+  required bytes pk_script = 3; // FIXME ATM this has a fixed size set in - should be dynamic length/pointer
+
+  // XXX remove the below members
+  optional string address = 4;			// target coin address in Base58 encoding
+	repeated uint32 address_n = 5;			// BIP-32 path to derive the key from master node; has higher priority than "address"
+	required uint64 amount = 6;			// amount to spend in satoshis
+	required OutputScriptType script_type = 7;	// output script type
+	optional MultisigRedeemScriptType multisig = 8; // defines multisig address; script_type must be PAYTOMULTISIG
+	optional bytes op_return_data = 9;		// defines op_return data; script_type must be PAYTOOPRETURN, amount must be 0
+
+}
+
+/**
+ * Structure representing decred transaction
+ * @used_in DecredTxAck
+ */
+message DecredTransactionType {
+  required bytes cached_hash = 1;
+	optional int32 version = 2;
+	repeated DecredTxInType inputs = 3;
+	repeated TxOutputBinType bin_outputs = 4;
+	repeated DecredTxOutType outputs = 5;
+  optional uint32 lock_time = 6;
+	optional uint32 expiry = 7;
+	optional uint32 inputs_cnt = 8;
+	optional uint32 outputs_cnt = 9;
+  optional bytes extra_data = 10;
+	optional uint32 extra_data_len = 11;
+}

@@ -89,6 +89,8 @@ enum MessageType {
   MessageType_DecredSignMessage = 118 [(wire_in) = true];
   MessageType_DecredVerifyMessage = 119 [(wire_in) = true];
   MessageType_DecredSignTx = 120 [(wire_in) = true];
+  MessageType_DecredTxAck = 121 [(wire_in) = true];
+  MessageType_DecredTxRequest = 122 [(wire_out) = true];
 }
 
 ////////////////////
@@ -424,7 +426,7 @@ message DecredVerifyMessage {
  * Request: Ask device to sign transaction (Decred variant)
  * @next PassphraseRequest
  * @next PinMatrixRequest
- * @next TxRequest
+ * @next DecredTxRequest
  * @next Failure
  */
 message DecredSignTx {
@@ -432,6 +434,28 @@ message DecredSignTx {
 	required uint32 inputs_count = 2;			// number of transaction inputs
 	optional uint32 version = 4 [default=1];		// transaction version
 	optional uint32 lock_time = 5 [default=0];		// transaction lock_time
+}
+
+/**
+ * Response: Device asks for information for signing Decred transaction or returns the last result
+ * If request_index is set, device awaits TxAck message (with fields filled in according to request_type)
+ * If signature_index is set, 'signature' contains signed input of signature_index's input
+ * @prev DecredSignTx
+ * @prev DecredTxAck
+ */
+message DecredTxRequest {
+	optional RequestType request_type = 1;			// what should be filled in TxAck message?
+	optional TxRequestDetailsType details = 2;		// request for tx details
+	optional TxRequestSerializedType serialized = 3;	// serialized data and request for next
+}
+
+/**
+ * Request: Decred Reported transaction data
+ * @prev DecredTxRequest
+ * @next DecredTxRequest
+ */
+message DecredTxAck {
+	optional DecredTransactionType tx = 1;
 }
 
 /**
