@@ -168,7 +168,6 @@
 	"min_address_length": 27,
 	"max_address_length": 34,
 	"bitcore": [
-		"https://ltc-bitcore1.trezor.io", 
 		"https://ltc-bitcore3.trezor.io"
 	]
 },
@@ -252,8 +251,7 @@
 	"min_address_length": 35,
 	"max_address_length": 95,
 	"bitcore": [
-		"https://zec-bitcore1.trezor.io/",
-		"https://zec-bitcore4.trezor.io/"
+		"https://zec-bitcore1.trezor.io/"
 	]
 },
 {
