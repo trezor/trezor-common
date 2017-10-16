@@ -330,15 +330,15 @@ message DecredTxOutType {
  * @used_in DecredTxAck
  */
 message DecredTransactionType {
-  required bytes cached_hash = 1;
-	optional int32 version = 2;
-	repeated DecredTxInType inputs = 3;
-	repeated TxOutputBinType bin_outputs = 4;
+  optional int32 version = 1;
+	repeated DecredTxInType inputs = 2;
+	repeated TxOutputBinType bin_outputs = 3;
+  optional uint32 lock_time = 4;
 	repeated DecredTxOutType outputs = 5;
-  optional uint32 lock_time = 6;
-	optional uint32 expiry = 7;
-	optional uint32 inputs_cnt = 8;
-	optional uint32 outputs_cnt = 9;
-  optional bytes extra_data = 10;
-	optional uint32 extra_data_len = 11;
+	optional uint32 inputs_cnt = 6;
+	optional uint32 outputs_cnt = 7;
+  optional bytes extra_data = 8;
+	optional uint32 extra_data_len = 9;
+  required bytes cached_hash = 10;
+  optional uint32 expiry = 11;
 }
