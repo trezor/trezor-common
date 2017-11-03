@@ -84,6 +84,8 @@ enum MessageType {
 	MessageType_CosiCommitment = 72 [(wire_out) = true];
 	MessageType_CosiSign = 73 [(wire_in) = true];
 	MessageType_CosiSignature = 74 [(wire_out) = true];
+	MessageType_SignEcdsa = 75 [(wire_in) = true];
+	MessageType_SignedEcdsa = 76 [(wire_out) = true];
 	MessageType_DebugLinkDecision = 100 [(wire_debug_in) = true, (wire_tiny) = true];
 	MessageType_DebugLinkGetState = 101 [(wire_debug_in) = true];
 	MessageType_DebugLinkState = 102 [(wire_debug_out) = true];
@@ -740,6 +742,28 @@ message SignedIdentity {
 	optional string address = 1;			// identity address
 	optional bytes public_key = 2;			// identity public key
 	optional bytes signature = 3;			// signature of the identity data
+}
+
+/**
+ * Request: Ask device to sign with ECDSA
+ * @next SignedEcdsa
+ * @next Failure
+ */
+message SignEcdsa {
+	repeated uint32 address_n = 1;				// BIP-32 path to derive the key from master node
+	required bytes blob = 2;					// blob of bytes to sign
+	optional string challenge_visual = 3;		// challenge shown on display
+	required string ecdsa_curve_name = 4;		// ECDSA curve name to use
+}
+
+/**
+ * Response: Device provides ECDSA signature
+ * @prev SignEcdsa
+ */
+message SignedEcdsa {
+	optional string address = 1;			// address
+	optional bytes public_key = 2;			// public key
+	optional bytes signature = 3;			// signature of the data
 }
 
 ///////////////////
