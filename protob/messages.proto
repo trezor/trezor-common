@@ -927,14 +927,6 @@ message CosiSignature {
 ///////////////////
 
 /**
- * Request: Show seed on the device
- * @next Success
- * @next Failure
- */
-message IotaShowSeed {
-}
-
-/**
  * Request: Get address counter
  * @next IotaGetAddressCounter
  */
@@ -946,7 +938,7 @@ message IotaGetAddressCounter {
  * @prev IotaGetAddressCounter
  */
 message IotaAddressCounter {
-	required uint32 address_counter = 1;
+	optional uint32 address_counter = 1;
 }
 
 /**
@@ -955,7 +947,7 @@ message IotaAddressCounter {
  * @next Failure
  */
 message IotaSetAddressCounter {
-	required uint32 address_counter = 1;
+	optional uint32 address_counter = 1;
 }
 
 /**
@@ -971,8 +963,8 @@ message IotaGetAddress {
  * @prev IotaGetAddress
  */
 message IotaAddress {
-	required uint32 address_index = 1;
-	required string address = 2;
+	optional uint32 address_index = 1;
+	optional string address = 2;
 }
 
 /**
@@ -981,10 +973,10 @@ message IotaAddress {
  * @next Failure
  */
 message IotaTxRequest {
-	required string receiving_address = 1;			// Address to which the amount is send
-	required uint64 transfer_amount = 2;			// Amount of iota to be transferred
-	required uint64 balance = 3;					// Balance on the current address (to calculate remainder)
-    required uint64 request_timestamp = 4;			// Final transaction must be within certain time from here
+	optional string receiving_address = 1;			// Address to which the amount is send
+	optional uint64 transfer_amount = 2;			// Amount of iota to be transferred
+	optional uint64 balance = 3;					// Balance on the current address (to calculate remainder)
+	optional uint64 request_timestamp = 4;			// Final transaction must be within certain time from here
 	optional uint32 input_address_index = 5;		// Seed index from where to sent
 	optional uint32 remainder_address_index = 6;	// Seed index for the remaining balance
 	optional string tag = 7;						// Transaction tag, defaults to 'TREZOR'
@@ -1005,7 +997,7 @@ message IotaTxApproved {
  * @next Failure
  */
 message IotaTxDetails {
-	required uint64 transaction_timestamp = 1;		// Timestamp of the transactions in the bundle
+	optional uint64 transaction_timestamp = 1;		// Timestamp of the transactions in the bundle
 }
 
 /**
@@ -1013,8 +1005,8 @@ message IotaTxDetails {
  * @prev IotaTxDetails
  */
 message IotaSignedTx {
-	required string bundlehash = 1;				// Bundle hash (hash of all transaction elements)
-	required string first_signature = 2;		// First signature (security level 1)
+	optional string bundle_hash = 1;			// Bundle hash (hash of all transaction elements)
+	optional string first_signature = 2;		// First signature (security level 1)
 	optional string second_signature = 3;		// Second signature (security level 2)		
 }
 
