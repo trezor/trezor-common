@@ -470,8 +470,9 @@
 {
 	"coin_name": "Zerocoin",
 	"coin_shortcut": "XZC",
+	"coin_label": "Zerocoin",
 	"address_type": 52,
-	"address_type_p2sh": 07,
+	"address_type_p2sh": 7,
 	"maxfee_kb": 100000,
 	"minfee_kb": 1000,
 	"signed_message_header": "ZCoin Signed Message:\n",
