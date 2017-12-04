@@ -969,40 +969,22 @@ message IotaAddress {
 
 /**
  * Request: Approve a value transfer.
- * @next IotaTxApproved
+ * @next IotaSignedTx
  * @next Failure
  */
 message IotaTxRequest {
 	optional string receiving_address = 1;			// Address to which the amount is send
 	optional uint64 transfer_amount = 2;			// Amount of iota to be transferred
 	optional uint64 balance = 3;					// Balance on the current address (to calculate remainder)
-	optional uint64 request_timestamp = 4;			// Final transaction must be within certain time from here
+	optional uint64 timestamp = 4;					// Timestamp to be used for the transaction
 	optional uint32 input_address_index = 5;		// Seed index from where to sent
 	optional uint32 remainder_address_index = 6;	// Seed index for the remaining balance
 	optional string tag = 7;						// Transaction tag, defaults to 'TREZOR'
 }
 
 /**
- * Response: Transaction is allowed.
- * This triggers the computer to send the current timestamp
- * @next IotaTxDetails
- * @next Failure
- */
-message IotaTxApproved {
-}
-
-/**
- * Request: Send timestamp to initiate transaction signing.
- * @next IotSignedTx
- * @next Failure
- */
-message IotaTxDetails {
-	optional uint64 transaction_timestamp = 1;		// Timestamp of the transactions in the bundle
-}
-
-/**
  * Response: Transaction hash and signatures
- * @prev IotaTxDetails
+ * @prev IotaTxRequest
  */
 message IotaSignedTx {
 	optional string bundle_hash = 1;			// Bundle hash (hash of all transaction elements)
