@@ -977,9 +977,7 @@ message IotaTxRequest {
 	optional uint64 transfer_amount = 2;			// Amount of iota to be transferred
 	optional uint64 balance = 3;					// Balance on the current address (to calculate remainder)
 	optional uint64 timestamp = 4;					// Timestamp to be used for the transaction
-	optional uint32 input_address_index = 5;		// Seed index from where to sent
-	optional uint32 remainder_address_index = 6;	// Seed index for the remaining balance
-	optional string tag = 7;						// Transaction tag, defaults to 'TREZOR'
+	optional string tag = 5;						// Transaction tag, defaults to 'TREZOR'
 }
 
 /**
