@@ -84,6 +84,13 @@ enum MessageType {
 	MessageType_CosiCommitment = 72 [(wire_out) = true];
 	MessageType_CosiSign = 73 [(wire_in) = true];
 	MessageType_CosiSignature = 74 [(wire_out) = true];
+	MessageType_IotaGetAddressCounter = 75 [(wire_in) = true];
+	MessageType_IotaAddressCounter = 76 [(wire_out) = true];
+	MessageType_IotaSetAddressCounter = 77 [(wire_in) = true];
+	MessageType_IotaGetAddress = 78 [(wire_in) = true];
+	MessageType_IotaAddress = 79 [(wire_out) = true];
+	MessageType_IotaTxRequest = 80 [(wire_in) = true];
+	MessageType_IotaSignedTx = 81 [(wire_out) = true];
 	MessageType_DebugLinkDecision = 100 [(wire_debug_in) = true, (wire_tiny) = true];
 	MessageType_DebugLinkGetState = 101 [(wire_debug_in) = true];
 	MessageType_DebugLinkState = 102 [(wire_debug_out) = true];
@@ -912,6 +919,74 @@ message CosiSign {
  */
 message CosiSignature {
 	optional bytes signature = 1;		// Signature
+}
+
+///////////////////
+// Iota messages //
+///////////////////
+
+/**
+ * Request: Get address counter
+ * @next IotaAddressCounter
+ */
+message IotaGetAddressCounter {
+}
+
+/**
+ * Returns the address counter as currently set in storage
+ * @prev IotaGetAddressCounter
+ */
+message IotaAddressCounter {
+	optional uint32 address_counter = 1;
+}
+
+/**
+ * Request: Set address counter to storage
+ * @next Success
+ * @next Failure
+ */
+message IotaSetAddressCounter {
+	optional uint32 address_counter = 1;
+}
+
+/**
+ * Request: Ask device for a public address
+ * @next IotaAddress
+ */
+message IotaGetAddress {
+	optional uint32 address_index = 1;
+}
+
+/**
+ * Response: Contains public address
+ * @prev IotaGetAddress
+ */
+message IotaAddress {
+	optional uint32 address_index = 1;
+	optional string address = 2;
+}
+
+/**
+ * Request: Approve a value transfer.
+ * @next IotaSignedTx
+ * @next Failure
+ */
+message IotaTxRequest {
+	optional string receiving_address = 1;			// Address to which the amount is send
+	optional uint64 transfer_amount = 2;			// Amount of iota to be transferred
+	optional uint64 balance = 3;					// Balance on the current address (to calculate remainder)
+	optional uint64 timestamp = 4;					// Timestamp to be used for the transaction
+	optional string tag = 5;						// Transaction tag, defaults to 'TREZOR'
+}
+
+/**
+ * Response: Transaction hash and signatures
+ * @prev IotaTxRequest
+ */
+message IotaSignedTx {
+	optional string bundle_hash = 1;			// Bundle hash (hash of all transaction elements)
+	optional string first_signature = 2;		// First signature (security level 1)
+	optional string second_signature = 3;		// Second signature (security level 2)		
 }
 
 /////////////////////////////////////////////////////////////
