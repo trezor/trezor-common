@@ -468,9 +468,9 @@
 	"bitcore": []
 },
 {
-	"coin_name": "Zerocoin",
+	"coin_name": "ZCoin",
 	"coin_shortcut": "XZC",
-	"coin_label": "Zerocoin",
+	"coin_label": "ZCoin",
 	"address_type": 52,
 	"address_type_p2sh": 7,
 	"maxfee_kb": 100000,
@@ -495,7 +495,7 @@
 	"min_address_length": 27,
 	"max_address_length": 34,
 	"bitcore": [
-		"https://zcoinexplorer.technoprenerd.com"
+		"https://insight.zcoin.io"
 	]
 }
 ]
