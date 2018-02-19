@@ -1,3 +1,5 @@
+syntax = "proto2";
+
 /**
  * Messages for TREZOR communication
  */
@@ -84,6 +86,8 @@ enum MessageType {
 	MessageType_CosiCommitment = 72 [(wire_out) = true];
 	MessageType_CosiSign = 73 [(wire_in) = true];
 	MessageType_CosiSignature = 74 [(wire_out) = true];
+	MessageType_NEMDecryptMessage = 75 [(wire_in) = true];
+	MessageType_NEMDecryptedMessage = 76 [(wire_out) = true];
 	MessageType_DebugLinkDecision = 100 [(wire_debug_in) = true, (wire_tiny) = true];
 	MessageType_DebugLinkGetState = 101 [(wire_debug_in) = true];
 	MessageType_DebugLinkState = 102 [(wire_debug_out) = true];
@@ -104,6 +108,7 @@ enum MessageType {
  * @next Features
  */
 message Initialize {
+	optional bytes state = 1;			// assumed device state, clear session if set and different
 }
 
 /**
@@ -119,10 +124,10 @@ message GetFeatures {
  * @prev GetFeatures
  */
 message Features {
-	optional string vendor = 1;			// name of the manufacturer, e.g. "bitcointrezor.com"
-	optional uint32 major_version = 2;		// major version of the device, e.g. 1
-	optional uint32 minor_version = 3;		// minor version of the device, e.g. 0
-	optional uint32 patch_version = 4;		// patch version of the device, e.g. 0
+	optional string vendor = 1;			// name of the manufacturer, e.g. "trezor.io"
+	optional uint32 major_version = 2;		// major version of the firmware/bootloader, e.g. 1
+	optional uint32 minor_version = 3;		// minor version of the firmware/bootloader, e.g. 0
+	optional uint32 patch_version = 4;		// patch version of the firmware/bootloader, e.g. 0
 	optional bool bootloader_mode = 5;		// is device in bootloader mode?
 	optional string device_id = 6;			// device's unique identifier
 	optional bool pin_protection = 7;		// is device protected by PIN?
@@ -139,6 +144,13 @@ message Features {
 	optional bool firmware_present = 18;		// is valid firmware loaded?
 	optional bool needs_backup = 19;		// does storage need backup? (equals to Storage.needs_backup)
 	optional uint32 flags = 20;			// device flags (equals to Storage.flags)
+	optional string model = 21;			// device hardware model
+	optional uint32 fw_major = 22;			// reported firmware version if in bootloader mode
+	optional uint32 fw_minor = 23;			// reported firmware version if in bootloader mode
+	optional uint32 fw_patch = 24;			// reported firmware version if in bootloader mode
+	optional string fw_vendor = 25;			// reported firmware vendor if in bootloader mode
+	optional bytes fw_vendor_keys = 26;		// reported firmware vendor keys (their hash)
+	optional bytes state = 27;			// current device state
 }
 
 /**
@@ -255,6 +267,7 @@ message Cancel {
  * @next Cancel
  */
 message PassphraseRequest {
+	optional bool on_device = 1;		// passphrase is being entered on the device
 }
 
 /**
@@ -263,6 +276,7 @@ message PassphraseRequest {
  */
 message PassphraseAck {
 	required string passphrase = 1;
+	optional bytes state = 2;		// assumed device state, throw error if set and different
 }
 
 /**
@@ -595,6 +609,7 @@ message SignTx {
 	optional string coin_name = 3 [default='Bitcoin'];	// coin to use
 	optional uint32 version = 4 [default=1];		// transaction version
 	optional uint32 lock_time = 5 [default=0];		// transaction lock_time
+	optional uint32 decred_expiry = 6;
 }
 
 /**
@@ -868,6 +883,26 @@ message NEMSignTx {
 message NEMSignedTx {
 	optional bytes data = 1;	// Transaction data
 	optional bytes signature = 2;	// Signature for the transaction
+}
+
+/**
+ * Request: Ask device to decrypt NEM transaction payload
+ * @next NEMDecryptedMessage
+ * @next Failure
+ */
+message NEMDecryptMessage {
+	repeated uint32 address_n = 1;			// BIP-32 path to derive the key from master node
+	optional uint32 network = 2;			// Network ID (0x68 = Mainnet, 0x98 = Testnet, 0x60 = Mijin)
+	optional bytes public_key = 3;			// Public key of the other party
+	optional bytes payload = 4;			// Actual message data (encrypted)
+}
+
+/**
+ * Response: Contains decrypted NEM transaction payload
+ * @prev NEMDecryptMessage
+ */
+message NEMDecryptedMessage {
+	optional bytes payload = 1;			// Actual message data (unencrypted)
 }
 
 ///////////////////
