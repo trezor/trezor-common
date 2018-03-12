@@ -17,7 +17,9 @@
 		"https://[\\w\\.-]+\\.dash\\.run(/.*)?",
 		"https://0xproject\\.com(/.*)?",
 		"https://[\\w\\.-]+\\.unchained-capital\\.com(/.*)?",
-		"chrome-extension://jcjjhjgimijdkoamemaghajlhegmoclj(/.*)?"
+		"chrome-extension://jcjjhjgimijdkoamemaghajlhegmoclj(/.*)?",
+		"https://www.cryptomover.tech",
+		"https://cryptomover.tech"
 		],
 	"blacklist_urls": [
 	],
