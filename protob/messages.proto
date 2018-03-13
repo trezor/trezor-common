@@ -54,6 +54,8 @@ enum MessageType {
 	MessageType_MessageSignature = 40 [(wire_out) = true];
 	MessageType_PassphraseRequest = 41 [(wire_out) = true];
 	MessageType_PassphraseAck = 42 [(wire_in) = true, (wire_tiny) = true];
+	MessageType_PassphraseStateRequest = 77 [(wire_out) = true];
+	MessageType_PassphraseStateAck = 78 [(wire_in) = true, (wire_tiny) = true];
 	MessageType_EstimateTxSize = 43 [(wire_in) = true, deprecated = true];
 	MessageType_TxSize = 44 [(wire_out) = true, deprecated = true];
 	MessageType_RecoveryDevice = 45 [(wire_in) = true];
@@ -150,7 +152,7 @@ message Features {
 	optional uint32 fw_patch = 24;			// reported firmware version if in bootloader mode
 	optional string fw_vendor = 25;			// reported firmware vendor if in bootloader mode
 	optional bytes fw_vendor_keys = 26;		// reported firmware vendor keys (their hash)
-	optional bytes state = 27;			// current device state
+	optional bool unfinished_backup = 27;		// report unfinished backup (equals to Storage.unfinished_backup)
 }
 
 /**
@@ -172,6 +174,7 @@ message ApplySettings {
 	optional string label = 2;
 	optional bool use_passphrase = 3;
 	optional bytes homescreen = 4;
+	optional PassphraseSourceType passphrase_source = 5;
 }
 
 /**
@@ -273,10 +276,25 @@ message PassphraseRequest {
 /**
  * Request: Send passphrase back
  * @prev PassphraseRequest
+ * @next PassphraseStateRequest
  */
 message PassphraseAck {
-	required string passphrase = 1;
-	optional bytes state = 2;		// assumed device state, throw error if set and different
+	optional string passphrase = 1;
+	optional bytes state = 2;		// expected device state
+}
+
+/**
+ * @prev PassphraseAck
+ * @next PassphraseStateAck
+ */
+message PassphraseStateRequest {
+	optional bytes state = 1;		// actual device state
+}
+
+/**
+ * @prev PassphraseStateRequest
+ */
+message PassphraseStateAck {
 }
 
 /**
@@ -672,6 +690,7 @@ message EthereumSignTx {
 	optional bytes data_initial_chunk = 7;		// The initial data chunk (<= 1024 bytes)
 	optional uint32 data_length = 8;		// Length of transaction payload
 	optional uint32 chain_id = 9;			// Chain Id for EIP 155
+	optional uint32 tx_type = 10;			// (only for Wanchain)
 }
 
 /**

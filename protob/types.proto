@@ -41,6 +41,7 @@ enum FailureType {
 	Failure_ProcessError = 9;
 	Failure_NotEnoughFunds = 10;
 	Failure_NotInitialized = 11;
+	Failure_PinMismatch = 12;
 	Failure_FirmwareError = 99;
 }
 
@@ -97,6 +98,9 @@ enum ButtonRequestType {
 	ButtonRequest_FirmwareCheck = 9;
 	ButtonRequest_Address = 10;
 	ButtonRequest_PublicKey = 11;
+	ButtonRequest_MnemonicWordCount = 12;
+	ButtonRequest_MnemonicInput = 13;
+	ButtonRequest_PassphraseType = 14;
 }
 
 /**
@@ -277,6 +281,16 @@ message IdentityType {
 	optional string port = 4;			// port part of URI
 	optional string path = 5;			// path part of URI
 	optional uint32 index = 6 [default=0];		// identity index
+}
+
+/**
+ * Structure representing passphrase source
+ * @used_in ApplySettings
+ */
+enum PassphraseSourceType {
+	ASK = 0;
+	DEVICE = 1;
+	HOST = 2;
 }
 
 /**
