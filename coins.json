@@ -553,7 +553,7 @@
 	"address_type_p2sh": 5039,
 	"maxfee_kb": 1000000,
 	"minfee_kb": 1000,
-	"signed_message_header": "Bitcoin Private Signed Message:\n",
+	"signed_message_header": "BitcoinPrivate Signed Message:\n",
 	"hash_genesis_block": "0007104ccda289427919efc39dc9e4d499804b7bebc22df55f8b834301260602",
 	"xprv_magic": "0488ade4",
 	"xpub_magic": "0488b21e",
