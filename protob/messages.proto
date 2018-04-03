@@ -99,6 +99,8 @@ enum MessageType {
 	MessageType_DebugLinkMemory = 111 [(wire_debug_out) = true];
 	MessageType_DebugLinkMemoryWrite = 112 [(wire_debug_in) = true];
 	MessageType_DebugLinkFlashErase = 113 [(wire_debug_in) = true];
+	MessageType_SkycoinAddress = 114 [(wire_in) = true];
+	MessageType_SkycoinCheckMessageSignature = 115 [(wire_in) = true];
 }
 
 ////////////////////
@@ -193,6 +195,26 @@ message ApplyFlags {
  */
 message ChangePin {
 	optional bool remove = 1;	// is PIN removal requested?
+}
+
+/**
+ * Request: Generate a Skycoin or a Bitcoin address from a seed, device sends back the address in a Success message
+ * @next Success
+ */
+message SkycoinAddress {
+	required string seed = 1; // seed used to generate address
+	optional SkycoinAddressType address_type = 2;
+}
+
+
+/**
+ * Request: Check a message signature matches the given address.
+ * @next Success
+ */
+message SkycoinCheckMessageSignature {
+	required string address = 1; //address that was supposedly used to produce the signature
+	required string message = 2; //message that was signed
+	required string signature = 3; //electronic signature of the message
 }
 
 /**

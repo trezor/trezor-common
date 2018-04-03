@@ -444,3 +444,12 @@ enum NEMImportanceTransferMode {
 	ImportanceTransfer_Activate = 1;
 	ImportanceTransfer_Deactivate = 2;
 }
+
+/**
+ * Ask trezor to generate a skycoin address
+ * @used_in SkycoinAddress｛
+ */
+enum SkycoinAddressType {
+	AddressTypeSkycoin = 1;
+	AddressTypeBitcoin = 2;
+}
