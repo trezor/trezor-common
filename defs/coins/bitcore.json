@@ -31,6 +31,6 @@
 	"min_address_length": 27,
 	"max_address_length": 34,
 	"bitcore": [
-		"https://insight.bitcore.cc",
+		"https://insight.bitcore.cc"
 	]
 }
