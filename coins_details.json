@@ -293,6 +293,17 @@
             "t2_enabled": "yes",
             "type": "coin"
         },
+        "coin:ZEN": {
+            "links": {
+                "Homepage": "zencash.com"
+            },
+            "marketcap_usd":125704622,
+            "name": "Zencash",
+            "shortcut": "ZEN",
+            "t1_enabled": "yes",
+            "t2_enabled": "yes",
+            "type": "coin"
+        },
         "erc20:etc:BEC": {
             "address": "0x085fb4f24031EAedbC2B611AA528f22343eB52Db",
             "links": {
