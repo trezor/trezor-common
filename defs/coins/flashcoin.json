@@ -15,6 +15,7 @@
 	"xprv_magic": "0488ade4",
 	"xpub_magic": "0488b21e",
 	"xpub_magic_segwit_p2sh": "049d7cb2",
+	"xpub_magic_segwit_native": null,
 	"bech32_prefix": null,
 	"cashaddr_prefix": null,
 	"slip44": 120,
@@ -26,7 +27,7 @@
 		"Normal": 0
 	},
 	"dust_limit": 10000,
-	"blocktime_minutes": 1,
+	"blocktime_seconds": 60,
 	"address_prefix": "flashcoin:",
 	"min_address_length": 27,
 	"max_address_length": 34,

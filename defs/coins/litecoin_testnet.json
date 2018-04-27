@@ -15,6 +15,7 @@
 	"xprv_magic": "04358394",
 	"xpub_magic": "043587cf",
 	"xpub_magic_segwit_p2sh": null,
+	"xpub_magic_segwit_native": null,
 	"bech32_prefix": "tltc",
 	"cashaddr_prefix": null,
 	"slip44": 1,
@@ -26,7 +27,7 @@
 		"Normal": 10
 	},
 	"dust_limit": 54600,
-	"blocktime_minutes": 2.5,
+	"blocktime_seconds": 150,
 	"address_prefix": "litecoin:",
 	"min_address_length": 27,
 	"max_address_length": 34,

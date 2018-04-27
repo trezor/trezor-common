@@ -15,6 +15,7 @@
 	"xprv_magic": "02fe52f8",
 	"xpub_magic": "02fe52cc",
 	"xpub_magic_segwit_p2sh": null,
+	"xpub_magic_segwit_native": null,
 	"bech32_prefix": null,
 	"cashaddr_prefix": null,
 	"slip44": 5,
@@ -26,7 +27,7 @@
 		"Normal": 10
 	},
 	"dust_limit": 5460,
-	"blocktime_minutes": 2.5,
+	"blocktime_seconds": 150,
 	"address_prefix": "dash:",
 	"min_address_length": 27,
 	"max_address_length": 34,

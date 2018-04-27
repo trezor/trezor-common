@@ -15,6 +15,7 @@
 	"xprv_magic": "019d9cfe",
 	"xpub_magic": "019da462",
 	"xpub_magic_segwit_p2sh": null,
+	"xpub_magic_segwit_native": null,
 	"bech32_prefix": null,
 	"cashaddr_prefix": null,
 	"slip44": 7,
@@ -26,7 +27,7 @@
 		"Normal": 10
 	},
 	"dust_limit": 2940,
-	"blocktime_minutes": 10,
+	"blocktime_seconds": 600,
 	"address_prefix": "namecoin:",
 	"min_address_length": 27,
 	"max_address_length": 34,

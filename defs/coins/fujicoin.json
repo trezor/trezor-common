@@ -15,6 +15,7 @@
 	"xpub_magic": "0488b21e",
 	"xprv_magic": "0488ade4",
 	"xpub_magic_segwit_p2sh": "049d7cb2",
+	"xpub_magic_segwit_native": null,
 	"bech32_prefix": "fc",
 	"cashaddr_prefix": null,
 	"slip44": 75,
@@ -29,7 +30,7 @@
 		"High": 1000000
 	},
 	"dust_limit": 100000,
-	"blocktime_minutes": 1.0,
+	"blocktime_seconds": 60,
 	"address_prefix": "fujicoin:",
 	"min_address_length": 27,
 	"max_address_length": 34,
