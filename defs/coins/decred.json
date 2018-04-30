@@ -4,7 +4,7 @@
   "coin_label": "Decred",
   "website": "https://www.decred.org",
   "github": "https://github.com/decred/dcrd",
-  "maintainer": "Saleem Rashid <trezor@saleemrashid.com>",
+  "maintainer": "Alex Yocom-Piatt <ay-p@decred.org>",
   "curve_name": "secp256k1_decred",
   "address_type": 1855,
   "address_type_p2sh": 1818,
