@@ -17,7 +17,7 @@
 		"https://[\\w\\.-]+\\.dash\\.run(/.*)?",
 		"https://0xproject\\.com(/.*)?",
 		"https://[\\w\\.-]+\\.unchained-capital\\.com(/.*)?",
-		"chrome-extension://jcjjhjgimijdkoamemaghajlhegmoclj(/.*)?"
+		"null"
 		],
 	"blacklist_urls": [
 	],
