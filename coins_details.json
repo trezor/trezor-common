@@ -743,6 +743,7 @@
         "erc20:eth:ANT": {
             "address": "0x960b236A07cf122663c4303350609A66A7B288C0",
             "links": {
+                "Homepage": "https://aragon.one/network/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -801,16 +802,18 @@
             "t2_enabled": "yes",
             "type": "erc20"
         },
-        "erc20:eth:ARC": {
+        "erc20:eth:ARCD": {
             "address": "0xAc709FcB44a43c35F0DA4e3163b117A17F3770f5",
             "links": {
+                "Github": "https://github.com/swarmcity/ac-token",
+                "Homepage": "https://arcade.city/"
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
             "marketcap_usd": 0,
-            "name": "ARC",
+            "name": "Arcade",
             "network": "eth",
-            "shortcut": "ARC",
+            "shortcut": "ARCD",
             "t1_enabled": "yes",
             "t2_enabled": "yes",
             "type": "erc20"
@@ -1064,6 +1067,7 @@
         "erc20:eth:BAT": {
             "address": "0x0D8775F648430679A709E98d2b0Cb6250d2887EF",
             "links": {
+                "Homepage": "https://basicattentiontoken.org/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -1094,6 +1098,8 @@
         "erc20:eth:BCDN": {
             "address": "0x1e797Ce986C3CFF4472F7D38d5C4aba55DfEFE40",
             "links": {
+                "Github": "https://github.com/Blockcdnteam",
+                "Homepage": "https://www.blockcdn.org/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -1219,6 +1225,8 @@
         "erc20:eth:BET": {
             "address": "0x8aA33A7899FCC8eA5fBe6A608A109c3893A1B8b2",
             "links": {
+                "Github": "https://github.com/daocasino",
+                "Homepage": "https://dao.casino/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -1327,6 +1335,7 @@
         "erc20:eth:BLX (Iconomi)": {
             "address": "0xE5a7c12972f3bbFe70ed29521C8949b8Af6a0970",
             "links": {
+                "Homepage": "https://www.iconomi.net/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -1403,6 +1412,7 @@
         "erc20:eth:BNC": {
             "address": "0xdD6Bf56CA2ada24c683FAC50E37783e55B57AF9F",
             "links": {
+                "Homepage": "https://bravenewcoin.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -1431,6 +1441,8 @@
         "erc20:eth:BNT": {
             "address": "0x1F573D6Fb3F13d689FF844B4cE37794d79a7FF1C",
             "links": {
+                "Github": "https://github.com/bancorprotocol/",
+                "Homepage": "https://www.bancor.network/discover",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -1551,6 +1563,7 @@
         "erc20:eth:BRAT": {
             "address": "0x9E77D5a1251b6F7D456722A6eaC6D2d5980bd891",
             "links": {
+                "Homepage": "http://bro-consortium.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -1565,6 +1578,8 @@
         "erc20:eth:BRD": {
             "address": "0x558EC3152e2eb2174905cd19AeA4e34A23DE9aD6",
             "links": {
+                "Github": "https://github.com/breadwallet",
+                "Homepage": "https://token.breadapp.com/en/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -1672,6 +1687,8 @@
         "erc20:eth:BTK": {
             "address": "0xdb8646F5b487B5Dd979FAC618350e85018F557d4",
             "links": {
+                "Github": "https://github.com/bitcoin-token",
+                "Homepage": "https://btk.community/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -2361,6 +2378,7 @@
         "erc20:eth:CRB": {
             "address": "0xAef38fBFBF932D1AeF3B808Bc8fBd8Cd8E1f8BC5",
             "links": {
+                "Homepage": "https://www.creditbit.org/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -2512,6 +2530,7 @@
         "erc20:eth:CVC": {
             "address": "0x41e5560054824eA6B0732E656E3Ad64E20e94E45",
             "links": {
+                "Homepage": "https://www.civic.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -2558,6 +2577,7 @@
         "erc20:eth:CryptoCarbon": {
             "address": "0xE4c94d45f7Aef7018a5D66f44aF780ec6023378e",
             "links": {
+                "Homepage": "https://ccrb.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -2649,6 +2669,7 @@
         "erc20:eth:DAO": {
             "address": "0xBB9bc244D798123fDe783fCc1C72d3Bb8C189413",
             "links": {
+                "Homepage": "https://blog.daohub.org/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -2788,6 +2809,8 @@
         "erc20:eth:DDF": {
             "address": "0xcC4eF9EEAF656aC1a2Ab886743E98e97E090ed38",
             "links": {
+                "Github": "https://github.com/digitaldevelopersfund/ddf",
+                "Homepage": "https://www.digitaldevelopersfund.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -2833,6 +2856,7 @@
         "erc20:eth:DENT": {
             "address": "0x3597bfD533a99c9aa083587B074434E61Eb0A258",
             "links": {
+                "Homepage": "https://www.dentwireless.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -3184,6 +3208,7 @@
         "erc20:eth:DTx": {
             "address": "0x82fdedfB7635441aA5A92791D001fA7388da8025",
             "links": {
+                "Homepage": "https://www.digitalticks.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -3336,6 +3361,8 @@
         "erc20:eth:EHT": {
             "address": "0xf9F0FC7167c311Dd2F1e21E9204F87EBA9012fB2",
             "links": {
+                "Github": "https://github.com/team-easyhomes",
+                "Homepage": "https://easyhomes.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -3507,6 +3534,8 @@
         "erc20:eth:EOS": {
             "address": "0x86Fa049857E0209aa7D9e616F7eb3b3B78ECfdb0",
             "links": {
+                "Github": "https://github.com/eosio",
+                "Homepage": "https://eos.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -3598,6 +3627,8 @@
         "erc20:eth:ETR": {
             "address": "0x6927C69fb4daf2043fbB1Cb7b86c5661416bea29",
             "links": {
+                "Github": "https://github.com/pironmind/EthereumRisen",
+                "Homepage": "http://ethereumrisen.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -3706,6 +3737,8 @@
         "erc20:eth:FAM": {
             "address": "0x190e569bE071F40c704e15825F285481CB74B6cC",
             "links": {
+                "Github": "https://github.com/BattleDrome",
+                "Homepage": "http://www.battledrome.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -3873,6 +3906,7 @@
         "erc20:eth:FTC": {
             "address": "0xe6f74dcfa0E20883008d8C16b6d9a329189D0C30",
             "links": {
+                "Homepage": "https://ftccoins.org/en",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -4026,6 +4060,8 @@
         "erc20:eth:GBT": {
             "address": "0x7585F835ae2d522722d2684323a0ba83401f32f5",
             "links": {
+                "Github": "https://github.com/myHelloGold/Foundation",
+                "Homepage": "https://www.hellogold.org/"
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -4274,6 +4310,8 @@
         "erc20:eth:GTKT": {
             "address": "0x025abAD9e518516fdaAFBDcdB9701b37fb7eF0FA",
             "links": {
+                "Github": "https://github.com/sprux/BackToEarth",
+                "Homepage": "https://backto.earth/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -4304,6 +4342,8 @@
         "erc20:eth:GUP": {
             "address": "0xf7B098298f7C69Fc14610bf71d5e02c60792894C",
             "links": {
+                "Github": "https://github.com/Matchpool/",
+                "Homepage": "https://github.com/Matchpool/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -4349,6 +4389,8 @@
         "erc20:eth:GXVC": {
             "address": "0x22F0AF8D78851b72EE799e05F54A77001586B18A",
             "links": {
+                "Github": "https://github.com/GxC17Genevieve/GXVC",
+                "Homepage": "https://genevieveco.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -4424,6 +4466,8 @@
         "erc20:eth:HGT": {
             "address": "0xba2184520A1cC49a6159c57e61E1844E085615B6",
             "links": {
+                "Github": "https://github.com/myHelloGold/Foundation",
+                "Homepage": "https://www.hellogold.org/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -4610,6 +4654,7 @@
         "erc20:eth:ICE": {
             "address": "0x5a84969bb663fb64F6d015DcF9F622Aedc796750",
             "links": {
+                "Homepage": "https://idice.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -4653,6 +4698,7 @@
         "erc20:eth:ICOS": {
             "address": "0x014B50466590340D41307Cc54DCee990c8D58aa8",
             "links": {
+                "Homepage": "https://icos.icobox.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -4727,6 +4773,8 @@
         "erc20:eth:IKB": {
             "address": "0x88AE96845e157558ef59e9Ff90E766E22E480390",
             "links": {
+                "Github": "https://github.com/mitchellfchan/IKB",
+                "Homepage": "http://www.mitchellfchan.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -4983,6 +5031,7 @@
         "erc20:eth:JET": {
             "address": "0x8727c112C712c4a03371AC87a74dD6aB104Af768",
             "links": {
+                "Homepage": "https://jetcoin.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5028,6 +5077,7 @@
         "erc20:eth:JetCoins": {
             "address": "0x773450335eD4ec3DB45aF74f34F2c85348645D39",
             "links": {
+                "Homepage": "http://www.jetcoins.trade/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5088,6 +5138,7 @@
             "address": "0x27695E09149AdC738A978e9A678F99E4c39e9eb9",
             "links": {
                 "Github": "https://github.com/kickico",
+                "Homepage": "https://www.kickico.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5566,6 +5617,8 @@
         "erc20:eth:LUN": {
             "address": "0xfa05A73FfE78ef8f1a739473e462c54bae6567D9",
             "links": {
+                "Github": "https://github.com/lunyr",
+                "Homepage": "https://lunyr.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5611,6 +5664,7 @@
         "erc20:eth:MAD": {
             "address": "0x5B09A0371C1DA44A8E24D36Bf5DEb1141a84d875",
             "links": {
+                "Homepage": "https://madnetwork.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5625,6 +5679,7 @@
         "erc20:eth:MAN": {
             "address": "0xe25bCec5D3801cE3a794079BF94adF1B8cCD802D",
             "links": {
+                "Homepage": "https://www.matrix.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5686,6 +5741,7 @@
         "erc20:eth:MCAP": {
             "address": "0x93E682107d1E9defB0b5ee701C71707a4B2E46Bc",
             "links": {
+                "Homepage": "https://www.mcaplabs.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5716,6 +5772,7 @@
         "erc20:eth:MCO": {
             "address": "0xB63B606Ac810a52cCa15e44bB630fd42D8d1d83d",
             "links": {
+                "Homepage": "https://mona.co/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5730,6 +5787,7 @@
         "erc20:eth:MDA": {
             "address": "0x51DB5Ad35C671a87207d88fC11d593AC0C8415bd",
             "links": {
+                "Homepage": "https://moeda.in",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5792,6 +5850,7 @@
         "erc20:eth:MGO": {
             "address": "0x40395044Ac3c0C57051906dA938B54BD6557F212",
             "links": {
+                "Homepage": "https://gamecredits.com/mobilego/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -5866,6 +5925,7 @@
         "erc20:eth:MNE": {
             "address": "0x1a95B271B0535D15fa49932Daba31BA612b52946",
             "links": {
+                "Homepage": "https://minereum.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -6264,6 +6324,7 @@
             "address": "0xA823E6722006afe99E91c30FF5295052fe6b8E32",
             "links": {
                 "Github": "https://github.com/neufund",
+                "Homepage": "https://neufund.org/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -6309,6 +6370,8 @@
         "erc20:eth:NMR": {
             "address": "0x1776e1F26f98b1A5dF9cD347953a26dd3Cb46671",
             "links": {
+                "Github": "https://github.com/numerai",
+                "Homepage": "https://numer.ai/homepage",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -6494,6 +6557,8 @@
         "erc20:eth:OMG": {
             "address": "0xd26114cd6EE289AccF82350c8d8487fedB8A0C07",
             "links": {
+                "Github": "https://github.com/omisego",
+                "Homepage": "https://omisego.network/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -6649,6 +6714,7 @@
         "erc20:eth:PAY": {
             "address": "0xB97048628DB6B661D4C2aA833e95Dbe1A905B280",
             "links": {
+                "Homepage": "http://www.tenx.tech/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -6816,6 +6882,7 @@
         "erc20:eth:PLASMA": {
             "address": "0x59416A25628A76b4730eC51486114c32E0B582A1",
             "links": {
+                "Homepage": "https://plasma.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -7168,6 +7235,7 @@
         "erc20:eth:PTOY": {
             "address": "0x8Ae4BF2C33a8e667de34B54938B0ccD03Eb8CC06",
             "links": {
+                "Homepage": "https://patientory.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -7275,6 +7343,8 @@
         "erc20:eth:QRL": {
             "address": "0x697beac28B09E122C4332D163985e8a73121b97F",
             "links": {
+                "Github": "https://github.com/theQRL",
+                "Homepage": "https://theqrl.org/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -7353,6 +7423,8 @@
         "erc20:eth:RCN": {
             "address": "0xF970b8E36e23F7fC3FD752EeA86f8Be8D83375A6",
             "links": {
+                "Github": "https://github.com/ripio/rcn-token",
+                "Homepage": "https://ripiocredit.network/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -7474,6 +7546,8 @@
         "erc20:eth:REX": {
             "address": "0xf05a9382A4C3F29E2784502754293D88b835109C",
             "links": {
+                "Github": "https://github.com/rexmls/RexToken",
+                "Homepage": "https://imbrex.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -7534,6 +7608,8 @@
         "erc20:eth:RLT": {
             "address": "0xcCeD5B8288086BE8c38E23567e684C3740be4D48",
             "links": {
+                "Github": "https://github.com/Smartroulette",
+                "Homepage": "https://smartplay.tech/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -7624,6 +7700,7 @@
         "erc20:eth:ROUND": {
             "address": "0x4993CB95c7443bdC06155c5f5688Be9D8f6999a5",
             "links": {
+                "Homepage": "http://roundcoin.org/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -7865,6 +7942,7 @@
         "erc20:eth:SHIT": {
             "address": "0xEF2E9966eb61BB494E5375d5Df8d67B7dB8A780D",
             "links": {
+                "Homepage": "https://www.shitcoin.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -7910,6 +7988,8 @@
         "erc20:eth:SKIN": {
             "address": "0x2bDC0D42996017fCe214b21607a515DA41A9E0C5",
             "links": {
+                "Github": "https://github.com/Steamtradenet/smart-contract",
+                "Homepage": "https://skincoin.org/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -8093,6 +8173,8 @@
         "erc20:eth:SNM": {
             "address": "0x983F6d60db79ea8cA4eB9968C6aFf8cfA04B3c63",
             "links": {
+                "Github": "https://github.com/sonm-io",
+                "Homepage": "https://sonm.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -8259,6 +8341,7 @@
         "erc20:eth:SSH": {
             "address": "0x6e2050CBFB3eD8A4d39b64cC9f47E711a03a5a89",
             "links": {
+                "Homepage": "https://www.stream.space/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -8349,6 +8432,8 @@
         "erc20:eth:STORJ": {
             "address": "0xB64ef51C888972c908CFacf59B47C1AfBC0Ab8aC",
             "links": {
+                "Github": "https://github.com/Storj/",
+                "Homepage": "https://storj.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -8394,6 +8479,8 @@
         "erc20:eth:STRC": {
             "address": "0x46492473755e8dF960F8034877F61732D718CE96",
             "links": {
+                "Github": "https://github.com/sprux/BackToEarth",
+                "Homepage": "https://backto.earth/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -8625,6 +8712,8 @@
         "erc20:eth:THUG": {
             "address": "0xfe7B915A0bAA0E79f85c5553266513F7C1c03Ed0",
             "links": {
+                "Github": "https://github.com/THUGCOIN/THUGCoin",
+                "Homepage": "https://thugcoin.cash/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -9546,6 +9635,7 @@
         "erc20:eth:XID": {
             "address": "0xB110eC7B1dcb8FAB8dEDbf28f53Bc63eA5BEdd84",
             "links": {
+                "Homepage": "https://sphereidentity.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -9606,6 +9696,7 @@
         "erc20:eth:XRL": {
             "address": "0xB24754bE79281553dc1adC160ddF5Cd9b74361a4",
             "links": {
+                "Homepage": "https://rialto.ai/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -9650,6 +9741,8 @@
         "erc20:eth:YUPIE": {
             "address": "0x0F33bb20a282A7649C7B3AFf644F084a9348e933",
             "links": {
+                "Github": "https://github.com/crowdholdingico/YupieSmartContract",
+                "Homepage": "https://www.crowdholding.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -9726,6 +9819,8 @@
         "erc20:eth:ZRX": {
             "address": "0xE41d2489571d322189246DaFA5ebDe1F4699F498",
             "links": {
+                "Github": "https://github.com/0xProject",
+                "Homepage": "https://0xproject.com/"
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -9879,6 +9974,7 @@
         "erc20:ubq:CEFS": {
             "address": "0x08533D6A06CE365298b12Ef92eb407cBA8Aa8273",
             "links": {
+                "Homepage": "https://www.cryptopiashares.com/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
@@ -9907,6 +10003,7 @@
         "erc20:ubq:QWARK": {
             "address": "0x4b4899a10F3E507DB207b0ee2426029eFa168a67",
             "links": {
+                "Homepage": "https://www.qwark.io/",
                 "MyCrypto Wallet": "https://mycrypto.com",
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
