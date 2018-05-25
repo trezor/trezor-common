@@ -187,6 +187,7 @@ message TxInputType {
 	optional uint64 amount = 8;						// amount of previous transaction output (for segwit only)
 	optional uint32 decred_tree = 9;
 	optional uint32 decred_script_version = 10;
+	optional bytes prev_input_script = 11;
 }
 
 /**
