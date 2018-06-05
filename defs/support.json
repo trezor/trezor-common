@@ -13,9 +13,11 @@
 		"Monacoin": "1.6.0",
 		"Fujicoin": "1.6.1",
 		"Vertcoin": "1.6.1",
+		"Zcoin": "1.7.0",
 		"Bcash Testnet": "1.5.2",
 		"Zcash Testnet": "1.5.2",
-		"Decred Testnet": "1.6.1"
+		"Decred Testnet": "1.6.1",
+		"Zcoin Testnet": "1.7.0"
 	},
 	"trezor2": {
 		"Bitcoin": "2.0.5",
@@ -32,7 +34,9 @@
 		"DigiByte": "2.0.5",
 		"Monacoin": "2.0.5",
 		"Fujicoin": "2.0.5",
-		"Vertcoin": "2.0.5"
+		"Vertcoin": "2.0.5",
+		"Zcoin": "2.0.7",
+		"Zcoin Testnet": "2.0.7"
 	},
 	"connect": {
 		"Bitcoin": true,
