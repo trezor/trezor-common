@@ -203,6 +203,19 @@
             "t2_enabled": "yes",
             "type": "coin"
         },
+        "coin:BTX": {
+            "links": {
+                "Electrum": "https://github.com/LIMXTEC/electrum-bitcore",
+                "Github": "https://github.com/LIMXTEC/BitCore",
+                "Homepage": "https://bitcore.cc/"                
+            },
+            "marketcap_usd": 46832064,
+            "name": "Bitcore",
+            "shortcut": "BTX",
+            "t1_enabled": "yes",
+            "t2_enabled": "yes",
+            "type": "coin"
+        },
         "coin:DASH": {
             "links": {
                 "Homepage": "https://www.dash.org",
