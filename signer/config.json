@@ -15,6 +15,7 @@
 		"https://[\\w\\.-]+\\.bitex\\.la(/.*)?",
 		"https://dash\\.run(/.*)?",
 		"https://[\\w\\.-]+\\.dash\\.run(/.*)?",
+		"https://[\\w\\.-]+\\.balance\\.io(/.*)?",
 		"https://0xproject\\.com(/.*)?",
 		"https://[\\w\\.-]+\\.unchained-capital\\.com(/.*)?",
 		"chrome-extension://jcjjhjgimijdkoamemaghajlhegmoclj(/.*)?"
