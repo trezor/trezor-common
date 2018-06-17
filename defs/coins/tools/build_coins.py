@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+# This script generates coins.json files from the definitions in defs/
+#
+# - `./build_coins.py` generates a big file with everything
+# - `./build_coins.py XXX` generates a file with coins supported by XXX
+#      for example: `./build_coins.py webwallet` or `./build_coins.py trezor1`
+# - `./build_coins.py XXX --defs` also adds protobuf definitions with TOIF icon
+#
+# generated file is coins.json in current directory,
+# and coindefs.json if --def is enabled
+
 import json
 import glob
 import re
@@ -167,23 +177,63 @@ def process_json(fn):
 scriptdir = os.path.dirname(os.path.realpath(__file__))
 
 
+support_json = json.load(open(scriptdir + '/../../support.json'))
 if len(sys.argv) > 1 and not sys.argv[1].startswith('-'):
-    support_json = json.load(open(scriptdir + '/../../support.json'))
     support_list = support_json[sys.argv[1]].keys()
 else:
     support_list = None
-
 
 coins = {}
 defs = {}
 for fn in glob.glob(scriptdir + '/../*.json'):
     c, d = process_json(fn)
     n = c['coin_name']
+    c['support'] = {}
+    for s in support_json.keys():
+        c['support'][s] = support_json[s][n] if n in support_json[s] else None
     if support_list is None or n in support_list:
         coins[n] = c
         defs[n] = d
 
-
 json.dump(coins, open('coins.json', 'w'), indent=4, sort_keys=True)
 if BUILD_DEFS:
     json.dump(defs, open('coindefs.json', 'w'), indent=4, sort_keys=True)
+
+# check for colliding address versions
+at_p2pkh = {}
+at_p2sh = {}
+slip44 = {}
+
+for n, c in coins.items():
+    s = c['slip44']
+    if s not in slip44:
+        slip44[s] = []
+    if not(n.endswith('Testnet') and s == 1):
+        slip44[s].append(n)
+    if c['cashaddr_prefix']:  # skip cashaddr currencies
+        continue
+    a1, a2 = c['address_type'], c['address_type_p2sh']
+    if a1 not in at_p2pkh:
+        at_p2pkh[a1] = []
+    if a2 not in at_p2sh:
+        at_p2sh[a2] = []
+    at_p2pkh[a1].append(n)
+    at_p2sh[a2].append(n)
+
+print()
+print('Colliding address_types for P2PKH:')
+for k, v in at_p2pkh.items():
+    if len(v) >= 2:
+        print('-', k, ':', ','.join(v))
+
+print()
+print('Colliding address_types for P2SH:')
+for k, v in at_p2sh.items():
+    if len(v) >= 2:
+        print('-', k, ':', ','.join(v))
+
+print()
+print('Colliding SLIP44 constants:')
+for k, v in slip44.items():
+    if len(v) >= 2:
+        print('-', k, ':', ','.join(v))

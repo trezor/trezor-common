@@ -65,6 +65,19 @@
             "t2_enabled": "yes",
             "type": "coin"
         },
+        "coin2:EOSC": {
+            "links": {
+                "Homepage": "https://eos-classic.io",
+                "MyCrypto Wallet": "https://mycrypto.com",
+                "MyEtherWallet": "https://www.myetherwallet.com"
+            },
+            "marketcap_usd": 0,
+            "name": "EOS Classic",
+            "shortcut": "EOSC",
+            "t1_enabled": "yes",
+            "t2_enabled": "yes",
+            "type": "coin"
+        },
         "coin2:LSK": {
             "links": {
                 "Homepage": "https://lisk.io/"
@@ -84,7 +97,7 @@
                 "MyEtherWallet": "https://www.myetherwallet.com"
             },
             "marketcap_usd": 0,
-            "name": "Rootstock",
+            "name": "RSK",
             "shortcut": "RSK",
             "t1_enabled": "yes",
             "t2_enabled": "yes",
@@ -3549,22 +3562,6 @@
             "network": "eth",
             "shortcut": "ENTRP",
             "t1_enabled": "soon",
-            "t2_enabled": "yes",
-            "type": "erc20"
-        },
-        "erc20:eth:EOS": {
-            "address": "0x86Fa049857E0209aa7D9e616F7eb3b3B78ECfdb0",
-            "links": {
-                "Github": "https://github.com/eosio",
-                "Homepage": "https://eos.io/",
-                "MyCrypto Wallet": "https://mycrypto.com",
-                "MyEtherWallet": "https://www.myetherwallet.com"
-            },
-            "marketcap_usd": 10757511883,
-            "name": "EOS",
-            "network": "eth",
-            "shortcut": "EOS",
-            "t1_enabled": "yes",
             "t2_enabled": "yes",
             "type": "erc20"
         },
