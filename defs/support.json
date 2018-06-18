@@ -45,6 +45,7 @@
 		"Dash": true,
 		"Litecoin": true,
 		"Zcash": true,
+		"Zcoin": true,
 		"Testnet": true
 	},
 	"webwallet": {
@@ -54,12 +55,14 @@
 		"Dash": true,
 		"Litecoin": true,
 		"Zcash": true,
+		"Zcoin": true,
 		"Testnet": true
 	},
 	"electrum": {
 		"Bitcoin": "https://electrum.org/",
 		"Litecoin": "https://electrum-ltc.org",
 		"Bcash": "https://electroncash.org",
+		"Zcoin": "https://github.com/zcoinofficial/electrum-xzc",
 		"Dash": "https://electrum.dash.org"
 	}
 }
