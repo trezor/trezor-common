@@ -131,6 +131,12 @@ enum MessageType {
 	MessageType_StellarManageDataOp = 220 [(wire_in) = true];
 	MessageType_StellarBumpSequenceOp = 221 [(wire_in) = true];
 	MessageType_StellarSignedTx = 230 [(wire_out) = true];
+
+  // Tron
+  MessageType_TronGetAddress = 300 [(wire_in) = true];
+  MessageType_TronAddress = 301 [(wire_out) = true];
+  MessageType_TronSignTx = 302 [(wire_in) = true];
+  MessageType_TronSignedTx = 304 [(wire_out) = true];
 }
 
 ////////////////////
