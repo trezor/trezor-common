@@ -33,6 +33,25 @@ FIELD_TYPES = {
 # fmt: on
 
 
+def protoc(filename):
+    dirname, basename = os.path.split(os.path.abspath(filename))
+
+    serialized = subprocess.check_output(
+        [
+            "protoc",
+            "--include_imports",
+            "--descriptor_set_out=/dev/stdout",
+            os.path.join(".", basename),
+        ],
+
+        cwd=dirname,
+    )
+
+    descriptor_set = descriptor_pb2.FileDescriptorSet.FromString(serialized)
+
+    return descriptor_set
+
+
 def remove_from_start(s, prefix):
     if s.startswith(prefix):
         return s[len(prefix) :]
@@ -67,22 +86,17 @@ def import_statement_from_path(path):
 class Descriptor:
     def __init__(
         self,
-        descriptor_file,
+        descriptor_set,
         message_type="MessageType",
         package=None,
         protobuf_module="protobuf",
     ):
-        # parse descriptor
-        self.descriptor = descriptor_pb2.FileDescriptorSet()
-        with descriptor_file as f:
-            self.descriptor.ParseFromString(f.read())
-
         # find relevant files (this omits `descriptor.proto` from trezor package)
         if package is None:
-            self.files = self.descriptor.file
+            self.files = descriptor_set.file
         else:
             self.files = [
-                file for file in self.descriptor.file if file.package == package
+                file for file in descriptor_set.file if file.package == package
             ]
 
         logging.debug(
@@ -299,7 +313,6 @@ if __name__ == "__main__":
     parser.add_argument('-P', '--protobuf-module', default="protobuf", help="Name of protobuf module")
     parser.add_argument('-l', '--module-index', help="Generate list of modules")
     parser.add_argument('--message-type', default="MessageType", help="Name of enum with message IDs")
-    parser.add_argument("--protobuf-default-include", default="/usr/include", help="Location of protobuf's default .proto files.")
     # fmt: on
     args = parser.parse_args()
 
@@ -307,30 +320,15 @@ if __name__ == "__main__":
         print("Proto file does not exist: %s" % args.proto)
         sys.exit(1)
 
-    with tempfile.TemporaryDirectory() as tmpdir:
-        logging.debug("Compiling proto definition from %s", args.proto)
-        proto_dir = os.path.dirname(args.proto) or "."
-        descriptor_set_filename = os.path.join(tmpdir, "DESCRIPTOR_SET")
-        protoc_includes = [
-            "-I%s" % dir for dir in [args.protobuf_default_include, proto_dir]
-        ]
-        subprocess.check_call(
-            [
-                "protoc",
-                "--descriptor_set_out=" + descriptor_set_filename,
-                "--include_imports",
-                args.proto,
-            ]
-            + protoc_includes
-        )
+    logging.debug("Compiling proto definition from %s", args.proto)
+    descriptor_set = protoc(args.proto)
 
-        with open(descriptor_set_filename, "rb") as f:
-            descriptor = Descriptor(
-                f,
-                message_type=args.message_type,
-                package=args.package if args.package != "all" else None,
-                protobuf_module=args.protobuf_module,
-            )
+    descriptor = Descriptor(
+        descriptor_set,
+        message_type=args.message_type,
+        package=None if args.package == "all" else args.package,
+        protobuf_module=args.protobuf_module,
+    )
 
     with tempfile.TemporaryDirectory() as tmpdir:
         module_index_name = os.path.join(tmpdir, "__module_index.py")
