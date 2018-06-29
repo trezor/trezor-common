@@ -4,6 +4,8 @@ syntax = "proto2";
  * Messages for TREZOR communication
  */
 
+package trezor;
+
 // Sugar for easier handling in Java
 option java_package = "com.satoshilabs.trezor.lib.protobuf";
 option java_outer_classname = "TrezorMessage";

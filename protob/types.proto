@@ -7,6 +7,8 @@ syntax = "proto2";
  * @version	1.2
  */
 
+package trezor;
+
 // Sugar for easier handling in Java
 option java_package = "com.satoshilabs.trezor.lib.protobuf";
 option java_outer_classname = "TrezorType";
