@@ -96,6 +96,9 @@ class Descriptor:
             self.messages += file.message_type
             self.enums += file.enum_type
 
+        if not self.messages and not self.enums:
+            raise RuntimeError("No messages and no enums found.")
+
         self.message_types = self.find_message_types(message_type)
         self.protobuf_import = import_statement_from_path(protobuf_module)
 
@@ -306,7 +309,7 @@ if __name__ == "__main__":
 
     with tempfile.TemporaryDirectory() as tmpdir:
         logging.debug("Compiling proto definition from %s", args.proto)
-        proto_dir = os.path.dirname(args.proto)
+        proto_dir = os.path.dirname(args.proto) or "."
         descriptor_set_filename = os.path.join(tmpdir, "DESCRIPTOR_SET")
         protoc_includes = [
             "-I%s" % dir for dir in [args.protobuf_default_include, proto_dir]
