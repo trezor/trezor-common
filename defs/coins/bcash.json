@@ -23,6 +23,7 @@
   "decred": false,
   "fork_id": 0,
   "force_bip143": true,
+  "bip115": false,
   "version_group_id": null,
   "default_fee_b": {
     "Low": 10,
@@ -35,8 +36,12 @@
   "address_prefix": "bitcoincash:",
   "min_address_length": 27,
   "max_address_length": 34,
-  "bitcore": [
-    "https://bch-bitcore2.trezor.io"
-  ],
-  "blockbook": []
+  "bitcore": [],
+  "blockbook": [
+    "https://bch1.trezor.io/api",
+    "https://bch2.trezor.io/api",
+    "https://bch3.trezor.io/api",
+    "https://bch4.trezor.io/api",
+    "https://bch5.trezor.io/api"
+  ]
 }

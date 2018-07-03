@@ -23,6 +23,7 @@
   "decred": false,
   "fork_id": null,
   "force_bip143": false,
+  "bip115": false,
   "version_group_id": null,
   "default_fee_b": {
     "Low": 10
@@ -33,7 +34,7 @@
   "min_address_length": 27,
   "max_address_length": 34,
   "bitcore": [
-    "https://insight.bitcore.cc"
+    "https://insight.bitcore.cc/api"
   ],
   "blockbook": []
 }

@@ -16,9 +16,9 @@ install:
     - pip install --no-deps trezor
 
 script:
-    - jsonlint coins_details.json
-    - jsonlint defs/support.json
-    - cd defs/coins/tools && python build_coins.py
+    - jsonlint defs/*.json
+    - jsonlint defs/*/*.json
+    - python tools/build_coins.py --defs
 
 notifications:
   webhooks:
