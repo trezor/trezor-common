@@ -506,3 +506,57 @@ message LiskMultisignatureType {
 	optional uint32 life_time = 2;
 	repeated string keys_group = 3;
 }
+
+/*
+* Type of Tezos operation
+* @used_in TezosOperationCommon
+*/
+enum TezosOperationType {
+	Transaction = 8;
+	Origination = 9;
+	Delegation = 10;
+}
+
+/*
+* Structure representing the common part for Tezos operations
+* @used_in TezosSignTx
+*/
+message TezosOperationCommon {
+	optional TezosOperationType tag = 1;
+	optional string source = 2;			// base58 encoded address with prefix
+	optional uint64 fee = 3;
+	optional uint64 counter = 4;
+	optional uint64 gas_limit = 5;
+	optional uint64 storage_limit = 6;
+}
+
+/*
+* Structure representing additional information for transaction
+* @used_in TezosSignTx
+*/
+message TezosTransactionType {
+	optional uint64 amount = 1;
+	optional string destination = 2;		// base58 encoded address with prefix
+	optional bytes parameters = 3;
+}
+
+/*
+* Structure representing additional information for origination
+* @used_in TezosSignTx
+*/
+message TezosOriginationType {
+	optional bytes manager_pubkey = 1;
+	optional uint64 balance = 2;
+	optional bool spendable = 3;
+	optional bool delegatable = 4;
+	optional string delegate = 5;			// base58 encoded public key hash with prefix
+	optional bytes script = 6;
+}
+
+/*
+* Structure representing additional information for delegation
+* @used_in TezosSignTx
+*/
+message TezosDelegationType {
+	optional string delegate = 1;
+}
