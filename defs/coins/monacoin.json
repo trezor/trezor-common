@@ -4,7 +4,7 @@
   "coin_label": "Monacoin",
   "website": "https://monacoin.org",
   "github": "https://github.com/monacoinproject/monacoin",
-  "maintainer": "cryptcoin-junkey <cryptcoin.junkey@gmail.com>",
+  "maintainer": "wakiyamap <wakiyamap@gmail.com>",
   "curve_name": "secp256k1",
   "address_type": 50,
   "address_type_p2sh": 55,
@@ -26,7 +26,7 @@
   "bip115": false,
   "version_group_id": null,
   "default_fee_b": {
-    "Normal": 100000
+    "Normal": 1000
   },
   "dust_limit": 54600,
   "blocktime_seconds": 90,
@@ -34,7 +34,7 @@
   "min_address_length": 27,
   "max_address_length": 34,
   "bitcore": [
-    "https://mona.chainsight.info"
+    "https://insight.electrum-mona.org"
   ],
   "blockbook": []
 }
