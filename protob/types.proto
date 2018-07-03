@@ -518,12 +518,31 @@ enum TezosOperationType {
 }
 
 /*
+* Type of Tezos Contract type
+* @used_in TezosContractId
+*/
+enum TezosContractType {
+	Implicit = 0;
+	Originated = 1;
+}
+
+/*
+* Tezos contract ID
+* @used_in TezosOperationCommon
+* @used_in TezosTransactionType
+*/
+message TezosContractID {
+	optional TezosContractType tag = 1;
+	optional bytes hash = 2;		// Implicit = 21B, originated = 20B + 1B padding
+}
+
+/*
 * Structure representing the common part for Tezos operations
 * @used_in TezosSignTx
 */
 message TezosOperationCommon {
 	optional TezosOperationType tag = 1;
-	optional string source = 2;			// base58 encoded address with prefix
+	optional TezosContractID source = 2;
 	optional uint64 fee = 3;
 	optional uint64 counter = 4;
 	optional uint64 gas_limit = 5;
@@ -536,7 +555,7 @@ message TezosOperationCommon {
 */
 message TezosTransactionType {
 	optional uint64 amount = 1;
-	optional string destination = 2;		// base58 encoded address with prefix
+	optional TezosContractID destination = 2;
 	optional bytes parameters = 3;
 }
 
@@ -549,7 +568,7 @@ message TezosOriginationType {
 	optional uint64 balance = 2;
 	optional bool spendable = 3;
 	optional bool delegatable = 4;
-	optional string delegate = 5;			// base58 encoded public key hash with prefix
+	optional bytes delegate = 5;		// 1B tag + 20B public key hash
 	optional bytes script = 6;
 }
 
@@ -558,5 +577,5 @@ message TezosOriginationType {
 * @used_in TezosSignTx
 */
 message TezosDelegationType {
-	optional string delegate = 1;
+	optional bytes delegate = 1;		// 1B tag + 20B public key hash
 }
