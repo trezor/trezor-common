@@ -524,7 +524,7 @@ enum TezosOperationType {
 
 /*
 * Type of Tezos Contract type
-* @used_in TezosContractId
+* @used_in TezosContractID
 */
 enum TezosContractType {
 	Implicit = 0;
@@ -546,12 +546,13 @@ message TezosContractID {
 * @used_in TezosSignTx
 */
 message TezosOperationCommon {
-	optional TezosOperationType tag = 1;
-	optional TezosContractID source = 2;
-	optional uint64 fee = 3;
-	optional uint64 counter = 4;
-	optional uint64 gas_limit = 5;
-	optional uint64 storage_limit = 6;
+	optional bytes branch = 1;
+	optional TezosOperationType tag = 2;
+	optional TezosContractID source = 3;
+	optional uint64 fee = 4;
+	optional uint64 counter = 5;
+	optional uint64 gas_limit = 6;
+	optional uint64 storage_limit = 7;
 }
 
 /*
