@@ -19,7 +19,7 @@
             "links": {
                 "Homepage": "https://ellaism.org"
             },
-            "marketcap_usd": 857822,
+            "marketcap_usd": 628879,
             "name": "Ellaism",
             "shortcut": "ELLA",
             "t1_enabled": "yes",
@@ -49,7 +49,7 @@
             "links": {
                 "Homepage": "https://ethereumclassic.github.io"
             },
-            "marketcap_usd": 1609643245,
+            "marketcap_usd": 1721760102,
             "name": "Ethereum Classic",
             "shortcut": "ETC",
             "t1_enabled": "yes",
@@ -64,7 +64,7 @@
             "links": {
                 "Homepage": "https://www.ethereum.org"
             },
-            "marketcap_usd": 46417902414,
+            "marketcap_usd": 44403496296,
             "name": "Ethereum",
             "shortcut": "ETH",
             "t1_enabled": "yes",
@@ -80,7 +80,7 @@
                 "Homepage": "https://ethereumsocial.kr"
             },
             "marketcap_usd": 0,
-            "name": "EthereumSocial",
+            "name": "Ethereum Social",
             "shortcut": "ETSC",
             "t1_enabled": "yes",
             "t2_enabled": "yes",
@@ -94,7 +94,7 @@
             "links": {
                 "Homepage": "https://www.expanse.tech"
             },
-            "marketcap_usd": 6940780,
+            "marketcap_usd": 6310372,
             "name": "Expanse",
             "shortcut": "EXP",
             "t1_enabled": "yes",
@@ -121,7 +121,7 @@
                 "Homepage": "https://www.rsk.co"
             },
             "marketcap_usd": 0,
-            "name": "RSK",
+            "name": "Rootstock",
             "shortcut": "RSK",
             "t1_enabled": "yes",
             "t2_enabled": "yes",
@@ -135,7 +135,7 @@
             "links": {
                 "Homepage": "https://ubiqsmart.com"
             },
-            "marketcap_usd": 36399330,
+            "marketcap_usd": 35462374,
             "name": "Ubiq",
             "shortcut": "UBQ",
             "t1_enabled": "yes",
@@ -184,9 +184,9 @@
         "coin:BCH": {
             "links": {
                 "Github": "https://github.com/Bitcoin-ABC/bitcoin-abc",
-                "Homepage": "https://www.bitcoincash.org/"
+                "Homepage": "https://www.bitcoincash.org"
             },
-            "marketcap_usd": 13126382269,
+            "marketcap_usd": 12063876039,
             "name": "Bitcoin Cash",
             "shortcut": "BCH",
             "t1_enabled": "yes",
@@ -202,7 +202,7 @@
                 "Github": "https://github.com/bitcoin/bitcoin",
                 "Homepage": "https://bitcoin.org"
             },
-            "marketcap_usd": 108045572488,
+            "marketcap_usd": 109668022165,
             "name": "Bitcoin",
             "shortcut": "BTC",
             "t1_enabled": "yes",
@@ -218,7 +218,7 @@
                 "Github": "https://github.com/BTCPrivate/BitcoinPrivate",
                 "Homepage": "https://btcprivate.org"
             },
-            "marketcap_usd": 248142676,
+            "marketcap_usd": 192018371,
             "name": "Bitcoin Private",
             "shortcut": "BTCP",
             "t1_enabled": "yes",
@@ -230,7 +230,7 @@
                 "Github": "https://github.com/BTCGPU/BTCGPU",
                 "Homepage": "https://bitcoingold.org"
             },
-            "marketcap_usd": 434612617,
+            "marketcap_usd": 528138146,
             "name": "Bitcoin Gold",
             "shortcut": "BTG",
             "t1_enabled": "yes",
@@ -245,7 +245,7 @@
                 "Github": "https://github.com/LIMXTEC/BitCore",
                 "Homepage": "https://bitcore.cc"
             },
-            "marketcap_usd": 29535970,
+            "marketcap_usd": 27820124,
             "name": "Bitcore",
             "shortcut": "BTX",
             "t1_enabled": "no",
@@ -257,7 +257,7 @@
                 "Github": "https://github.com/Crowndev/crowncoin",
                 "Homepage": "https://crown.tech"
             },
-            "marketcap_usd": 10022779,
+            "marketcap_usd": 8498506,
             "name": "Crown",
             "shortcut": "CRW",
             "t1_enabled": "no",
@@ -269,7 +269,7 @@
                 "Github": "https://github.com/dashpay/dash",
                 "Homepage": "https://www.dash.org"
             },
-            "marketcap_usd": 1981826537,
+            "marketcap_usd": 1824266181,
             "name": "Dash",
             "shortcut": "DASH",
             "t1_enabled": "yes",
@@ -284,19 +284,19 @@
                 "Github": "https://github.com/decred/dcrd",
                 "Homepage": "https://www.decred.org"
             },
-            "marketcap_usd": 534974618,
+            "marketcap_usd": 460768110,
             "name": "Decred",
             "shortcut": "DCR",
             "t1_enabled": "yes",
-            "t2_enabled": "yes",
+            "t2_enabled": "no",
             "type": "coin"
         },
         "coin:DGB": {
             "links": {
                 "Github": "https://github.com/digibyte/digibyte",
-                "Homepage": "https://www.digibyte.co"
+                "Homepage": "https://digibyte.io"
             },
-            "marketcap_usd": 218316945,
+            "marketcap_usd": 403080592,
             "name": "DigiByte",
             "shortcut": "DGB",
             "t1_enabled": "yes",
@@ -319,7 +319,7 @@
                 "Github": "https://github.com/dogecoin/dogecoin",
                 "Homepage": "https://dogecoin.com"
             },
-            "marketcap_usd": 291002463,
+            "marketcap_usd": 285566686,
             "name": "Dogecoin",
             "shortcut": "DOGE",
             "t1_enabled": "yes",
@@ -332,9 +332,9 @@
         "coin:FJC": {
             "links": {
                 "Github": "https://github.com/fujicoin/fujicoin",
-                "Homepage": "https://www.fujicoin.org"
+                "Homepage": "http://fujicoin.org"
             },
-            "marketcap_usd": 483781,
+            "marketcap_usd": 440832,
             "name": "Fujicoin",
             "shortcut": "FJC",
             "t1_enabled": "yes",
@@ -360,7 +360,7 @@
                 "Github": "https://github.com/FeatherCoin/Feathercoin",
                 "Homepage": "https://feathercoin.com"
             },
-            "marketcap_usd": 20641823,
+            "marketcap_usd": 18675290,
             "name": "Feathercoin",
             "shortcut": "FTC",
             "t1_enabled": "no",
@@ -372,7 +372,7 @@
                 "Github": "https://github.com/Groestlcoin/groestlcoin",
                 "Homepage": "https://www.groestlcoin.org"
             },
-            "marketcap_usd": 42239737,
+            "marketcap_usd": 41485911,
             "name": "Groestlcoin",
             "shortcut": "GRS",
             "t1_enabled": "yes",
@@ -380,12 +380,12 @@
             "type": "coin",
             "wallet": {
                 "Electrum-GRS": "https://www.groestlcoin.org/groestlcoin-electrum-wallet/"
-            }            
+            }
         },
         "coin:KOTO": {
             "links": {
-                "Github": "https://github.com/koto-dev/koto",
-                "Homepage": "https://koto.cash"
+                "Github": "https://github.com/KotoDevelopers/koto",
+                "Homepage": "https://ko-to.org"
             },
             "name": "Koto",
             "shortcut": "KOTO",
@@ -398,7 +398,7 @@
                 "Github": "https://github.com/litecoin-project/litecoin",
                 "Homepage": "https://litecoin.org"
             },
-            "marketcap_usd": 4729798268,
+            "marketcap_usd": 4386183941,
             "name": "Litecoin",
             "shortcut": "LTC",
             "t1_enabled": "yes",
@@ -414,7 +414,7 @@
                 "Github": "https://github.com/monacoinproject/monacoin",
                 "Homepage": "https://monacoin.org"
             },
-            "marketcap_usd": 131657784,
+            "marketcap_usd": 128149593,
             "name": "Monacoin",
             "shortcut": "MONA",
             "t1_enabled": "yes",
@@ -440,7 +440,7 @@
                 "Github": "https://github.com/namecoin/namecoin-core",
                 "Homepage": "https://namecoin.org"
             },
-            "marketcap_usd": 20240445,
+            "marketcap_usd": 18655693,
             "name": "Namecoin",
             "shortcut": "NMC",
             "t1_enabled": "yes",
@@ -449,6 +449,18 @@
             "wallet": {
                 "Electrum-NMC": "https://github.com/namecoin/electrum-nmc"
             }
+        },
+        "coin:PTC": {
+            "links": {
+                "Github": "https://github.com/FundacionPesetacoin/PesetacoinCore",
+                "Homepage": "http://pesetacoin.info"
+            },
+            "marketcap_usd": 2788725,
+            "name": "Pesetacoin",
+            "shortcut": "PTC",
+            "t1_enabled": "no",
+            "t2_enabled": "no",
+            "type": "coin"
         },
         "coin:TAZ": {
             "hidden": 1,
@@ -520,7 +532,7 @@
                 "Github": "https://github.com/terracoin/terracoin",
                 "Homepage": "https://terracoin.io"
             },
-            "marketcap_usd": 1590237,
+            "marketcap_usd": 2461633,
             "name": "Terracoin",
             "shortcut": "TRC",
             "t1_enabled": "no",
@@ -533,7 +545,7 @@
                 "Github": "https://github.com/viacoin",
                 "Homepage": "https://viacoin.org"
             },
-            "marketcap_usd": 22798288,
+            "marketcap_usd": 23186816,
             "name": "Viacoin",
             "shortcut": "VIA",
             "t1_enabled": "yes",
@@ -545,7 +557,7 @@
                 "Github": "https://github.com/vertcoin-project/vertcoin-core",
                 "Homepage": "https://vertcoin.org"
             },
-            "marketcap_usd": 41292751,
+            "marketcap_usd": 42763267,
             "name": "Vertcoin",
             "shortcut": "VTC",
             "t1_enabled": "yes",
@@ -560,7 +572,7 @@
                 "Github": "https://github.com/myriadcoin/myriadcoin",
                 "Homepage": "https://www.myriadcoin.org"
             },
-            "marketcap_usd": 6562878,
+            "marketcap_usd": 5488512,
             "name": "Myriad",
             "shortcut": "XMY",
             "t1_enabled": "no",
@@ -572,7 +584,7 @@
                 "Github": "https://github.com/zcoinofficial/zcoin",
                 "Homepage": "https://zcoin.io"
             },
-            "marketcap_usd": 84956418,
+            "marketcap_usd": 88067584,
             "name": "Zcoin",
             "shortcut": "XZC",
             "t1_enabled": "yes",
@@ -586,9 +598,9 @@
         "coin:ZEC": {
             "links": {
                 "Github": "https://github.com/zcash/zcash",
-                "Homepage": "z.cash"
+                "Homepage": "https://z.cash"
             },
-            "marketcap_usd": 746003570,
+            "marketcap_usd": 701949115,
             "name": "Zcash",
             "shortcut": "ZEC",
             "t1_enabled": "yes",
@@ -597,6 +609,18 @@
             "wallet": {
                 "Trezor": "https://wallet.trezor.io"
             }
+        },
+        "coin:ZEN": {
+            "links": {
+                "Github": "https://github.com/ZencashOfficial/zen",
+                "Homepage": "https://zencash.com"
+            },
+            "marketcap_usd": 90288234,
+            "name": "Zencash",
+            "shortcut": "ZEN",
+            "t1_enabled": "no",
+            "t2_enabled": "yes",
+            "type": "coin"
         },
         "coin:tDASH": {
             "hidden": 1,
@@ -12700,7 +12724,7 @@
             "links": {
                 "Homepage": "https://www.dimcoin.io"
             },
-            "marketcap_usd": 11146076,
+            "marketcap_usd": 8511441,
             "name": "DIMCOIN",
             "shortcut": "DIM",
             "t1_enabled": "yes",
@@ -12715,7 +12739,7 @@
             "links": {
                 "Homepage": "https://www.dimcoin.io"
             },
-            "marketcap_usd": 11146076,
+            "marketcap_usd": 8511441,
             "name": "DIM TOKEN",
             "shortcut": "DIMTOK",
             "t1_enabled": "yes",
@@ -12757,8 +12781,8 @@
             "links": {
                 "Homepage": "https://nem.io"
             },
-            "marketcap_usd": 1448370000,
-            "name": "NEM",
+            "marketcap_usd": 1468134000,
+            "name": "XEM",
             "shortcut": "XEM",
             "t1_enabled": "yes",
             "t2_enabled": "yes",
@@ -12769,11 +12793,11 @@
         }
     },
     "info": {
-        "marketcap_usd": 191456100947,
+        "marketcap_usd": 189813115730,
         "t1_coins": 689,
         "t2_coins": 689,
-        "total_marketcap_usd": 258211684605,
-        "updated_at": 1529951560,
-        "updated_at_readable": "Mon Jun 25 20:32:40 2018"
+        "total_marketcap_usd": 254040066346,
+        "updated_at": 1531236057,
+        "updated_at_readable": "Tue Jul 10 17:20:57 2018"
     }
 }
