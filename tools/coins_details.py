@@ -66,7 +66,8 @@ def coinmarketcap_global():
 
 
 def set_default(obj, key, default_value):
-    obj[key] = obj.setdefault(key, default_value)
+    if default_value:
+        obj[key] = default_value
 
 
 def update_info(details):
