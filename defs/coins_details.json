@@ -476,19 +476,6 @@
             "t2_enabled": "yes",
             "type": "coin"
         },
-        "coin:TBTG": {
-            "hidden": 1,
-            "links": {
-                "Github": "https://github.com/BTCGPU/BTCGPU",
-                "Homepage": "https://bitcoingold.org"
-            },
-            "marketcap_usd": 0,
-            "name": "Bitcoin Gold Testnet",
-            "shortcut": "TBTG",
-            "t1_enabled": "yes",
-            "t2_enabled": "yes",
-            "type": "coin"
-        },
         "coin:TDCR": {
             "hidden": 1,
             "links": {
