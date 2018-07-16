@@ -264,6 +264,14 @@ def update_ethereum(details):
     set_default(out, 't2_enabled', 'yes')
     update_marketcap(out, 'eosc')
 
+    out = details['coins'].setdefault('coin2:ESN', {})
+    out['type'] = 'coin'
+    set_default(out, 'shortcut', 'ESN')
+    set_default(out, 'name', 'Ethersocial Network')
+    set_default(out, 't1_enabled', 'yes')
+    set_default(out, 't2_enabled', 'yes')
+    update_marketcap(out, 'esn')
+
     out = details['coins'].setdefault('coin2:ADA', {})
     out['type'] = 'coin'
     set_default(out, 'shortcut', 'ADA')

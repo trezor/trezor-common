@@ -56,6 +56,21 @@
                 "MyEtherWallet": "https://www.myetherwallet.com"
             }
         },
+        "coin2:ESN": {
+            "links": {
+                "Homepage": "https://ethersocialnetwork.com"
+            },
+            "marketcap_usd": 0,
+            "name": "Ethersocial Network",
+            "shortcut": "ESN",
+            "t1_enabled": "yes",
+            "t2_enabled": "yes",
+            "type": "coin",
+            "wallet": {
+                "MyCrypto": "https://mycrypto.com",
+                "MyEtherWallet": "https://www.myetherwallet.com"
+            }
+        },
         "coin2:ETC": {
             "links": {
                 "Homepage": "https://ethereumclassic.github.io"
