@@ -1,0 +1,147 @@
+syntax = "proto2";
+
+// Sugar for easier handling in Java
+option java_package = "com.satoshilabs.trezor.lib.protobuf";
+option java_outer_classname = "TrezorMessageOntology";
+
+/**
+* Ontoloy Transaction
+*/
+message OntologyTransaction {
+
+    /**
+    * Attribute of Ontology transaction
+    */
+    message OntologyTxAttribute {
+        optional uint32 usage = 1;
+        optional bytes data = 3;
+    }
+
+    optional uint32 version = 1;
+    optional uint32 type = 2;
+    optional uint32 nonce = 3;
+    optional uint64 gasPrice = 4;
+    optional uint64 gasLimit = 5;
+    optional string payer = 6;
+    repeated OntologyTxAttribute txAttributes = 8;
+}
+
+/**
+ * Request: Ask device for Ontology public key corresponding to address_n path
+ * @next OntologyPublicKey
+*/
+message OntologyGetPublicKey {
+    repeated uint32 address_n = 1;  // BIP-32 path to derive the key from master node
+    optional bool show_display = 2; // Optionally show on display before sending the result
+}
+
+/**
+ * Response: Contains Ontology public key derived from device private seed
+ * @prev OntologyGetPublicKey
+*/
+message OntologyPublicKey {
+    optional bytes public_key = 1;  // Ontology public key
+}
+
+/**
+ * Request: Ask device for Ontology address corresponding to address_n path
+ * @next OntologyAddress
+ */
+message OntologyGetAddress {
+    repeated uint32 address_n = 1;  // BIP-32 path to derive the key from master node
+    optional bool show_display = 2; // Optionally show on display before sending the result
+}
+
+/**
+ * Response: Contains Ontology address derived from device private seed
+ * @prev OntologyGetAddress
+ */
+message OntologyAddress {
+    optional string address = 1;    // Ontology address
+}
+
+
+/**
+ * Request: Ask device to sign Ontology transfer
+ * @next OntologySignedTransfer
+ */
+ message OntologySignTransfer {
+    repeated uint32 address_n = 1;                  // BIP-32 path to derive the key from master node
+    optional OntologyTransaction transaction = 2;
+    optional OntologyTransfer transfer = 3;
+    optional bool return_payload = 4;
+    
+    /**
+    * Ontoloy Transfer
+    */
+    message OntologyTransfer {
+        /**
+        * Ontoloy Asset
+        */
+        enum OntologyAsset {
+            ONT = 1;
+            ONG = 2;
+        }
+
+        optional OntologyAsset asset = 1;
+        optional uint64 amount = 2;
+        optional string fromAddress = 3;
+        optional string toAddress = 4;
+    }
+}
+
+/**
+* Response: Contains Ontology transfer signature
+* @prev OntologySignTransfer
+*/
+message OntologySignedTransfer {
+    optional bytes signature = 1;
+    optional bytes payload = 2;
+}
+
+/**
+ * Request: Ask device to sign Ontology ONG withdrawal
+ * @next OntologySignedWithdrawOng
+ */
+ message OntologySignWithdrawOng {
+    repeated uint32 address_n = 1;                  // BIP-32 path to derive the key from master node
+    optional OntologyTransaction transaction = 2;
+    optional OntologyWithdrawOng withdrawOng = 3;
+    optional bool return_payload = 4;
+    
+    /**
+    * Ontoloy ONG Withdrawal
+    */
+    message OntologyWithdrawOng {
+        optional uint64 amount = 3;
+        optional string fromAddress = 4;
+        optional string toAddress = 5;
+    }
+}
+
+/**
+* Response: Contains Ontology ONG withdrawal signature
+* @prev OntologySignWithdrawOng
+*/
+message OntologySignedWithdrawOng {
+    optional bytes signature = 1;
+    optional bytes payload = 2;
+}
+
+/**
+ * Request: Ask device to sign Ontology arbitrary transaction
+ * @next OntologySignedTx
+ */
+ message OntologySignTx {
+    repeated uint32 address_n = 1;                  // BIP-32 path to derive the key from master node
+    optional OntologyTransaction transaction = 2;
+    optional bytes payload = 3;
+}
+
+/**
+* Response: Contains Ontology arbitrary transaction
+* @prev OntologySignTx
+*/
+message OntologySignedTx {
+    optional bytes signature = 1;
+}
