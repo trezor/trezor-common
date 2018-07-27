@@ -326,7 +326,7 @@ if __name__ == "__main__":
     support_info = coin_defs.support_info(all_coins, erc20_versions=VERSIONS)
 
     coins = {}
-    coins.update(update_coins(defs["btc"], support_info))
+    coins.update(update_coins(defs["coins"], support_info))
     coins.update(update_erc20(defs["erc20"], support_info))
     coins.update(update_ethereum_networks(defs["eth"], support_info))
     coins.update(update_simple(defs["nem"], support_info, "mosaic"))
