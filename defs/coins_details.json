@@ -484,21 +484,6 @@
             "t2_enabled": "no",
             "type": "coin"
         },
-        "coin:SMART": {
-            "links": {
-                "Github": "https://github.com/SmartCash/Core-Smart",
-                "Homepage": "https://smartcash.cc/"
-            },
-            "marketcap_usd": 76370722,
-            "name": "SmartCash",
-            "shortcut": "SMART",
-            "t1_enabled": "yes",
-            "t2_enabled": "yes",
-            "type": "coin",
-            "wallet": {
-                "Electrum-SMART": "https://github.com/SmartCash/electrum-smart"
-            }
-        },
         "coin:TAZ": {
             "hidden": 1,
             "links": {
