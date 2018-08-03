@@ -5,7 +5,7 @@
   "website": "https://smarcash.cc",
   "github": "https://github.com/SmartCash/Core-Smart",
   "maintainer": "Leandro Reinaux <leoreinaux@gmail.com>",
-  "curve_name": "secp256k1",
+  "curve_name": "secp256k1-smart",
   "address_type": 63,
   "address_type_p2sh": 18,
   "maxfee_kb": 1000000,
@@ -33,7 +33,7 @@
   },
   "dust_limit": 546,
   "blocktime_seconds": 55,
-  "uri_prefix": "smart",
+  "uri_prefix": "smartcash",
   "min_address_length": 27,
   "max_address_length": 34,
   "bitcore": [
