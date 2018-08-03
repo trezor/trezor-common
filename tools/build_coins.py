@@ -73,7 +73,7 @@ def validate_coin(coin):
     assert check_type(coin['website'], str, regex=r'^http.*[^/]$')
     assert check_type(coin['github'], str, regex=r'^https://github.com/.*[^/]$')  # noqa:E501
     assert check_type(coin['maintainer'], str)
-    assert check_type(coin['curve_name'], str, choice=['secp256k1', 'secp256k1_decred', 'secp256k1_groestl'])  # noqa:E501
+    assert check_type(coin['curve_name'], str, choice=['secp256k1', 'secp256k1_decred', 'secp256k1_groestl', 'secp256k1_smart'])  # noqa:E501
     assert check_type(coin['address_type'], int)
     assert check_type(coin['address_type_p2sh'], int)
     assert coin['address_type'] != coin['address_type_p2sh']
