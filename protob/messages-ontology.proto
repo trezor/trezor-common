@@ -14,16 +14,16 @@ message OntologyTransaction {
     */
     message OntologyTxAttribute {
         optional uint32 usage = 1;
-        optional bytes data = 3;
+        optional bytes data = 2;
     }
 
     optional uint32 version = 1;
     optional uint32 type = 2;
     optional uint32 nonce = 3;
-    optional uint64 gasPrice = 4;
-    optional uint64 gasLimit = 5;
+    optional uint64 gas_price = 4;
+    optional uint64 gas_limit = 5;
     optional string payer = 6;
-    repeated OntologyTxAttribute txAttributes = 8;
+    repeated OntologyTxAttribute tx_attributes = 7;
 }
 
 /**
@@ -87,8 +87,8 @@ message OntologyAddress {
 
         optional OntologyAsset asset = 1;
         optional uint64 amount = 2;
-        optional string fromAddress = 3;
-        optional string toAddress = 4;
+        optional string from_address = 3;
+        optional string to_address = 4;
     }
 }
 
@@ -109,15 +109,15 @@ message OntologySignedTransfer {
  message OntologySignWithdrawOng {
     repeated uint32 address_n = 1;                  // BIP-32 path to derive the key from master node
     optional OntologyTransaction transaction = 2;
-    optional OntologyWithdrawOng withdrawOng = 3;
+    optional OntologyWithdrawOng withdraw_ong = 3;
     
     /**
     * Ontology ONG Withdrawal
     */
     message OntologyWithdrawOng {
-        optional uint64 amount = 3;
-        optional string fromAddress = 4;
-        optional string toAddress = 5;
+        optional uint64 amount = 1;
+        optional string from_address = 2;
+        optional string to_address = 3;
     }
 }
 
@@ -126,6 +126,73 @@ message OntologySignedTransfer {
 * @end
 */
 message OntologySignedWithdrawOng {
+    optional bytes signature = 1;
+    optional bytes payload = 2;
+}
+
+/**
+ * Request: Ask device to sign Ontology ONT ID registration
+ * @start
+ * @next OntologySignedOntIdRegister
+ */
+ message OntologySignOntIdRegister {
+    repeated uint32 address_n = 1;                  // BIP-32 path to derive the key from master node
+    optional OntologyTransaction transaction = 2;
+    optional OntologyOntIdRegister ont_id_register = 3;
+
+    /**
+    * Ontology ONT ID registration
+    */
+    message OntologyOntIdRegister {
+        optional string ont_id = 1;
+        optional bytes public_key = 2;
+    }
+}
+
+/**
+* Response: Contains Ontology ONT ID registration signature
+* @end
+*/
+message OntologySignedOntIdRegister {
+    optional bytes signature = 1;
+    optional bytes payload = 2;
+}
+
+
+/**
+ * Request: Ask device to sign Ontology ONT ID attributes adding
+ * @start
+ * @next OntologySignedOntIdAddAttributes
+ */
+ message OntologySignOntIdAddAttributes {
+    repeated uint32 address_n = 1;                  // BIP-32 path to derive the key from master node
+    optional OntologyTransaction transaction = 2;
+    optional OntologyOntIdAddAttributes ont_id_add_attributes = 3;
+
+    /**
+    * Attribute of Ontology ONT ID
+    */
+    message OntologyOntIdAttribute {
+        optional string key = 1;
+        optional string type = 2;
+        optional string value = 3;
+    }
+
+    /**
+    * Ontology ONT ID attributes adding
+    */
+    message OntologyOntIdAddAttributes {
+        optional string ont_id = 1;
+        optional bytes public_key = 2;
+        repeated OntologyOntIdAttribute ont_id_attributes = 3;
+    }
+}
+
+/**
+* Response: Contains Ontology ONT ID attributes adding signature
+* @end
+*/
+message OntologySignedOntIdAddAttributes {
     optional bytes signature = 1;
     optional bytes payload = 2;
 }
