@@ -211,6 +211,10 @@ enum MessageType {
     MessageType_MoneroAddress = 531 [(wire_out) = true];
     MessageType_MoneroGetWatchKey = 532 [(wire_in) = true];
     MessageType_MoneroWatchKey = 533 [(wire_out) = true];
+    MessageType_MoneroLiteInitRequest = 540 [(wire_in) = true];
+    MessageType_MoneroLiteInitAck = 541 [(wire_out) = true];
+    MessageType_MoneroLiteRequest = 542 [(wire_in) = true];
+    MessageType_MoneroLiteAck = 543 [(wire_out) = true];
     MessageType_DebugMoneroDiagRequest = 536 [(wire_in) = true];
     MessageType_DebugMoneroDiagAck = 537 [(wire_out) = true];
 }
