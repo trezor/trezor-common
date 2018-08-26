@@ -213,4 +213,11 @@ enum MessageType {
     MessageType_MoneroWatchKey = 533 [(wire_out) = true];
     MessageType_DebugMoneroDiagRequest = 536 [(wire_in) = true];
     MessageType_DebugMoneroDiagAck = 537 [(wire_out) = true];
+
+    // EOS
+    MessageType_EosGetAddress = 600 [(wire_in) = true];
+    MessageType_EosAddress = 601 [(wire_out) = true];
+    MessageType_EosSignTx = 602 [(wire_in) = true];
+    MessageType_EosTxRequest = 603 [(wite_out) = true];
+    MessageType_EosTxAck = 604 [(wire_in) = true];
 }
