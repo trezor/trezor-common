@@ -117,7 +117,7 @@ message EosActionVoteProducer {
  * @next Failure
  */
  message EosSignTx {
-    required uint32 address_n = 1;                // BIP-32 path to derive the key from master node 44'/194'/0'
+    repeated uint32 address_n = 1;                // BIP-32 path to derive the key from master node 44'/194'/0'
     required bytes chain_id = 2;                  // 256-bit long chain id
     required EosTxHeader header = 3;              // Eos transaction header
     repeated EosContextFreeAction context_free_actions = 4;        // should be 0
