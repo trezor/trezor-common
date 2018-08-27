@@ -25,51 +25,120 @@ message EosGetAddress {
 }
 
 /**
+* Structure representing EOS transaction header
+*/
+message EosTxHeader {
+    required uint32 expiration = 1;           // time at which transaction expires
+    required uint32 ref_block_num = 2;        // 16-bit specifies a block num in the last 2^16 blocks.
+    required uint32 ref_block_prefix = 3;     // specifies the lower 32 bits of the blockid at get_ref_blocknum
+    required uint32 max_net_usage_words = 4;  // upper limit on total network bandwidth (in 8 byte words) billed for this transaction
+    required uint32 max_cpu_usage_ms = 5;     // 8-bit upper limit on the total CPU time billed for this transaction
+    required uint32 delay_sec = 6;            // number of seconds to delay this transaction for during which it may be canceled.
+}
+
+/**
+* Structure representing action permission level
+*/
+message EosPermissionLevel {
+    required string actor = 1;
+    required string permission = 2;
+}
+
+/**
+* Structure representing the common part of every action
+*/
+message EosActionCommon {
+    required string account = 1;                    // contract name
+    required string name = 2;                       // action name
+    repeated EosPermissionLevel authorization = 3;
+}
+
+message EosContextFreeAction {
+    required EosActionCommon common = 1;
+    required bytes data = 2;
+}
+
+message EosActionTransfer {
+    required EosActionCommon common = 1;
+    required string from = 2;
+    required string to = 3;
+    required string asset = 4;                      // asset format '1.0000 EOS'
+    optional string memo = 5;
+}
+
+message EosActionDelegate {
+    required EosActionCommon common = 1;
+    required string from = 2;
+    required string receiver = 3;
+    required string net_quantity = 4;               // asset format '1.0000 EOS'
+    required string cpu_quantity = 5;               // asset format '1.0000 EOS'
+    required bool transfer = 6;                     // transfer delegated tokens or not.
+}
+
+message EosActionUndelegate {
+    required EosActionCommon common = 1;
+    required string from = 2;
+    required string receiver = 3;
+    required string net_quantity = 4;               // asset format '1.0000 EOS'
+    required string cpu_quantity = 5;               // asset format '1.0000 EOS'
+}
+
+message EosActionBuyRam {
+    required EosActionCommon common = 1;            
+    required string payer = 2;
+    required string receiver = 3;
+    required string quantity = 4;                   // asset format '1.0000 EOS'
+}
+
+message EosActionBuyRamBytes {
+    required EosActionCommon common = 1;
+    required string payer = 2;
+    required string receiver = 3;
+    required uint32 bytes = 4;
+}
+
+message EosActionSellRam {
+    required EosActionCommon common = 1;
+    required string account = 2;
+    required int64 bytes = 3;
+}
+
+message EosActionVoteProducer {
+    required EosActionCommon common = 1;
+    required string voter = 2;                      // voter account
+    optional string proxy = 3;                      // proxy voter account
+    repeated string producers = 4;                   // list of producers
+}
+
+/**
  * Request: Ask device to sign transaction
- * All fields are optional from the protocol's point of view. Each field defaults to value `0` if missing.
- * Note: the first at most 1024 bytes of data MUST be transmitted as part of this message.
  * @start
  * @next EosTxRequest
  * @next Failure
  */
  message EosSignTx {
-    repeated uint32 address_n = 1;                // BIP-32 path to derive the key from master node 44'/194'/0'
-    optional bytes chain_id = 2;                  // 256-bit long chain id
-    optional EosTxHeader header = 3;              // Eos transaction header
-    optional bytes data_initial_chunk = 4;        // The initial data chunk (<= 1024 bytes)
-    optional uint32 data_length = 5;              // Length of transaction payload
-    
-    /**
-    * Structure representing EOS transaction header
-    */
-    message EosTxHeader {
-        optional uint32 expiration = 1;           // time at which transaction expires
-        optional uint32 ref_block_num = 2;        // 16-bit specifies a block num in the last 2^16 blocks.
-        optional uint32 ref_block_prefix = 3;     // specifies the lower 32 bits of the blockid at get_ref_blocknum
-        optional uint32 max_net_usage_words = 4;  // upper limit on total network bandwidth (in 8 byte words) billed for this transaction
-        optional uint32 max_cpu_usage_ms = 5;     // 8-bit upper limit on the total CPU time billed for this transaction
-        optional uint32 delay_sec = 6;            // number of seconds to delay this transaction for during which it may be canceled.
-    }
+    required uint32 address_n = 1;                // BIP-32 path to derive the key from master node 44'/194'/0'
+    required bytes chain_id = 2;                  // 256-bit long chain id
+    required EosTxHeader header = 3;              // Eos transaction header
+    repeated EosContextFreeAction context_free_actions = 4;        // should be 0
+    optional EosActionTransfer transfer = 5;
+    optional EosActionDelegate delegate = 6;
+    optional EosActionUndelegate undelegate = 7;
+    optional EosActionBuyRam buy_ram = 8;
+    optional EosActionBuyRamBytes buy_ram_bytes = 9;
+    optional EosActionSellRam sell_ram = 10;
+    optional EosActionVoteProducer vote_producer = 11;
+    optional bytes transaction_extensions = 12;
+    optional bytes context_free_data = 13;
 }
 
 /**
- * Response: Device asks for more data from transaction payload, or returns the signature.
- * If data_length is set, device awaits that many more bytes of payload.
- * Otherwise, the signature_* fields contain the computed transaction signature. All three fields will be present.
+ * Response: Device returns the signature.
+ * The signature_* fields contain the computed transaction signature. All three fields will be present.
  * @end
- * @next EosTxAck
  */
-message EosTxRequest {
-    optional uint32 data_length = 1;    // Number of bytes being requested (<= 1024)
+message EosSignTxResponse {
     optional uint32 signature_v = 2;    // Computed signature (recovery parameter, limited to 31 or 32)
     optional bytes signature_r = 3;     // Computed signature R component (256 bit)
     optional bytes signature_s = 4;     // Computed signature S component (256 bit)
-}
-
-/**
- * Request: Transaction payload data.
- * @next EosTxRequest
- */
- message EosTxAck {
-    optional bytes data_chunk = 1;  // Bytes from transaction payload (<= 1024 bytes)
 }
