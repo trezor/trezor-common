@@ -6,108 +6,22 @@ option java_package = "com.satoshilabs.trezor.lib.protobuf";
 option java_outer_classname = "TrezorMessageEos";
 
 /**
- * Request: Ask device for Eos address corresponding to address_n path
+ * Request: Ask device for Eos public key corresponding to address_n path
  * @start
  * @next EosAddress
  * @next Failure
  */
-message EosGetAddress {
+message EosGetPublicKey {
     repeated uint32 address_n = 1;  // BIP-32 path to derive the key from master node 44'/194'/0'
     optional bool show_display = 2; // optionally show on display before sending the result
 }
 
 /**
- * Response: Contains an Eos address derived from device private seed
+ * Response: Contains an Eos public key derived from device private seed
  * @end
  */
- message EosAddress {
-    required string address = 1;     // EOS address in Base58 encoding
-}
-
-/**
-* Structure representing EOS transaction header
-*/
-message EosTxHeader {
-    required uint32 expiration = 1;           // time at which transaction expires
-    required uint32 ref_block_num = 2;        // 16-bit specifies a block num in the last 2^16 blocks.
-    required uint32 ref_block_prefix = 3;     // specifies the lower 32 bits of the blockid at get_ref_blocknum
-    required uint32 max_net_usage_words = 4;  // upper limit on total network bandwidth (in 8 byte words) billed for this transaction
-    required uint32 max_cpu_usage_ms = 5;     // 8-bit upper limit on the total CPU time billed for this transaction
-    required uint32 delay_sec = 6;            // number of seconds to delay this transaction for during which it may be canceled.
-}
-
-/**
-* Structure representing action permission level
-*/
-message EosPermissionLevel {
-    required string actor = 1;
-    required string permission = 2;
-}
-
-/**
-* Structure representing the common part of every action
-*/
-message EosActionCommon {
-    required string account = 1;                    // contract name
-    required string name = 2;                       // action name
-    repeated EosPermissionLevel authorization = 3;
-}
-
-message EosContextFreeAction {
-    required EosActionCommon common = 1;
-    required bytes data = 2;
-}
-
-message EosActionTransfer {
-    required EosActionCommon common = 1;
-    required string from = 2;
-    required string to = 3;
-    required string asset = 4;                      // asset format '1.0000 EOS'
-    optional string memo = 5;
-}
-
-message EosActionDelegate {
-    required EosActionCommon common = 1;
-    required string from = 2;
-    required string receiver = 3;
-    required string net_quantity = 4;               // asset format '1.0000 EOS'
-    required string cpu_quantity = 5;               // asset format '1.0000 EOS'
-    required bool transfer = 6;                     // transfer delegated tokens or not.
-}
-
-message EosActionUndelegate {
-    required EosActionCommon common = 1;
-    required string from = 2;
-    required string receiver = 3;
-    required string net_quantity = 4;               // asset format '1.0000 EOS'
-    required string cpu_quantity = 5;               // asset format '1.0000 EOS'
-}
-
-message EosActionBuyRam {
-    required EosActionCommon common = 1;            
-    required string payer = 2;
-    required string receiver = 3;
-    required string quantity = 4;                   // asset format '1.0000 EOS'
-}
-
-message EosActionBuyRamBytes {
-    required EosActionCommon common = 1;
-    required string payer = 2;
-    required string receiver = 3;
-    required uint32 bytes = 4;
-}
-
-message EosActionSellRam {
-    required EosActionCommon common = 1;
-    required string account = 2;
-    required int64 bytes = 3;
-}
-
-message EosActionVoteProducer {
-    required EosActionCommon common = 1;
-    required string voter = 2;                      // voter account
-    optional string proxy = 3;                      // proxy voter account
-    repeated string producers = 4;                   // list of producers
+ message EosPublicKey {
+    required string public_key = 1;     // EOS pub key in Base58 encoding
 }
 
 /**
@@ -120,16 +34,99 @@ message EosActionVoteProducer {
     repeated uint32 address_n = 1;                // BIP-32 path to derive the key from master node 44'/194'/0'
     required bytes chain_id = 2;                  // 256-bit long chain id
     required EosTxHeader header = 3;              // Eos transaction header
-    repeated EosContextFreeAction context_free_actions = 4;        // should be 0
-    optional EosActionTransfer transfer = 5;
-    optional EosActionDelegate delegate = 6;
-    optional EosActionUndelegate undelegate = 7;
-    optional EosActionBuyRam buy_ram = 8;
-    optional EosActionBuyRamBytes buy_ram_bytes = 9;
-    optional EosActionSellRam sell_ram = 10;
-    optional EosActionVoteProducer vote_producer = 11;
-    optional bytes transaction_extensions = 12;
-    optional bytes context_free_data = 13;
+    optional EosActionTransfer transfer = 4;
+    optional EosActionDelegate delegate = 5;
+    optional EosActionUndelegate undelegate = 6;
+    optional EosActionBuyRam buy_ram = 7;
+    optional EosActionBuyRamBytes buy_ram_bytes = 8;
+    optional EosActionSellRam sell_ram = 9;
+    optional EosActionVoteProducer vote_producer = 10;
+
+    /**
+    * Structure representing EOS transaction header
+    */
+    message EosTxHeader {
+        required uint32 expiration = 1;           // time at which transaction expires
+        required uint32 ref_block_num = 2;        // 16-bit specifies a block num in the last 2^16 blocks.
+        required uint32 ref_block_prefix = 3;     // specifies the lower 32 bits of the blockid at get_ref_blocknum
+        required uint32 max_net_usage_words = 4;  // upper limit on total network bandwidth (in 8 byte words) billed for this transaction
+        required uint32 max_cpu_usage_ms = 5;     // 8-bit upper limit on the total CPU time billed for this transaction
+        required uint32 delay_sec = 6;            // number of seconds to delay this transaction for during which it may be canceled.
+    }
+
+    /**
+    * Structure representing action permission level
+    */
+    message EosPermissionLevel {
+        required uint64 actor = 1;
+        required uint64 permission = 2;
+    }
+
+    /**
+    * Structure representing the common part of every action
+    */
+    message EosActionCommon {
+        required uint64 account = 1;                    // contract name
+        required uint64 name = 2;                       // action name
+        repeated EosPermissionLevel authorization = 3;
+    }
+
+    message EosContextFreeAction {
+        required EosActionCommon common = 1;
+        required bytes data = 2;
+    }
+
+    message EosActionTransfer {
+        required EosActionCommon common = 1;
+        required uint64 from = 2;
+        required uint64 to = 3;
+        required string asset = 4;                      // asset format '1.0000 EOS'
+        optional string memo = 5;
+    }
+
+    message EosActionDelegate {
+        required EosActionCommon common = 1;
+        required uint64 from = 2;
+        required uint64 receiver = 3;
+        required string net_quantity = 4;               // asset format '1.0000 EOS'
+        required string cpu_quantity = 5;               // asset format '1.0000 EOS'
+        required bool transfer = 6;                     // transfer delegated tokens or not.
+    }
+
+    message EosActionUndelegate {
+        required EosActionCommon common = 1;
+        required uint64 from = 2;
+        required uint64 receiver = 3;
+        required string net_quantity = 4;               // asset format '1.0000 EOS'
+        required string cpu_quantity = 5;               // asset format '1.0000 EOS'
+    }
+
+    message EosActionBuyRam {
+        required EosActionCommon common = 1;            
+        required uint64 payer = 2;
+        required uint64 receiver = 3;
+        required string quantity = 4;                   // asset format '1.0000 EOS'
+    }
+
+    message EosActionBuyRamBytes {
+        required EosActionCommon common = 1;
+        required uint64 payer = 2;
+        required uint64 receiver = 3;
+        required uint32 bytes = 4;
+    }
+
+    message EosActionSellRam {
+        required EosActionCommon common = 1;
+        required uint64 account = 2;
+        required int64 bytes = 3;
+    }
+
+    message EosActionVoteProducer {
+        required EosActionCommon common = 1;
+        required uint64 voter = 2;                      // voter account
+        required uint64 proxy = 3;                      // proxy voter account
+        repeated uint64 producers = 4;                   // list of producers
+    }
 }
 
 /**
