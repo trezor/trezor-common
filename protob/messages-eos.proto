@@ -8,7 +8,7 @@ option java_outer_classname = "TrezorMessageEos";
 /**
  * Request: Ask device for Eos public key corresponding to address_n path
  * @start
- * @next EosAddress
+ * @next EosPublicKey
  * @next Failure
  */
 message EosGetPublicKey {
