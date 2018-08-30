@@ -21,7 +21,7 @@ message EosGetPublicKey {
  * @end
  */
  message EosPublicKey {
-    required string public_key = 1;     // EOS pub key in Base58 encoding
+    optional string public_key = 1;     // EOS pub key in Base58 encoding
 }
 
 /**
@@ -32,15 +32,9 @@ message EosGetPublicKey {
  */
  message EosSignTx {
     repeated uint32 address_n = 1;                // BIP-32 path to derive the key from master node 44'/194'/0'
-    required bytes chain_id = 2;                  // 256-bit long chain id
-    required EosTxHeader header = 3;              // Eos transaction header
-    optional EosActionTransfer transfer = 4;
-    optional EosActionDelegate delegate = 5;
-    optional EosActionUndelegate undelegate = 6;
-    optional EosActionBuyRam buy_ram = 7;
-    optional EosActionBuyRamBytes buy_ram_bytes = 8;
-    optional EosActionSellRam sell_ram = 9;
-    optional EosActionVoteProducer vote_producer = 10;
+    optional bytes chain_id = 2;                  // 256-bit long chain id
+    optional EosTxHeader header = 3;              // EOS transaction header
+    optional uint32 num_actions = 4;              // number of actions 
 
     /**
     * Structure representing EOS transaction header
@@ -52,80 +46,121 @@ message EosGetPublicKey {
         required uint32 max_net_usage_words = 4;  // upper limit on total network bandwidth (in 8 byte words) billed for this transaction
         required uint32 max_cpu_usage_ms = 5;     // 8-bit upper limit on the total CPU time billed for this transaction
         required uint32 delay_sec = 6;            // number of seconds to delay this transaction for during which it may be canceled.
+    }   
+}
+
+/**
+ * Response: Device asks to upload next action
+ * @next EosTxActionAck
+ */
+message EosTxActionRequest {
+}
+
+/**
+ * Request: Next action data that needs to be uploaded
+ * @next EosTxActionRequest
+ * @next EosSignedTx
+ * @next Failure
+ */
+message EosTxActionAck {
+    optional EosActionCommon common = 1;
+    optional EosActionTransfer transfer = 2;
+    optional EosActionDelegate delegate = 3;
+    optional EosActionUndelegate undelegate = 4;
+    optional EosActionBuyRam buy_ram = 5;
+    optional EosActionBuyRamBytes buy_ram_bytes = 6;
+    optional EosActionSellRam sell_ram = 7;
+    optional EosActionVoteProducer vote_producer = 8;        
+
+    /**
+    * Structure representing asset type
+    */
+    message EosAsset {
+        optional sint64 amount = 1;
+        optional uint64 symbol = 2;           // First 8-bits used for precission.    
     }
 
     /**
     * Structure representing action permission level
     */
     message EosPermissionLevel {
-        required uint64 actor = 1;
-        required uint64 permission = 2;
+        optional uint64 actor = 1;
+        optional uint64 permission = 2;
     }
 
     /**
     * Structure representing the common part of every action
     */
     message EosActionCommon {
-        required uint64 account = 1;                    // contract name
-        required uint64 name = 2;                       // action name
+        optional uint64 account = 1;          // Contract name
+        optional uint64 name = 2;             // Action name
         repeated EosPermissionLevel authorization = 3;
     }
 
-    message EosContextFreeAction {
-        required EosActionCommon common = 1;
-        required bytes data = 2;
-    }
-
+    /**
+    * Structure representing transfer data structure
+    */
     message EosActionTransfer {
-        required EosActionCommon common = 1;
-        required uint64 from = 2;
-        required uint64 to = 3;
-        required string asset = 4;                      // asset format '1.0000 EOS'
-        optional string memo = 5;
+        optional uint64 from = 1;             // Asset sender
+        optional uint64 to = 2;
+        optional EosAsset quantity = 3;                     
+        optional string memo = 4;
     }
 
+    /**
+    * Structure representing delegation data structure
+    */
     message EosActionDelegate {
-        required EosActionCommon common = 1;
-        required uint64 from = 2;
-        required uint64 receiver = 3;
-        required string net_quantity = 4;               // asset format '1.0000 EOS'
-        required string cpu_quantity = 5;               // asset format '1.0000 EOS'
-        required bool transfer = 6;                     // transfer delegated tokens or not.
+        optional uint64 from = 1;
+        optional uint64 receiver = 2;
+        optional EosAsset net_quantity = 3;    // Asset format '1.0000 EOS'
+        optional EosAsset cpu_quantity = 4;    // Asset format '1.0000 EOS'
+        optional bool transfer = 5;            // Transfer delegated tokens or not.
     }
 
+    /**
+    * Structure representing the removal of delegated resources from `from`
+    */
     message EosActionUndelegate {
-        required EosActionCommon common = 1;
-        required uint64 from = 2;
-        required uint64 receiver = 3;
-        required string net_quantity = 4;               // asset format '1.0000 EOS'
-        required string cpu_quantity = 5;               // asset format '1.0000 EOS'
+        optional uint64 from = 1;
+        optional uint64 receiver = 2;
+        optional EosAsset net_quantity = 3;   // Asset format '1.0000 EOS'
+        optional EosAsset cpu_quantity = 4;   // Asset format '1.0000 EOS'
     }
 
-    message EosActionBuyRam {
-        required EosActionCommon common = 1;            
-        required uint64 payer = 2;
-        required uint64 receiver = 3;
-        required string quantity = 4;                   // asset format '1.0000 EOS'
+    /**
+    * Structure representing buying RAM operation for EOS tokens
+    */
+    message EosActionBuyRam {        
+        optional uint64 payer = 1;
+        optional uint64 receiver = 2;
+        optional EosAsset quantity = 3;   // Asset format '1.0000 EOS'
     }
 
+    /** 
+    * Structure representing buying bytes according to RAM market price.
+    */
     message EosActionBuyRamBytes {
-        required EosActionCommon common = 1;
-        required uint64 payer = 2;
-        required uint64 receiver = 3;
-        required uint32 bytes = 4;
+        optional uint64 payer = 1;
+        optional uint64 receiver = 2;
+        optional uint32 bytes = 3;       // Number of bytes
     }
 
+    /** 
+    * Structure representing sell RAM
+    */
     message EosActionSellRam {
-        required EosActionCommon common = 1;
-        required uint64 account = 2;
-        required int64 bytes = 3;
+        optional uint64 account = 1;
+        optional sint64 bytes = 2;       // Number of bytes
     }
 
+    /** 
+    * Structure representing voting. Currently, there could be up to 30 producers.
+    */
     message EosActionVoteProducer {
-        required EosActionCommon common = 1;
-        required uint64 voter = 2;                      // voter account
-        required uint64 proxy = 3;                      // proxy voter account
-        repeated uint64 producers = 4;                   // list of producers
+        optional uint64 voter = 1;       // Voter account
+        optional uint64 proxy = 2;       // Proxy voter account
+        repeated uint64 producers = 3;   // List of producers
     }
 }
 
@@ -134,8 +169,8 @@ message EosGetPublicKey {
  * The signature_* fields contain the computed transaction signature. All three fields will be present.
  * @end
  */
-message EosSignTxResponse {
-    optional uint32 signature_v = 2;    // Computed signature (recovery parameter, limited to 31 or 32)
-    optional bytes signature_r = 3;     // Computed signature R component (256 bit)
-    optional bytes signature_s = 4;     // Computed signature S component (256 bit)
+message EosSignedTx {
+    optional uint32 signature_v = 1;    // Computed signature (recovery parameter, limited to 31 or 32)
+    optional bytes signature_r = 2;     // Computed signature R component (256 bit)
+    optional bytes signature_s = 3;     // Computed signature S component (256 bit)
 }
