@@ -1,6 +1,7 @@
 {
   "connect": {
     "supported": {
+      "bitcoin:ACM": true,
       "bitcoin:BCH": true,
       "bitcoin:BTC": true,
       "bitcoin:BTG": true,
@@ -12,7 +13,6 @@
       "bitcoin:TEST": true,
       "bitcoin:VTC": true,
       "bitcoin:ZEC": true,
-      "bitcoin:ACM": true,
       "eth:AKA": true,
       "eth:ATH": true,
       "eth:CLO": true,
@@ -51,6 +51,7 @@
   },
   "trezor1": {
     "supported": {
+      "bitcoin:ACM": "soon",
       "bitcoin:BCH": "1.6.2",
       "bitcoin:BTC": "1.5.2",
       "bitcoin:BTCP": "1.6.2",
@@ -88,7 +89,6 @@
       "bitcoin:tGRS": "1.6.2",
       "bitcoin:tSMART": "soon",
       "bitcoin:tXZC": "1.6.2",
-      "bitcoin:ACM": "0.18.1.0",
       "erc20:ella:MINING": "1.6.2",
       "erc20:etc:BEC": "1.6.2",
       "erc20:eth:$FFC": "1.6.2",
@@ -930,6 +930,7 @@
   },
   "trezor2": {
     "supported": {
+      "bitcoin:ACM": "soon",
       "bitcoin:BCH": "2.0.7",
       "bitcoin:BTC": "2.0.5",
       "bitcoin:BTCP": "2.0.7",
@@ -968,7 +969,6 @@
       "bitcoin:tGRS": "2.0.8",
       "bitcoin:tSMART": "soon",
       "bitcoin:tXZC": "2.0.7",
-      "bitcoin:ACM": "0.18.1.0",
       "erc20:ella:MINING": "2.0.7",
       "erc20:etc:BEC": "2.0.7",
       "erc20:eth:$FFC": "2.0.7",
@@ -1747,6 +1747,7 @@
   },
   "webwallet": {
     "supported": {
+      "bitcoin:ACM": true,
       "bitcoin:BCH": true,
       "bitcoin:BTC": true,
       "bitcoin:BTCP": true,
@@ -1769,8 +1770,7 @@
       "bitcoin:VTC": true,
       "bitcoin:XZC": true,
       "bitcoin:ZEC": true,
-      "bitcoin:tGRS": true,
-      "bitcoin:ACM": true
+      "bitcoin:tGRS": true
     },
     "unsupported": {}
   }
