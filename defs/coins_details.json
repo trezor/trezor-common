@@ -319,6 +319,19 @@
             "type": "coin",
             "wallet": {}
         },
+        "bitcoin:RVN": {
+            "links": {
+                "Github": "https://github.com/RavenProject/Ravencoin",
+                "Homepage": "https://ravencoin.org"
+            },
+            "marketcap_usd": 111771134,
+            "name": "Ravencoin",
+            "shortcut": "RVN",
+            "t1_enabled": "soon",
+            "t2_enabled": "soon",
+            "type": "coin",
+            "wallet": {}
+        },
         "bitcoin:SMART": {
             "links": {
                 "Github": "https://github.com/SmartCash/Core-Smart",
