@@ -4,7 +4,7 @@
   "coin_label": "Bitcloud",
   "website": "https://bit-cloud.info",
   "github": "https://github.com/LIMXTEC/Bitcloud",
-  "maintainer": "limxdev <info@bitsend.info>",
+  "maintainer": "limxdev <info@bit-cloud.info>",
   "curve_name": "secp256k1",
   "address_type": 25,
   "address_type_p2sh": 5,
