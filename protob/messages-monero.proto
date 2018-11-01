@@ -290,6 +290,7 @@ message MoneroTransactionSignInputRequest {
  */
 message MoneroTransactionSignInputAck {
     optional bytes signature = 1;
+    repeated bytes signature_parts = 2;
 }
 
 /**
