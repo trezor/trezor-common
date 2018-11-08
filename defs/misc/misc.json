@@ -78,5 +78,15 @@
             "Homepage": "https://wanchain.org",
             "Github": "https://github.com/wanchain/go-wanchain"
         }
+    },
+    {
+        "name": "NULS",
+        "shortcut": "NULS",
+        "slip44": 8964,
+        "curve": "secp256k1",
+        "links": {
+            "Homepage": "https://nuls.io",
+            "Github": "https://github.com/nuls-io/nuls"
+        }
     }
 ]
