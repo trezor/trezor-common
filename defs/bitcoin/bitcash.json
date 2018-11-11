@@ -35,9 +35,7 @@
   "uri_prefix": "bitcash",
   "min_address_length": 52,
   "max_address_length": 53,
-  "bitcore": [
-    "https://icemining.ca/explorer/BITC"
-  ],
+  "bitcore": [],
   "blockbook": [],
   "cooldown": 100
 }
