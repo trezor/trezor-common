@@ -366,7 +366,7 @@
             "t2_enabled": "yes",
             "type": "coin",
             "wallet": {
-                "Electrum-NIX": "https://github.com/nixplatform/electrum-nix",
+                "Electrum-NIX": "https://github.com/nixplatform/electrum-nix"
             }
         },
         "bitcoin:NMC": {
