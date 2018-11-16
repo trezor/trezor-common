@@ -8,6 +8,7 @@
     "rskip60": false,
     "url": "https://www.ethereum.org",
     "blockbook": [
+      "https://eth1.trezor.io",
       "https://eth2.trezor.io"
     ]
   },
@@ -51,16 +52,6 @@
     "name": "Ubiq",
     "rskip60": false,
     "url": "https://ubiqsmart.com",
-    "blockbook": []
-  },
-  {
-    "chain": "eosc",
-    "chain_id": 20,
-    "slip44": 2018,
-    "shortcut": "EOSC",
-    "name": "EOS Classic",
-    "rskip60": false,
-    "url": "https://eos-classic.io",
     "blockbook": []
   },
   {
@@ -122,6 +113,7 @@
     "rskip60": false,
     "url": "https://ethereumclassic.github.io",
     "blockbook": [
+      "https://etc1.trezor.io",
       "https://etc2.trezor.io"
     ]
   },
@@ -146,6 +138,16 @@
     "blockbook": []
   },
   {
+    "chain": "mix",
+    "chain_id": 76,
+    "slip44": 76,
+    "shortcut": "MIX",
+    "name": "Mix",
+    "rskip60": false,
+    "url": "https://www.mix-blockchain.org",
+    "blockbook": []
+  },
+  {
     "chain": "clo",
     "chain_id": 820,
     "slip44": 820,
@@ -163,6 +165,16 @@
     "name": "Atheios",
     "rskip60": false,
     "url": "https://atheios.com",
+    "blockbook": []
+  },
+  {
+    "chain": "eosc",
+    "chain_id": 2018,
+    "slip44": 2018,
+    "shortcut": "EOSC",
+    "name": "EOS Classic",
+    "rskip60": false,
+    "url": "https://eos-classic.io",
     "blockbook": []
   },
   {

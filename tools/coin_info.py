@@ -109,7 +109,7 @@ BTC_CHECKS = [
     check_key("coin_name", str, regex=r"^[A-Z]"),
     check_key("coin_shortcut", str, regex=r"^t?[A-Z]{3,}$"),
     check_key("coin_label", str, regex=r"^[A-Z]"),
-    check_key("website", str, regex=r"^http.*[^/]$"),
+    check_key("website", str, regex=r"^https://.*[^/]$"),
     check_key("github", str, regex=r"^https://github.com/.*[^/]$"),
     check_key("maintainer", str),
     check_key(
@@ -130,7 +130,6 @@ BTC_CHECKS = [
     check_key("fork_id", int, nullable=True),
     check_key("force_bip143", bool),
     check_key("bip115", bool),
-    check_key("version_group_id", int, nullable=True),
     check_key("default_fee_b", dict),
     check_key("dust_limit", int),
     check_key("blocktime_seconds", int),
@@ -178,6 +177,9 @@ def validate_btc(coin):
         errors.append("max address length must not be smaller than min address length")
 
     for bc in coin["bitcore"] + coin["blockbook"]:
+        if not bc.startswith("https://"):
+            errors.append("make sure URLs start with https://")
+
         if bc.endswith("/"):
             errors.append("make sure URLs don't end with '/'")
 
@@ -193,7 +195,7 @@ def _load_btc_coins():
     for filename in glob.glob(os.path.join(DEFS_DIR, "coins", "*.json")):
         coin = load_json(filename)
         coin.update(
-            name=coin["coin_name"],
+            name=coin["coin_label"],
             shortcut=coin["coin_shortcut"],
             key="bitcoin:{}".format(coin["coin_shortcut"]),
             icon=filename.replace(".json", ".png"),
@@ -259,7 +261,7 @@ def _load_misc():
 
 # ====== support info ======
 
-RELEASES_URL = "https://wallet.trezor.io/data/firmware/{}/releases.json"
+RELEASES_URL = "https://beta-wallet.trezor.io/data/firmware/{}/releases.json"
 MISSING_SUPPORT_MEANS_NO = ("connect", "webwallet")
 VERSIONED_SUPPORT_INFO = ("trezor1", "trezor2")
 
