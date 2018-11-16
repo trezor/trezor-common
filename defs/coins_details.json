@@ -354,6 +354,21 @@
             "type": "coin",
             "wallet": {}
         },
+        "bitcoin:NIX": {
+            "links": {
+                "Github": "https://github.com/nixplatform/nixcore",
+                "Homepage": "https://nixplatform.io"
+            },
+            "marketcap_usd": 14021311,
+            "name": "Nix",
+            "shortcut": "NIX",
+            "t1_enabled": "yes",
+            "t2_enabled": "yes",
+            "type": "coin",
+            "wallet": {
+                "Electrum-NIX": "https://github.com/nixplatform/electrum-nix",
+            }
+        },
         "bitcoin:NMC": {
             "links": {
                 "Github": "https://github.com/namecoin/namecoin-core",
