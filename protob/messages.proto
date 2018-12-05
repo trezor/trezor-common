@@ -229,4 +229,10 @@ enum MessageType {
     MessageType_MoneroWatchKey = 543 [(wire_out) = true];
     MessageType_DebugMoneroDiagRequest = 546 [(wire_in) = true];
     MessageType_DebugMoneroDiagAck = 547 [(wire_out) = true];
+
+    // Hycon
+    MessageType_HyconGetAddress = 700 [(wire_in) = true];
+    MessageType_HyconAddress = 701 [(wire_out) = true];
+    MessageType_HyconSignTx = 702 [(wire_in) = true];
+    MessageType_HyconSignedTx = 703 [(wire_in) = true];
 }
