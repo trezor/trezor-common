@@ -25,7 +25,7 @@ def load_json(*path):
     else:
         filename = os.path.join(DEFS_DIR, *path)
 
-    with open(filename) as f:
+    with open(filename, encoding="utf-8") as f:
         return json.load(f, object_pairs_hook=OrderedDict)
 
 
