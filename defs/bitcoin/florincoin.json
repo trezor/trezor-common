@@ -2,7 +2,7 @@
   "coin_name": "Florincoin",
   "coin_shortcut": "FLO",
   "coin_label": "Flo",
-  "website": "https://flo.cash/",
+  "website": "https://flo.cash",
   "github": "https://github.com/floblockchain/flo",
   "maintainer": "Robert English <ksaredfx@gmail.com>",
   "curve_name": "secp256k1",
