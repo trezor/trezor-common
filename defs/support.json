@@ -1,7 +1,7 @@
 {
   "connect": {
     "supported": {
-      "bitcoin:AXE": "soon",
+      "bitcoin:AXE": true,
       "bitcoin:BCH": true,
       "bitcoin:BTC": true,
       "bitcoin:BTG": true,
@@ -2622,7 +2622,7 @@
   "webwallet": {
     "supported": {
       "bitcoin:ACM": true,
-      "bitcoin:AXE": "soon",
+      "bitcoin:AXE": true,
       "bitcoin:BCH": true,
       "bitcoin:BTC": true,
       "bitcoin:BTCP": true,
