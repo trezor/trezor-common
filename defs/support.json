@@ -1,6 +1,7 @@
 {
   "connect": {
     "supported": {
+      "bitcoin:AXE": "soon",
       "bitcoin:BCH": true,
       "bitcoin:BTC": true,
       "bitcoin:BTG": true,
@@ -51,6 +52,7 @@
   "trezor1": {
     "supported": {
       "bitcoin:ACM": "1.7.2",
+      "bitcoin:AXE": "soon",
       "bitcoin:BCH": "1.6.2",
       "bitcoin:BITC": "1.7.2",
       "bitcoin:BSD": "1.7.2",
@@ -956,6 +958,7 @@
   "trezor2": {
     "supported": {
       "bitcoin:ACM": "2.0.10",
+      "bitcoin:AXE": "soon",
       "bitcoin:BCH": "2.0.7",
       "bitcoin:BITC": "2.0.10",
       "bitcoin:BSD": "2.0.10",
@@ -2237,6 +2240,7 @@
   "webwallet": {
     "supported": {
       "bitcoin:ACM": true,
+      "bitcoin:AXE": "soon",
       "bitcoin:BCH": true,
       "bitcoin:BTC": true,
       "bitcoin:BTCP": true,
