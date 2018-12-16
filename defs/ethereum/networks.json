@@ -8,6 +8,7 @@
     "rskip60": false,
     "url": "https://www.ethereum.org",
     "blockbook": [
+      "https://eth1.trezor.io",
       "https://eth2.trezor.io"
     ]
   },
@@ -54,16 +55,6 @@
     "blockbook": []
   },
   {
-    "chain": "eosc",
-    "chain_id": 20,
-    "slip44": 2018,
-    "shortcut": "EOSC",
-    "name": "EOS Classic",
-    "rskip60": false,
-    "url": "https://eos-classic.io",
-    "blockbook": []
-  },
-  {
     "chain": "etsc",
     "chain_id": 28,
     "slip44": 1128,
@@ -77,7 +68,7 @@
     "chain": "rsk",
     "chain_id": 30,
     "slip44": 137,
-    "shortcut": "RSK",
+    "shortcut": "RBTC",
     "name": "RSK",
     "rskip60": true,
     "url": "https://www.rsk.co",
@@ -87,7 +78,7 @@
     "chain": "trsk",
     "chain_id": 31,
     "slip44": 37310,
-    "shortcut": "tRSK",
+    "shortcut": "tRBTC",
     "name": "RSK Testnet",
     "rskip60": true,
     "url": "https://www.rsk.co",
@@ -122,6 +113,7 @@
     "rskip60": false,
     "url": "https://ethereumclassic.github.io",
     "blockbook": [
+      "https://etc1.trezor.io",
       "https://etc2.trezor.io"
     ]
   },
@@ -146,6 +138,16 @@
     "blockbook": []
   },
   {
+    "chain": "mix",
+    "chain_id": 76,
+    "slip44": 76,
+    "shortcut": "MIX",
+    "name": "Mix",
+    "rskip60": false,
+    "url": "https://www.mix-blockchain.org",
+    "blockbook": []
+  },
+  {
     "chain": "clo",
     "chain_id": 820,
     "slip44": 820,
@@ -166,6 +168,16 @@
     "blockbook": []
   },
   {
+    "chain": "eosc",
+    "chain_id": 2018,
+    "slip44": 2018,
+    "shortcut": "EOSC",
+    "name": "EOS Classic",
+    "rskip60": false,
+    "url": "https://eos-classic.io",
+    "blockbook": []
+  },
+  {
     "chain": "egem",
     "chain_id": 1987,
     "slip44": 1987,
@@ -173,6 +185,16 @@
     "name": "EtherGem",
     "rskip60": false,
     "url": "https://egem.io",
+    "blockbook": []
+  },
+  {
+    "chain": "reosc",
+    "chain_id": 2894,
+    "slip44": 2894,
+    "shortcut": "REOSC",
+    "name": "REOSC Ecosystem",
+    "rskip60": false,
+    "url": "https://reosc.io",
     "blockbook": []
   },
   {

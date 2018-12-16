@@ -111,7 +111,10 @@ def ascii_filter(s):
 def make_support_filter(support_info):
     def supported_on(device, coins):
         for coin in coins:
-            if support_info[coin.key].get(device):
+            supp = support_info[coin.key].get(device)
+            if not supp:
+                continue
+            if coin_info.is_token(coin) or supp != "soon":
                 yield coin
 
     return supported_on
@@ -150,7 +153,7 @@ def highlight_key(coin, color):
     else:
         keylist[-1] = crayon(color, keylist[-1], bold=True)
     key = crayon(color, ":".join(keylist))
-    name = crayon(None, "({})".format(coin['name']), dim=True)
+    name = crayon(None, "({})".format(coin["name"]), dim=True)
     return "{} {}".format(key, name)
 
 
@@ -167,7 +170,9 @@ def check_eth(coins):
     check_passed = True
     chains = find_collisions(coins, "chain")
     for key, bucket in chains.items():
-        bucket_str = ", ".join("{} ({})".format(coin['key'], coin['name']) for coin in bucket)
+        bucket_str = ", ".join(
+            "{} ({})".format(coin["key"], coin["name"]) for coin in bucket
+        )
         chain_name_str = "colliding chain name " + crayon(None, key, bold=True) + ":"
         print_log(logging.ERROR, chain_name_str, bucket_str)
         check_passed = False
@@ -365,7 +370,7 @@ def check_icons(coins):
     return check_passed
 
 
-IGNORE_NONUNIFORM_KEYS = frozenset(("unsupported", "duplicate", "notes"))
+IGNORE_NONUNIFORM_KEYS = frozenset(("unsupported", "duplicate"))
 
 
 def check_key_uniformity(coins):
@@ -381,17 +386,23 @@ def check_key_uniformity(coins):
     buckets.sort(key=lambda x: len(x))
     majority = buckets[-1]
     rest = sum(buckets[:-1], [])
-    reference_keyset = set(majority[0].keys())
+    reference_keyset = set(majority[0].keys()) | IGNORE_NONUNIFORM_KEYS
+    print(reference_keyset)
 
     for coin in rest:
         key = coin["key"]
-        keyset = set(coin.keys())
+        keyset = set(coin.keys()) | IGNORE_NONUNIFORM_KEYS
         missing = ", ".join(reference_keyset - keyset)
         if missing:
-            print_log(logging.ERROR, "coin {} has missing keys: {}".format(key, missing))
+            print_log(
+                logging.ERROR, "coin {} has missing keys: {}".format(key, missing)
+            )
         additional = ", ".join(keyset - reference_keyset)
         if additional:
-            print_log(logging.ERROR, "coin {} has superfluous keys: {}".format(key, additional))
+            print_log(
+                logging.ERROR,
+                "coin {} has superfluous keys: {}".format(key, additional),
+            )
 
     return False
 
@@ -529,6 +540,14 @@ def check(backend, icons, show_duplicates):
         dup_level = logging.ERROR
     print("Checking unexpected duplicates...")
     if not check_dups(buckets, dup_level):
+        all_checks_passed = False
+
+    nontoken_dups = [coin for coin in defs.as_list() if "dup_key_nontoken" in coin]
+    if nontoken_dups:
+        nontoken_dup_str = ", ".join(
+            highlight_key(coin, "red") for coin in nontoken_dups
+        )
+        print_log(logging.ERROR, "Non-token duplicate keys: " + nontoken_dup_str)
         all_checks_passed = False
 
     if icons:

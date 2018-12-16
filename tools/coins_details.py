@@ -15,6 +15,7 @@ LOG = logging.getLogger(__name__)
 OPTIONAL_KEYS = ("links", "notes", "wallet")
 ALLOWED_SUPPORT_STATUS = ("yes", "no", "planned", "soon")
 
+WALLETS = coin_info.load_json("wallets.json")
 OVERRIDES = coin_info.load_json("coins_details.override.json")
 VERSIONS = coin_info.latest_releases()
 
@@ -22,6 +23,25 @@ COINMAKETCAP_CACHE = os.path.join(os.path.dirname(__file__), "coinmarketcap.json
 COINMARKETCAP_API_BASE = "https://pro-api.coinmarketcap.com/v1/"
 
 MARKET_CAPS = {}
+
+# automatic wallet entries
+WALLET_TREZOR = {"Trezor": "https://wallet.trezor.io"}
+WALLET_TREZOR_NEXT = {"Trezor Beta": "https://beta-wallet.trezor.io/next/"}
+WALLET_NEM = {"Nano Wallet": "https://nem.io/downloads/"}
+
+WALLETS_ETH_3RDPARTY = {
+    "MyEtherWallet": "https://www.myetherwallet.com",
+    "MyCrypto": "https://mycrypto.com",
+}
+WALLETS_ETH_NATIVE = WALLETS_ETH_3RDPARTY.copy()
+WALLETS_ETH_NATIVE.update(WALLET_TREZOR_NEXT)
+
+
+TREZORIO_KNOWN_URLS = (
+    "https://wallet.trezor.io",
+    "https://beta-wallet.trezor.io/next/",
+    "https://trezor.io/stellar/",
+)
 
 
 def coinmarketcap_call(endpoint, api_key, params=None):
@@ -37,7 +57,10 @@ def coinmarketcap_init(api_key, refresh=None):
     force_refresh = refresh is True
     disable_refresh = refresh is False
     try:
-        mtime = os.path.getmtime(COINMAKETCAP_CACHE)
+        try:
+            mtime = os.path.getmtime(COINMAKETCAP_CACHE)
+        except FileNotFoundError:
+            mtime = 0
         cache_is_fresh = mtime > time.time() - 3600
         if disable_refresh or (cache_is_fresh and not force_refresh):
             print("Using cached market cap data")
@@ -115,6 +138,9 @@ def summary(coins, api_key):
         t2_coins=t2_coins,
         marketcap_usd=supported_marketcap,
         total_marketcap_usd=total_marketcap,
+        marketcap_supported="{:.02f} %".format(
+            100 * supported_marketcap / total_marketcap
+        ),
     )
 
 
@@ -145,6 +171,15 @@ def _webwallet_support(coin, support):
     return any(".trezor.io" in url for url in coin["blockbook"] + coin["bitcore"])
 
 
+def dict_merge(orig, new):
+    if isinstance(new, dict) and isinstance(orig, dict):
+        for k, v in new.items():
+            orig[k] = dict_merge(orig.get(k), v)
+        return orig
+    else:
+        return new
+
+
 def update_simple(coins, support_info, type):
     res = {}
     for coin in coins:
@@ -157,10 +192,13 @@ def update_simple(coins, support_info, type):
             type=type,
             t1_enabled=_is_supported(support, "trezor1"),
             t2_enabled=_is_supported(support, "trezor2"),
+            wallet={},
         )
         for k in OPTIONAL_KEYS:
             if k in coin:
                 details[k] = coin[k]
+
+        details["wallet"].update(WALLETS.get(key, {}))
 
         res[key] = details
 
@@ -175,37 +213,48 @@ def update_bitcoin(coins, support_info):
         details = dict(
             name=coin["coin_label"],
             links=dict(Homepage=coin["website"], Github=coin["github"]),
-            wallet={},
+            wallet=WALLET_TREZOR if _webwallet_support(coin, support) else {},
         )
-        if _webwallet_support(coin, support):
-            details["wallet"]["Trezor"] = "https://wallet.trezor.io"
-
-        res[key].update(details)
+        dict_merge(res[key], details)
 
     return res
 
 
-def update_erc20(coins, support_info):
+def update_erc20(coins, networks, support_info):
     # TODO skip disabled networks?
+    network_support = {n["chain"]: support_info.get(n["key"]) for n in networks}
+    network_testnets = {n["chain"] for n in networks if "Testnet" in n["name"]}
     res = update_simple(coins, support_info, "erc20")
     for coin in coins:
         key = coin["key"]
+        chain = coin["chain"]
+
+        hidden = False
+        if chain in network_testnets:
+            hidden = True
+        if "deprecation" in coin:
+            hidden = True
+
+        if network_support.get(chain, {}).get("webwallet"):
+            wallets = WALLETS_ETH_NATIVE
+        else:
+            wallets = WALLETS_ETH_3RDPARTY
+
         details = dict(
-            network=coin["chain"],
+            network=chain,
             address=coin["address"],
             shortcut=coin["shortcut"],
             links={},
-            wallet=dict(
-                MyCrypto="https://mycrypto.com",
-                MyEtherWallet="https://www.myetherwallet.com",
-            ),
+            wallet=wallets,
         )
+        if hidden:
+            details["hidden"] = True
         if coin.get("website"):
             details["links"]["Homepage"] = coin["website"]
         if coin.get("social", {}).get("github"):
             details["links"]["Github"] = coin["social"]["github"]
 
-        res[key].update(details)
+        dict_merge(res[key], details)
 
     return res
 
@@ -214,14 +263,22 @@ def update_ethereum_networks(coins, support_info):
     res = update_simple(coins, support_info, "coin")
     for coin in coins:
         key = coin["key"]
-        details = dict(
-            wallet=dict(
-                MyCrypto="https://mycrypto.com",
-                MyEtherWallet="https://www.myetherwallet.com",
-            ),
-            links=dict(Homepage=coin.get("url")),
-        )
-        res[key].update(details)
+        if support_info[key].get("webwallet"):
+            wallets = WALLETS_ETH_NATIVE
+        else:
+            wallets = WALLETS_ETH_3RDPARTY
+        details = dict(links=dict(Homepage=coin.get("url")), wallet=wallets)
+        dict_merge(res[key], details)
+
+    return res
+
+
+def update_nem_mosaics(coins, support_info):
+    res = update_simple(coins, support_info, "mosaic")
+    for coin in coins:
+        key = coin["key"]
+        details = dict(wallet=WALLET_NEM)
+        dict_merge(res[key], details)
 
     return res
 
@@ -242,18 +299,26 @@ def check_missing_data(coins):
         if coin["t2_enabled"] not in ALLOWED_SUPPORT_STATUS:
             LOG.warning(f"{k}: Unknown t2_enabled")
             hide = True
-        if (
-            "Trezor" in coin.get("wallet", {})
-            and coin["wallet"]["Trezor"] != "https://wallet.trezor.io"
-        ):
-            LOG.warning(f"{k}: Strange URL for Trezor Wallet")
-            hide = True
+
+        # check wallets
+        for wallet in coin["wallet"]:
+            name = wallet.get("name")
+            url = wallet.get("url")
+            if not name or not url:
+                LOG.warning(f"{k}: Bad wallet entry")
+                hide = True
+                continue
+            if "trezor" in name.lower() and url not in TREZORIO_KNOWN_URLS:
+                LOG.warning(f"{k}: Strange URL for Trezor Wallet")
+                hide = True
+            if "trezor.io" in url.lower() and url not in TREZORIO_KNOWN_URLS:
+                LOG.warning(f"{k}: Unexpected trezor.io URL: {url}")
 
         if coin["t1_enabled"] == "no" and coin["t2_enabled"] == "no":
             LOG.info(f"{k}: Coin not enabled on either device")
             hide = True
 
-        if len(coin.get("wallet", {})) == 0:
+        if len(coin.get("wallet", [])) == 0:
             LOG.debug(f"{k}: Missing wallet")
 
         if "Testnet" in coin["name"]:
@@ -267,9 +332,10 @@ def check_missing_data(coins):
             coin["hidden"] = 1
 
     # summary of hidden coins
-    for k, coin in coins.items():
-        if coin.get("hidden"):
-            LOG.debug(f"{k}: Coin is hidden")
+    hidden_coins = [k for k, coin in coins.items() if coin.get("hidden")]
+    for key in hidden_coins:
+        del coins[key]
+        LOG.debug(f"{key}: Coin is hidden")
 
 
 def apply_overrides(coins):
@@ -278,16 +344,22 @@ def apply_overrides(coins):
             LOG.warning(f"override without coin: {key}")
             continue
 
-        def recursive_update(orig, new):
-            if isinstance(new, dict) and isinstance(orig, dict):
-                for k, v in new.items():
-                    orig[k] = recursive_update(orig.get(k), v)
-                return orig
-            else:
-                return new
+        dict_merge(coins[key], override)
 
-        coin = coins[key]
-        recursive_update(coin, override)
+
+def finalize_wallets(coins):
+    def sort_key(w):
+        if "trezor.io" in w["url"]:
+            return 0, w["name"]
+        else:
+            return 1, w["name"]
+
+    for coin in coins.values():
+        wallets_list = [
+            dict(name=name, url=url) for name, url in coin["wallet"].items()
+        ]
+        wallets_list.sort(key=sort_key)
+        coin["wallet"] = wallets_list
 
 
 @click.command()
@@ -313,13 +385,15 @@ def main(refresh, api_key, verbose):
 
     coins = {}
     coins.update(update_bitcoin(defs.bitcoin, support_info))
-    coins.update(update_erc20(defs.erc20, support_info))
+    coins.update(update_erc20(defs.erc20, defs.eth, support_info))
     coins.update(update_ethereum_networks(defs.eth, support_info))
-    coins.update(update_simple(defs.nem, support_info, "mosaic"))
+    coins.update(update_nem_mosaics(defs.nem, support_info))
     coins.update(update_simple(defs.misc, support_info, "coin"))
 
     apply_overrides(coins)
+    finalize_wallets(coins)
     update_marketcaps(coins)
+
     check_missing_data(coins)
 
     info = summary(coins, api_key)

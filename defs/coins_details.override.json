@@ -1,13 +1,36 @@
 {
-    "nem:DIMTOK": {
-        "coinmarketcap_alias": "dimcoin"
+    "bitcoin:DNR": {
+        "coinmarketcap_alias": "denarius-dnr"
+    },
+    "bitcoin:MUE": {
+        "name": "MonetaryUnit"
+    },
+    "erc20:eth:BAT": {
+        "name": "Basic Attention Token"
+    },
+    "erc20:eth:BNB": {
+        "name": "Binance Coin"
     },
     "erc20:eth:GNT": {
         "coinmarketcap_alias": "golem-network-tokens"
     },
-    "erc20:eth:EOS": {
-        "hidden": 1,
-        "notes": "EOS has a mainnet now"
+    "erc20:eth:LINK (Chainlink)": {
+        "name": "Chainlink"
+    },
+    "erc20:eth:MKR": {
+        "coinmarketcap_alias": "maker"
+    },
+    "erc20:eth:NPXS": {
+        "coinmarketcap_alias": "pundi-x"
+    },
+    "erc20:eth:OMG": {
+        "name": "OmiseGO"
+    },
+    "erc20:eth:PAX": {
+        "coinmarketcap_alias": "paxos-standard-token"
+    },
+    "erc20:eth:USDC": {
+        "coinmarketcap_alias": "usd-coin"
     },
     "erc20:eth:VEN": {
         "links": {
@@ -18,70 +41,16 @@
         "hidden": 1,
         "notes": "Replaced by YUP"
     },
-    "bitcoin:BCH": {
-        "wallet": {
-            "Electron Cash": "https://electroncash.org"
-        }
+    "erc20:eth:ZRX": {
+        "coinmarketcap_alias": "0x"
     },
-    "bitcoin:BTC": {
-        "wallet": {
-            "Electrum": "https://electrum.org"
-        }
+    "eth:CLO": {
+        "coinmarketcap_alias": "callisto-network"
     },
-    "bitcoin:BTCP": {
-        "wallet": {
-            "BTCP Electrum": "https://github.com/BTCPrivate/electrum-btcp"
-        }
+    "eth:ESN": {
+        "coinmarketcap_alias": "ethersocial"
     },
-    "bitcoin:BTG": {
-        "wallet": {
-            "ElectrumG": "https://github.com/BTCGPU/electrum"
-        }
-    },
-    "bitcoin:DASH": {
-        "wallet": {
-            "Dash Electrum": "https://electrum.dash.org"
-        }
-    },
-    "bitcoin:FJC": {
-        "wallet": {
-            "Electrum-FJC": "http://www.fujicoin.org/downloads.php"
-        }
-    },
-    "bitcoin:GRS": {
-        "wallet": {
-            "Electrum-GRS": "https://www.groestlcoin.org/groestlcoin-electrum-wallet/"
-        }
-    },
-    "bitcoin:KOTO": {
-        "wallet": {
-            "Electrum-KOTO": "https://electrum.kotocoin.info"
-        }
-    },
-    "bitcoin:LTC": {
-        "wallet": {
-            "Electrum-LTC": "https://electrum-ltc.org"
-        }
-    },
-    "bitcoin:MONA": {
-        "wallet": {
-            "Electrum-MONA": "https://electrum-mona.org"
-        }
-    },
-    "bitcoin:NMC": {
-        "wallet": {
-            "Electrum-NMC": "https://github.com/namecoin/electrum-nmc"
-        }
-    },
-    "bitcoin:VIA": {
-        "wallet": {
-            "Vialectrum": "https://vialectrum.org"
-        }
-    },
-    "bitcoin:XZC": {
-        "wallet": {
-            "Electrum-XZC": "https://github.com/zcoinofficial/electrum-xzc",
-            "Znode Tool": "https://github.com/yura-pakhuchiy/znode-tool"
-        }
+    "nem:DIMTOK": {
+        "coinmarketcap_alias": "dimcoin"
     }
 }
