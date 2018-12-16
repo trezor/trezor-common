@@ -34,7 +34,7 @@
   "max_address_length": 34,
   "bitcore": [],
   "blockbook": [
-    "https://blockbook.gincoin.io/"
+    "https://blockbook.gincoin.io"
   ],
   "cooldown": 100
 }
