@@ -41,6 +41,9 @@
     "bitcoin:NMC": {
         "Electrum-NMC": "https://github.com/namecoin/electrum-nmc"
     },
+    "bitcoin:UNO": {
+        "Electrum-UNO": "https://github.com/flurbos/electrum"
+    },
     "bitcoin:VIA": {
         "Vialectrum": "https://vialectrum.org"
     },
