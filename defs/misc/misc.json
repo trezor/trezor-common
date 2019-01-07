@@ -39,11 +39,38 @@
         "shortcut": "XRP",
         "slip44": 144,
         "curve": "secp256k1",
+        "decimals": 6,
         "links": {
             "Homepage": "https://ripple.com",
             "Github": "https://github.com/ripple/rippled"
         },
-        "wallet": {}
+        "wallet": {},
+        "blockchain_link": {
+            "type": "ripple",
+            "url": [
+                "wss://s1.ripple.com",
+                "wss://s-east.ripple.com",
+                "wss://s-west.ripple.com"
+            ]
+        }
+    },
+    {
+        "name": "Ripple Testnet",
+        "shortcut": "tXRP",
+        "slip44": 1,
+        "curve": "secp256k1",
+        "decimals": 6,
+        "links": {
+            "Homepage": "https://ripple.com",
+            "Github": "https://github.com/ripple/rippled"
+        },
+        "wallet": {},
+        "blockchain_link": {
+            "type": "ripple",
+            "url": [
+                "wss://s.altnet.rippletest.net"
+            ]
+        }
     },
     {
         "name": "Cardano",
