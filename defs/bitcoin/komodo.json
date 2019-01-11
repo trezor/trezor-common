@@ -33,8 +33,8 @@
   "min_address_length": 27,
   "max_address_length": 34,
   "bitcore": [
-    "https://www.kmdexplorer.io/",
-    "https://kmdexplorer.ru/"
+    "https://www.kmdexplorer.io",
+    "https://kmdexplorer.ru"
   ],
   "blockbook": [],
   "cooldown": 100
