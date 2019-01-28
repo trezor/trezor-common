@@ -188,7 +188,7 @@ message EosTxActionAck {
     */
     message EosActionSellRam {
         optional uint64 account = 1;
-        optional sint64 bytes = 2;       // Number of bytes
+        optional uint64 bytes = 2;       // Number of bytes
     }
      /** 
     * Structure representing voting. Currently, there could be up to 30 producers.
