@@ -96,8 +96,8 @@ message BinanceOrderTx {
     message OrderMsg {
         optional string id = 1;
         optional int32 ordertype = 2; // actually int8 on node
-        optional int64 price = 3;
-        optional int64 quantity = 4;
+        optional sint64 price = 3;
+        optional sint64 quantity = 4;
         optional string sender = 5;
         optional int32 side = 6; // actually int8 on node
         optional string symbol = 7;
@@ -133,7 +133,7 @@ message BinanceCancelTx {
  */
 message BinanceSignedTx {
 	optional bytes signature = 1;
-	optional string json = 2;
+	optional bytes json = 2;
 }
 
 /**
