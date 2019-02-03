@@ -1,0 +1,149 @@
+syntax = "proto2";
+package hw.trezor.messages.binance;
+
+// Sugar for easier handling in Java
+option java_package = "com.satoshilabs.trezor.lib.protobuf";
+option java_outer_classname = "TrezorMessageBinance";
+
+/**
+ * Request: Ask device for Binance address
+ * @start
+ * @next BinanceAddress
+ * @next Failure
+ */
+message BinanceGetAddress {
+    repeated uint32 address_n = 1;  // BIP-32-style path to derive the key from master node
+    optional bool show_display = 2; // optionally prompt for confirmation on trezor display
+}
+
+/**
+ * Request: Ask device for Binance address
+ * @end
+ */
+message BinanceAddress {
+    optional string address = 1;    // Base58 Binance address
+}
+
+/**
+ * Request: Ask device for public key corresponding to address_n path
+ * @start
+ * @next BinancePublicKey
+ */
+message BinanceGetPublicKey {
+    repeated uint32 address_n = 1;  // BIP-32 path to derive the key from master node
+    optional bool show_display = 2; // optionally show on display before sending the result
+}
+
+/**
+ * Response: Contains public key derived from device private seed
+ * @end
+ */
+message BinancePublicKey {
+    optional bytes public_key = 1;
+}
+
+/**
+ * Request: Ask device to sign Binance transfer transaction
+ * @start
+ * @next BinanceSignedTx
+ * @next Failure
+ */
+message BinanceTransferTx {
+    optional string account_number = 1;
+    optional string chain_id = 2;
+    optional bytes data = 3;
+    optional string memo = 4;
+    repeated TransferMsg msgs = 5;
+    optional string sequence = 6;
+    optional string source = 7;
+
+    message Coin {
+        optional string amount = 1;
+        optional string denom = 2;
+    }
+
+    message Input {
+        optional string address = 1;
+        repeated Coin coins = 2;
+    }
+
+    message Output {
+        optional string address = 1;
+        repeated Coin coins = 2;
+    }
+
+    message TransferMsg {
+        repeated Input inputs = 1;
+        repeated Output outputs = 2;
+    }
+}
+
+/**
+ * Request: Ask device to sign Binance order transaction
+ * @start
+ * @next BinanceSignedTx
+ * @next Failure
+ */
+message BinanceOrderTx {
+    optional string account_number = 1;
+    optional string chain_id = 2;
+    optional bytes data = 3;
+    optional string memo = 4;
+    repeated OrderMsg msgs = 5;
+    optional string sequence = 6;
+    optional string source = 7;
+
+    message OrderMsg {
+        optional string id = 1;
+        optional int32 ordertype = 2; // actually int8 on node
+        optional int64 price = 3;
+        optional int64 quantity = 4;
+        optional string sender = 5;
+        optional int32 side = 6; // actually int8 on node
+        optional string symbol = 7;
+        optional int32 timeinforce = 8; // actually int8 on node
+    }
+}
+
+/**
+ * Request: Ask device to sign Binance cancel transaction
+ * @start
+ * @next BinanceSignedTx
+ * @next Failure
+ */
+message BinanceCancelTx {
+    optional string account_number = 1;
+    optional string chain_id = 2;
+    optional bytes data = 3;
+    optional string memo = 4;
+    repeated CancelMsg msgs = 5;
+    optional string sequence = 6;
+    optional string source = 7;
+
+    message CancelMsg {
+        optional string refid = 1;
+        optional string sender = 2;
+        optional string symbol = 3;
+    }
+}
+
+/**
+ * Response: signature for transaction
+ * @end
+ */
+message BinanceSignedTx {
+	optional bytes signature = 1;
+	optional string json = 2;
+}
+
+/**
+ * Request: Ask device to verify json sign doc
+ * @start
+ * @next Success
+ * @next Failure
+ */
+message BinanceVerifyMessage {
+    optional bytes public_key = 1;
+    optional bytes signature = 2;
+    optional bytes json = 3;
+}
