@@ -1,0 +1,157 @@
+syntax = "proto2";
+package hw.trezor.messages.binance;
+
+// Sugar for easier handling in Java
+option java_package = "com.satoshilabs.trezor.lib.protobuf";
+option java_outer_classname = "TrezorMessageBinance";
+
+/**
+ * Request: Ask the device for a Binance address.
+ * @start
+ * @next BinanceAddress
+ * @next Failure
+ */
+message BinanceGetAddress {
+    repeated uint32 address_n = 1;  // BIP-32-style path to derive the key from master node
+    optional bool show_display = 2; // optionally prompt for confirmation on trezor display
+}
+
+/**
+ * Response: A Binance address.
+ * @end
+ */
+message BinanceAddress {
+    optional string address = 1;    // prefixed bech32 Binance address
+}
+
+/**
+ * Request: Ask device for a public key corresponding to address_n path.
+ * @start
+ * @next BinancePublicKey
+ */
+message BinanceGetPublicKey {
+    repeated uint32 address_n = 1;  // BIP-32 path to derive the key from master node
+    optional bool show_display = 2; // optionally show on display before sending the result
+}
+
+/**
+ * Response: A public key corresponding to address_n path.
+ * @end
+ */
+message BinancePublicKey {
+    optional bytes public_key = 1;
+}
+
+/**
+ * Request: Starts the Binance transaction protocol flow.
+ * A transaction consists of these common fields and a series of Binance<Any>Msg messages. 
+ * These parts form a JSON structure (a string) in Trezor's memory, which is signed to produce a BinanceSignedTx.
+ * @start
+ * @next BinanceTxRequest
+ * @next Failure
+*/
+message BinanceSignTx {
+    repeated uint32 address_n = 1; // BIP-32-style path to derive the key from master node
+    optional uint32 msg_count = 2; // count of Binance<Any>Msg to be included in this tx
+    optional sint64 account_number = 3;
+    optional string chain_id = 4;
+    optional string memo = 5;
+    optional sint64 sequence = 6;
+    optional sint64 source = 7;
+}
+
+/**
+ * Response: Trezor requests the next message or signals that it is ready to send a BinanceSignedTx.
+ * @next BinanceTransferMsg
+ * @next BinanceOrderMsg
+ * @next BinanceCancelMsg
+ */
+message BinanceTxRequest {
+}
+
+/**
+ * Request: Ask the device to include a Binance transfer msg in the tx.
+ * @next BinanceTxRequest
+ * @next BinanceSignedTx
+ * @next Failure
+ */
+message BinanceTransferMsg {
+    optional uint32 next_msg_index = 1; // index representing which Binance*Msg (below) to use next
+    
+    repeated InputOutput inputs = 2;
+    repeated InputOutput outputs = 3;
+
+    message Coin {
+        optional sint64 amount = 1;
+        optional string denom = 2;
+    }
+
+    message InputOutput {
+        optional string address = 1;
+        repeated Coin coins = 2;
+    }
+}
+
+/**
+ * Request: Ask the device to include a Binance order msg in the tx.
+ * @next BinanceTxRequest
+ * @next BinanceSignedTx
+ * @next Failure
+ */
+message BinanceOrderMsg {
+    optional uint32 next_msg_index = 1; // index representing which Binance*Msg (below) to use next
+
+    optional string id = 2;
+    optional OrderType ordertype = 3;
+    optional sint64 price = 4;
+    optional sint64 quantity = 5;
+    optional string sender = 6;
+    optional OrderSide side = 7;
+    optional string symbol = 8;
+    optional TimeInForce timeinforce = 9;
+
+    enum OrderType {
+        OT_UNKNOWN = 0;
+        MARKET = 1;
+        LIMIT = 2;
+        OT_RESERVED = 3;
+    }
+
+    enum OrderSide {
+        SIDE_UNKNOWN = 0;
+        BUY = 1;
+        SELL = 2;
+    }
+
+    enum TimeInForce {
+        TIF_UNKNOWN = 0;
+        GTE = 1;
+        TIF_RESERVED = 2;
+        IOC = 3;
+    }
+}
+
+/**
+ * Request: Ask the device to include a Binance cancel msg in the tx.
+ * @next BinanceTxRequest
+ * @next BinanceSignedTx
+ * @next Failure
+ */
+message BinanceCancelMsg {
+    optional uint32 next_msg_index = 1; // index representing which Binance*Msg (below) to use next
+
+    optional string refid = 2;
+    optional string sender = 3;
+    optional string symbol = 4;
+}
+
+/**
+ * Response: A transaction signature and public key corresponding to the address_n path in BinanceSignTx.
+ * @end
+ */
+message BinanceSignedTx {
+	optional bytes signature = 1;
+    optional bytes public_key = 2;
+	optional string json = 3;
+}
+
