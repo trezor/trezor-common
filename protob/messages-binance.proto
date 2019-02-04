@@ -43,38 +43,40 @@ message BinancePublicKey {
 }
 
 /**
+* Structure representing the common part of Binance transactions
+*/
+message BinanceTxCommon  {
+    optional string account_number = 1;
+    optional string chain_id = 2;
+    optional bytes data = 3;
+    optional string memo = 4;
+    optional sint64 sequence = 5;
+    optional sint64 source = 6;
+}
+
+/**
  * Request: Ask device to sign Binance transfer transaction
  * @start
  * @next BinanceSignedTx
  * @next Failure
  */
 message BinanceTransferTx {
-    optional string account_number = 1;
-    optional string chain_id = 2;
-    optional bytes data = 3;
-    optional string memo = 4;
-    repeated TransferMsg msgs = 5;
-    optional string sequence = 6;
-    optional string source = 7;
+    optional BinanceTxCommon transaction = 1;
+    repeated TransferMsg msgs = 2;
 
     message Coin {
-        optional string amount = 1;
+        optional sint64 amount = 1;
         optional string denom = 2;
     }
 
-    message Input {
-        optional string address = 1;
-        repeated Coin coins = 2;
-    }
-
-    message Output {
+    message InputOutput {
         optional string address = 1;
         repeated Coin coins = 2;
     }
 
     message TransferMsg {
-        repeated Input inputs = 1;
-        repeated Output outputs = 2;
+        repeated InputOutput inputs = 1;
+        repeated InputOutput outputs = 2;
     }
 }
 
@@ -85,23 +87,38 @@ message BinanceTransferTx {
  * @next Failure
  */
 message BinanceOrderTx {
-    optional string account_number = 1;
-    optional string chain_id = 2;
-    optional bytes data = 3;
-    optional string memo = 4;
-    repeated OrderMsg msgs = 5;
-    optional string sequence = 6;
-    optional string source = 7;
+    optional BinanceTxCommon transaction = 1;
+    repeated OrderMsg msgs = 2;
 
     message OrderMsg {
         optional string id = 1;
-        optional int32 ordertype = 2; // actually int8 on node
+        optional OrderType ordertype = 2;
         optional sint64 price = 3;
         optional sint64 quantity = 4;
         optional string sender = 5;
-        optional int32 side = 6; // actually int8 on node
+        optional OrderSide side = 6;
         optional string symbol = 7;
-        optional int32 timeinforce = 8; // actually int8 on node
+        optional TimeInForce timeinforce = 8;
+
+        enum OrderType {
+            OT_UNKNOWN = 0;
+            MARKET = 1;
+            LIMIT = 2;
+            OT_RESERVED = 3;
+        }
+
+        enum OrderSide {
+            SIDE_UNKNOWN = 0;
+            BUY = 1;
+            SELL = 2;
+        }
+
+        enum TimeInForce {
+            TIF_UNKNOWN = 0;
+            GTE = 1;
+            TIF_RESERVED = 2;
+            IOC = 3;
+        }
     }
 }
 
@@ -112,13 +129,8 @@ message BinanceOrderTx {
  * @next Failure
  */
 message BinanceCancelTx {
-    optional string account_number = 1;
-    optional string chain_id = 2;
-    optional bytes data = 3;
-    optional string memo = 4;
-    repeated CancelMsg msgs = 5;
-    optional string sequence = 6;
-    optional string source = 7;
+    optional BinanceTxCommon transaction = 1;
+    repeated CancelMsg msgs = 2;
 
     message CancelMsg {
         optional string refid = 1;
@@ -133,7 +145,7 @@ message BinanceCancelTx {
  */
 message BinanceSignedTx {
 	optional bytes signature = 1;
-	optional bytes json = 2;
+	optional string json = 2;
 }
 
 /**
@@ -145,5 +157,5 @@ message BinanceSignedTx {
 message BinanceVerifyMessage {
     optional bytes public_key = 1;
     optional bytes signature = 2;
-    optional bytes json = 3;
+    optional string json = 3;
 }
