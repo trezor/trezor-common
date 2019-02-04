@@ -466,7 +466,15 @@
             "t1_enabled": "yes",
             "t2_enabled": "soon",
             "type": "coin",
-            "wallet": []
+            "wallet": [                
+                {
+                    "name": "NIX-Electrim",
+                    "url": "https://github.com/nixplatform/nix-electrum"
+                },
+                {
+                    "name": "Ghostnode Tool",
+                    "url": "https://github.com/nixplatform/ghostnode-tool"
+                }]
         },
         "bitcoin:NMC": {
             "links": {
