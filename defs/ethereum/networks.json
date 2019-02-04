@@ -31,7 +31,8 @@
     "rskip60": false,
     "url": "https://www.ethereum.org",
     "blockbook": [
-      "https://ropsten1.trezor.io"
+      "https://ropsten1.trezor.io",
+      "https://ropsten2.trezor.io"
     ]
   },
   {
@@ -188,6 +189,16 @@
     "blockbook": []
   },
   {
+    "chain": "reosc",
+    "chain_id": 2894,
+    "slip44": 2894,
+    "shortcut": "REOSC",
+    "name": "REOSC Ecosystem",
+    "rskip60": false,
+    "url": "https://reosc.io",
+    "blockbook": []
+  },
+  {
     "chain": "esn",
     "chain_id": 31102,
     "slip44": 31102,
@@ -205,6 +216,26 @@
     "name": "Akroma",
     "rskip60": false,
     "url": "https://akroma.io",
+    "blockbook": []
+  },
+  {
+    "chain": "artis_sigma1",
+    "chain_id": 246529,
+    "slip44": 246529,
+    "shortcut": "ATS",
+    "name": "ARTIS sigma1",
+    "rskip60": false,
+    "url": "https://artis.eco",
+    "blockbook": []
+  },
+  {
+    "chain": "artis_tau1",
+    "chain_id": 246785,
+    "slip44": 1,
+    "shortcut": "tATS",
+    "name": "ARTIS tau1",
+    "rskip60": false,
+    "url": "https://artis.eco",
     "blockbook": []
   },
   {
