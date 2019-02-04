@@ -461,14 +461,14 @@
                 "Homepage": "https://nixplatform.io"
             },
             "marketcap_usd": 6163333,
-            "name": "Nix",
+            "name": "NIX",
             "shortcut": "NIX",
             "t1_enabled": "yes",
             "t2_enabled": "soon",
             "type": "coin",
             "wallet": [                
                 {
-                    "name": "NIX-Electrim",
+                    "name": "NIX-Electrum",
                     "url": "https://github.com/nixplatform/nix-electrum"
                 },
                 {
