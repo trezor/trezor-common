@@ -46,12 +46,11 @@ message BinancePublicKey {
 * Structure representing the common part of Binance transactions
 */
 message BinanceTxCommon  {
-    optional string account_number = 1;
+    optional sint64 account_number = 1;
     optional string chain_id = 2;
-    optional bytes data = 3;
-    optional string memo = 4;
-    optional sint64 sequence = 5;
-    optional sint64 source = 6;
+    optional string memo = 3;
+    optional sint64 sequence = 4;
+    optional sint64 source = 5;
 }
 
 /**
