@@ -17,7 +17,6 @@ import "messages-common.proto";
 message EthereumGetPublicKey {
     repeated uint32 address_n = 1;                                      // BIP-32 path to derive the key from master node
     optional bool show_display = 2;                                     // optionally show on display before sending the result
-    optional uint32 chain_id = 3;                                       // eth chain
 }
 
 /**
@@ -25,7 +24,7 @@ message EthereumGetPublicKey {
  * @end
  */
 message EthereumPublicKey {
-    required hw.trezor.messages.common.HDNodeType node = 1;        // BIP32 public node
+    optional hw.trezor.messages.common.HDNodeType node = 1;        // BIP32 public node
     optional string xpub = 2;        // serialized form of public node
 }
 
@@ -45,7 +44,7 @@ message EthereumGetAddress {
  * @end
  */
 message EthereumAddress {
-    required bytes address = 1;     // Coin address as an Ethereum 160 bit hash
+    optional string address = 2;     // Ethereum address as string
 }
 
 /**
@@ -61,7 +60,7 @@ message EthereumSignTx {
     optional bytes nonce = 2;               // <=256 bit unsigned big endian
     optional bytes gas_price = 3;           // <=256 bit unsigned big endian (in wei)
     optional bytes gas_limit = 4;           // <=256 bit unsigned big endian
-    optional bytes to = 5;                  // 160 bit address hash
+    optional string to = 11;                // recipient address
     optional bytes value = 6;               // <=256 bit unsigned big endian (in wei)
     optional bytes data_initial_chunk = 7;  // The initial data chunk (<= 1024 bytes)
     optional uint32 data_length = 8;        // Length of transaction payload
@@ -99,7 +98,7 @@ message EthereumTxAck {
  */
 message EthereumSignMessage {
     repeated uint32 address_n = 1;  // BIP-32 path to derive the key from master node
-    required bytes message = 2;     // message to be signed
+    optional bytes message = 2;     // message to be signed
 }
 
 /**
@@ -107,8 +106,8 @@ message EthereumSignMessage {
  * @end
  */
 message EthereumMessageSignature {
-    optional bytes address = 1;     // address used to sign the message
     optional bytes signature = 2;   // signature of the message
+    optional string address = 3;     // address used to sign the message
 }
 
 /**
@@ -118,7 +117,7 @@ message EthereumMessageSignature {
  * @next Failure
  */
 message EthereumVerifyMessage {
-    optional bytes address = 1;     // address to verify
     optional bytes signature = 2;   // signature to verify
     optional bytes message = 3;     // message to verify
+    optional string address = 4;     // address to verify
 }
