@@ -461,20 +461,12 @@
                 "Homepage": "https://nixplatform.io"
             },
             "marketcap_usd": 6163333,
-            "name": "NIX",
+            "name": "Nix",
             "shortcut": "NIX",
             "t1_enabled": "yes",
             "t2_enabled": "soon",
             "type": "coin",
-            "wallet": [                
-                {
-                    "name": "NIX-Electrum",
-                    "url": "https://github.com/nixplatform/nix-electrum"
-                },
-                {
-                    "name": "Ghostnode Tool",
-                    "url": "https://github.com/nixplatform/ghostnode-tool"
-                }]
+            "wallet": []
         },
         "bitcoin:NMC": {
             "links": {
