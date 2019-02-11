@@ -21,7 +21,7 @@ message BinanceGetAddress {
  * @end
  */
 message BinanceAddress {
-    optional string address = 1;    // Base58 Binance address
+    optional string address = 1;    // prefixed bech32 Binance address
 }
 
 /**
@@ -43,9 +43,9 @@ message BinancePublicKey {
 }
 
 /**
-* Structure representing the common part of Binance transactions
+* Structure representing the common "StdTx" part of Binance transactions
 */
-message BinanceTxCommon  {
+message BinanceSignTx  {
     optional sint64 account_number = 1;
     optional string chain_id = 2;
     optional string memo = 3;
@@ -54,14 +54,32 @@ message BinanceTxCommon  {
 }
 
 /**
- * Request: Ask device to sign Binance transfer transaction
+ * Response: Prepare the device to receive the tx msgs
  * @start
+ * @next BinanceTransferMsg
+ * @next BinanceOrderMsg
+ * @next BinanceCancelMsg
+ */
+message BinanceTxRequest {
+    optional BinanceSignTx std_tx = 1;
+    repeated uint32 address_n = 2; // BIP-32-style path to derive the key from master node
+    optional uint32 msg_count = 3; // count of Binance*Msg to be included in this tx
+    optional uint32 first_msg_index = 4; // index representing which Binance*Msg (below) to use
+}
+
+/**
+ * Request: Ask device to include a Binance transfer msg. Msg index 0
  * @next BinanceSignedTx
+ * @next BinanceTransferMsg
+ * @next BinanceOrderMsg
+ * @next BinanceCancelMsg
  * @next Failure
  */
-message BinanceTransferTx {
-    optional BinanceTxCommon transaction = 1;
-    repeated TransferMsg msgs = 2;
+message BinanceTransferMsg {
+    optional uint32 next_msg_index = 1; // index representing which Binance*Msg (below) to use next
+    
+    repeated InputOutput inputs = 2;
+    repeated InputOutput outputs = 3;
 
     message Coin {
         optional sint64 amount = 1;
@@ -72,70 +90,63 @@ message BinanceTransferTx {
         optional string address = 1;
         repeated Coin coins = 2;
     }
+}
 
-    message TransferMsg {
-        repeated InputOutput inputs = 1;
-        repeated InputOutput outputs = 2;
+/**
+ * Request: Ask device to include a Binance order msg. Msg index 1
+ * @next BinanceSignedTx
+ * @next BinanceTransferMsg
+ * @next BinanceOrderMsg
+ * @next BinanceCancelMsg
+ * @next Failure
+ */
+message BinanceOrderMsg {
+    optional uint32 next_msg_index = 1; // index representing which Binance*Msg (below) to use next
+
+    optional string id = 2;
+    optional OrderType ordertype = 3;
+    optional sint64 price = 4;
+    optional sint64 quantity = 5;
+    optional string sender = 6;
+    optional OrderSide side = 7;
+    optional string symbol = 8;
+    optional TimeInForce timeinforce = 9;
+
+    enum OrderType {
+        OT_UNKNOWN = 0;
+        MARKET = 1;
+        LIMIT = 2;
+        OT_RESERVED = 3;
+    }
+
+    enum OrderSide {
+        SIDE_UNKNOWN = 0;
+        BUY = 1;
+        SELL = 2;
+    }
+
+    enum TimeInForce {
+        TIF_UNKNOWN = 0;
+        GTE = 1;
+        TIF_RESERVED = 2;
+        IOC = 3;
     }
 }
 
 /**
- * Request: Ask device to sign Binance order transaction
- * @start
+ * Request: Ask device to include a Binance cancel msg. Msg index 2
  * @next BinanceSignedTx
+ * @next BinanceTransferMsg
+ * @next BinanceOrderMsg
+ * @next BinanceCancelMsg
  * @next Failure
  */
-message BinanceOrderTx {
-    optional BinanceTxCommon transaction = 1;
-    repeated OrderMsg msgs = 2;
+message BinanceCancelMsg {
+    optional uint32 next_msg_index = 1; // index representing which Binance*Msg (below) to use next
 
-    message OrderMsg {
-        optional string id = 1;
-        optional OrderType ordertype = 2;
-        optional sint64 price = 3;
-        optional sint64 quantity = 4;
-        optional string sender = 5;
-        optional OrderSide side = 6;
-        optional string symbol = 7;
-        optional TimeInForce timeinforce = 8;
-
-        enum OrderType {
-            OT_UNKNOWN = 0;
-            MARKET = 1;
-            LIMIT = 2;
-            OT_RESERVED = 3;
-        }
-
-        enum OrderSide {
-            SIDE_UNKNOWN = 0;
-            BUY = 1;
-            SELL = 2;
-        }
-
-        enum TimeInForce {
-            TIF_UNKNOWN = 0;
-            GTE = 1;
-            TIF_RESERVED = 2;
-            IOC = 3;
-        }
-    }
-}
-
-/**
- * Request: Ask device to sign Binance cancel transaction
- * @start
- * @next BinanceSignedTx
- * @next Failure
- */
-message BinanceCancelTx {
-    optional BinanceTxCommon transaction = 1;
-    repeated CancelMsg msgs = 2;
-
-    message CancelMsg {
-        optional string refid = 1;
-        optional string sender = 2;
-        optional string symbol = 3;
-    }
+    optional string refid = 2;
+    optional string sender = 3;
+    optional string symbol = 4;
 }
 
 /**
@@ -154,7 +165,7 @@ message BinanceSignedTx {
  * @next Failure
  */
 message BinanceVerifyMessage {
-    optional bytes public_key = 1;
+    repeated uint32 address_n = 1; // BIP-32 path to derive the key from master node
     optional bytes signature = 2;
     optional string json = 3;
 }
