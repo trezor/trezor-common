@@ -1,7 +1,6 @@
 {
   "connect": {
     "supported": {
-      "bitcoin:AXE": true,
       "bitcoin:BCH": true,
       "bitcoin:BTC": true,
       "bitcoin:BTG": true,
