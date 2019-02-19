@@ -21,3 +21,23 @@ message OnegramPublicKey {
     optional string wif_public_key = 1;     // Onegram pub key in Base58 encoding
     optional bytes raw_public_key = 2;      // Raw public key
 }
+
+
+/* Temporary solution just for signing transaction */
+message OnegramSignTx {
+    repeated uint32 address_n = 1;
+    optional bytes chain_id = 2;
+    optional OnegramTxHeader header = 3;
+
+    message OnegramTxHeader {
+        optional uint32 ref_block_num = 1; // should be uint16, but it's not supported
+        optional uint32 ref_block_prefix = 2;
+        optional uint32 expiration = 3;
+    }
+}
+
+message OnegramSignedTx {
+    optional bytes signature = 1;
+    optional string tx_hash = 2; //hash of the transaction
+}
+
