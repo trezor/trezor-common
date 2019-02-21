@@ -76,10 +76,8 @@ message BinanceTxRequest {
  * @next Failure
  */
 message BinanceTransferMsg {
-    optional uint32 next_msg_index = 1; // index representing which Binance*Msg (below) to use next
-    
-    repeated InputOutput inputs = 2;
-    repeated InputOutput outputs = 3;
+    repeated InputOutput inputs = 1;
+    repeated InputOutput outputs = 2;
 
     message Coin {
         optional sint64 amount = 1;
@@ -99,16 +97,14 @@ message BinanceTransferMsg {
  * @next Failure
  */
 message BinanceOrderMsg {
-    optional uint32 next_msg_index = 1; // index representing which Binance*Msg (below) to use next
-
-    optional string id = 2;
-    optional OrderType ordertype = 3;
-    optional sint64 price = 4;
-    optional sint64 quantity = 5;
-    optional string sender = 6;
-    optional OrderSide side = 7;
-    optional string symbol = 8;
-    optional TimeInForce timeinforce = 9;
+    optional string id = 1;
+    optional OrderType ordertype = 2;
+    optional sint64 price = 3;
+    optional sint64 quantity = 4;
+    optional string sender = 5;
+    optional OrderSide side = 6;
+    optional string symbol = 7;
+    optional TimeInForce timeinforce = 8;
 
     enum OrderType {
         OT_UNKNOWN = 0;
@@ -138,11 +134,9 @@ message BinanceOrderMsg {
  * @next Failure
  */
 message BinanceCancelMsg {
-    optional uint32 next_msg_index = 1; // index representing which Binance*Msg (below) to use next
-
-    optional string refid = 2;
-    optional string sender = 3;
-    optional string symbol = 4;
+    optional string refid = 1;
+    optional string sender = 2;
+    optional string symbol = 3;
 }
 
 /**
