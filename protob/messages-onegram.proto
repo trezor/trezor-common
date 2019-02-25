@@ -22,12 +22,26 @@ message OnegramPublicKey {
     optional bytes raw_public_key = 2;      // Raw public key
 }
 
-
-/* Temporary solution just for signing transaction */
+/**
+ * Request: Ask device to sign transaction
+ * @start
+ * @next OnegramSignedTx
+ * @next Failure
+ */
 message OnegramSignTx {
     repeated uint32 address_n = 1;
     optional bytes chain_id = 2;
     optional OnegramTxHeader header = 3;
+    optional OnegramAsset fee = 4;
+    optional string source = 5;
+    optional string destination = 6;
+    optional OnegramAsset amount = 7;
+    optional string memo = 8;
+
+    message OnegramAsset {
+        optional sint64 amount = 1;
+        optional uint64 asset_id = 2;
+    }
 
     message OnegramTxHeader {
         optional uint32 ref_block_num = 1; // should be uint16, but it's not supported
@@ -36,6 +50,10 @@ message OnegramSignTx {
     }
 }
 
+/**
+ * Response: Device returns the signature along with transaction hash
+ * @end
+ */
 message OnegramSignedTx {
     optional bytes signature = 1;
     optional string tx_hash = 2; //hash of the transaction
