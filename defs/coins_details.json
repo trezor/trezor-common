@@ -550,8 +550,8 @@
         },
         "bitcoin:SMART": {
             "links": {
-                "Github": "https://github.com/SmartCash/Core-Smart",
-                "Homepage": "https://smarcash.cc"
+                "Github": "https://github.com/smartcash/core-smart",
+                "Homepage": "https://smartcash.cc"
             },
             "marketcap_usd": 9526918,
             "name": "SmartCash",
@@ -559,7 +559,12 @@
             "t1_enabled": "yes",
             "t2_enabled": "yes",
             "type": "coin",
-            "wallet": []
+            "wallet": [
+                {
+                    "name": "Electrum-SMART",
+                    "url": "https://github.com/smartcash/electrum-smart"
+                }
+            ]
         },
         "bitcoin:VIA": {
             "links": {
