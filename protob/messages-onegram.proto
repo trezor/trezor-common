@@ -33,18 +33,18 @@ message OnegramSignTx {
     optional bytes chain_id = 2;
     optional OnegramTxHeader header = 3;
     optional OnegramAsset fee = 4;
-    optional string source = 5;
-    optional string destination = 6;
+    optional string source = 5;             // contains "space.type.id"
+    optional string destination = 6;        // contains "space.type.id"
     optional OnegramAsset amount = 7;
     optional string memo = 8;
 
     message OnegramAsset {
         optional sint64 amount = 1;
-        optional uint64 asset_id = 2;
+        optional string asset_id = 2;       // contains "space.type.id"
     }
 
     message OnegramTxHeader {
-        optional uint32 ref_block_num = 1; // should be uint16, but it's not supported
+        optional uint32 ref_block_num = 1;  // uint16 field
         optional uint32 ref_block_prefix = 2;
         optional uint32 expiration = 3;
     }
@@ -58,4 +58,3 @@ message OnegramSignedTx {
     optional bytes signature = 1;
     optional string tx_hash = 2; //hash of the transaction
 }
-

@@ -198,6 +198,12 @@ enum MessageType {
     MessageType_RippleSignTx = 402 [(wire_in) = true];
     MessageType_RippleSignedTx = 403 [(wire_in) = true];
 
+    // Onegram
+    MessageType_OnegramGetPublicKey = 450 [(wire_in) = true];
+    MessageType_OnegramPublicKey = 451 [(wire_out) = true];
+    MessageType_OnegramSignTx = 452 [(wire_in) = true];
+    MessageType_OnegramSignedTx = 453 [(wire_out) = true];
+
     // Monero
     MessageType_MoneroTransactionInitRequest = 501 [(wire_out) = true];
     MessageType_MoneroTransactionInitAck = 502 [(wire_out) = true];
