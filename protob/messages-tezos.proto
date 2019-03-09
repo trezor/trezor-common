@@ -133,11 +133,11 @@ message TezosSignedTx {
 }
 
 /**
- * Request: Ask device to sign Tezos delegator operations
+ * Request: Ask device to sign Tezos baker operations
  * @start
- * @next TezosSignedDelegatorOp
+ * @next TezosSignedBakerOp
  */
-message TezosSignDelegatorOp {
+message TezosSignBakerOp {
     repeated uint32 address_n = 1;
     optional bytes magic_byte = 2;
     optional bytes chain_id = 3;
@@ -177,10 +177,10 @@ message TezosSignDelegatorOp {
 }
 
 /**
- * Response: Contains Tezos delegator operation signature
+ * Response: Contains Tezos baker operation signature
  * @end
  */
-message TezosSignedDelegatorOp {
+message TezosSignedBakerOp {
     optional string signature = 1;
 }
 
@@ -189,6 +189,6 @@ message TezosSignedDelegatorOp {
  * @start
  * @next Success
  */
-message TezosControlStaking {
-    optional bool staking = 1;
+message TezosControlBaking {
+    optional bool baking = 1;
 }
