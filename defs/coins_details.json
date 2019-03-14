@@ -28533,6 +28533,23 @@
             ]
         }
     },
+     "eth:HPB": {
+           "links": {
+                "Homepage": "https://hpb.io"
+            },
+            "marketcap_usd": 21149950,
+            "name": "High Performance Blockchain",
+            "shortcut": "HPB",
+            "t1_enabled": "yes",
+            "t2_enabled": "yes",
+            "type": "coin",
+            "wallet": [
+                {
+                    "name": "MyEtherWallet",
+                    "url": "https://www.myetherwallet.com"
+                }
+            ]
+        },
     "info": {
         "marketcap_supported": "89.84 %",
         "marketcap_usd": 121180711248,
