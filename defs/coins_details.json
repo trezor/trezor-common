@@ -28531,9 +28531,8 @@
                     "url": "https://nem.io/downloads/"
                 }
             ]
-        }
-    },
-     "eth:HPB": {
+        },
+        "eth:HPB": {
            "links": {
                 "Homepage": "https://hpb.io"
             },
@@ -28545,11 +28544,12 @@
             "type": "coin",
             "wallet": [
                 {
-                    "name": "MyEtherWallet",
-                    "url": "https://www.myetherwallet.com"
+                    "name": "HPB Wallet",
+                    "url": "http://hpb.io/client"
                 }
             ]
-        },
+        }
+    },
     "info": {
         "marketcap_supported": "89.84 %",
         "marketcap_usd": 121180711248,
