@@ -12,6 +12,7 @@
       "bitcoin:TEST": true,
       "bitcoin:VTC": true,
       "bitcoin:ZEC": true,
+      "bitcoin:KMD": true,
       "eth:AKA": true,
       "eth:ATH": true,
       "eth:CLO": true,
