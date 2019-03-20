@@ -28362,6 +28362,24 @@
             "type": "coin",
             "wallet": []
         },
+        "misc:KIN": {
+            "links": {
+                "Github": "https://github.com/kinecosystem/core",
+                "Homepage": "https://www.kin.org"
+            },
+            "marketcap_usd": 1723099605,
+            "name": "Kin",
+            "shortcut": "KIN",
+            "t1_enabled": "yes",
+            "t2_enabled": "yes",
+            "type": "coin",
+            "wallet": [
+                {
+                    "name": "Account Viewer",
+                    "url": "https://trezor.io/kin/"
+                }
+            ]
+        },
         "misc:XLM": {
             "links": {
                 "Github": "https://github.com/stellar/stellar-core",

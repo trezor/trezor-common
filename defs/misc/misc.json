@@ -28,6 +28,21 @@
         "blockchain_link": {}
     },
     {
+        "name": "Kin",
+        "slip44": 2017,
+        "curve": "ed25519",
+        "shortcut": "KIN",
+        "decimals": 5,
+        "links": {
+            "Homepage": "https://www.kin.org",
+            "Github": "https://github.com/kinecosystem/core"
+        },
+        "wallet": {
+            "Account Viewer": "https://trezor.io/kin/"
+        },
+        "blockchain_link": {}
+    },
+    {
         "name": "Monero",
         "shortcut": "XMR",
         "slip44": 128,

@@ -161,6 +161,7 @@ enum MessageType {
     MessageType_StellarBumpSequenceOp = 221 [(wire_in) = true];
     MessageType_StellarSignedTx = 230 [(wire_out) = true];
 
+
     // TRON
     MessageType_TronGetAddress = 250 [(wire_in) = true];
     MessageType_TronAddress = 251 [(wire_out) = true];
@@ -257,4 +258,22 @@ enum MessageType {
     MessageType_BinanceOrderMsg = 707 [(wire_in) = true];
     MessageType_BinanceCancelMsg = 708 [(wire_in) = true];
     MessageType_BinanceSignedTx = 709 [(wire_out) = true];
+
+    // Kin
+    MessageType_KinSignTx = 800 [(wire_in) = true];
+    MessageType_KinTxOpRequest = 801 [(wire_out) = true];
+    MessageType_KinGetAddress = 802 [(wire_in) = true];
+    MessageType_KinAddress = 803 [(wire_out) = true];
+    MessageType_KinCreateAccountOp = 804 [(wire_in) = true];
+    MessageType_KinPaymentOp = 805 [(wire_in) = true];
+    MessageType_KinPathPaymentOp = 806 [(wire_in) = true];
+    MessageType_KinManageOfferOp = 807 [(wire_in) = true];
+    MessageType_KinCreatePassiveOfferOp = 808 [(wire_in) = true];
+    MessageType_KinSetOptionsOp = 809 [(wire_in) = true];
+    MessageType_KinChangeTrustOp = 810 [(wire_in) = true];
+    MessageType_KinAllowTrustOp = 811 [(wire_in) = true];
+    MessageType_KinKinAccountMergeOp = 812 [(wire_in) = true];
+    MessageType_KinManageDataOp = 813 [(wire_in) = true];
+    MessageType_KinBumpSequenceOp = 814 [(wire_in) = true];
+    MessageType_KinKinSignedTx = 815 [(wire_out) = true];
 }
