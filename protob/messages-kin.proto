@@ -10,7 +10,7 @@ option java_outer_classname = "TrezorMessageKin";
  * @embed
  */
 message KinAssetType {
-    optional uint32 type = 1;       // 0 = native asset (XLM), 1 = alphanum 4, 2 = alphanum 12
+    optional uint32 type = 1;       // 0 = native asset (KIN), 1 = alphanum 4, 2 = alphanum 12
     optional string code = 2;       // for non-native assets, string describing the code
     optional string issuer = 3;     // issuing address
 }
