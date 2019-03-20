@@ -272,7 +272,7 @@ enum MessageType {
     MessageType_KinSetOptionsOp = 809 [(wire_in) = true];
     MessageType_KinChangeTrustOp = 810 [(wire_in) = true];
     MessageType_KinAllowTrustOp = 811 [(wire_in) = true];
-    MessageType_KinKinAccountMergeOp = 812 [(wire_in) = true];
+    MessageType_KinAccountMergeOp = 812 [(wire_in) = true];
     MessageType_KinManageDataOp = 813 [(wire_in) = true];
     MessageType_KinBumpSequenceOp = 814 [(wire_in) = true];
     MessageType_KinSignedTx = 815 [(wire_out) = true];
