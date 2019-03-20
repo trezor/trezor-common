@@ -39,10 +39,10 @@ message KinAddress {
  * @next KinTxOpRequest
  */
 message KinSignTx {
-    repeated uint32 address_n = 2;          // BIP-32 path. For compatibility with other wallets, must be m/44'/148'/index'
+    repeated uint32 address_n = 2;          // BIP-32 path. For compatibility with other wallets, must be m/44'/2017'/index'
     optional string network_passphrase = 3; // passphrase for signing messages on the destination network
     optional string source_account = 4;     // source account address
-    optional uint32 fee = 5;                // Fee (in stroops) for the transaction
+    optional uint32 fee = 5;                // Fee (in ????) for the transaction
     optional uint64 sequence_number = 6;    // transaction sequence number
     optional uint32 timebounds_start = 8;   // unix timestamp (client must truncate this to 32 bytes)
     optional uint32 timebounds_end = 9;     // unix timestamp (client must truncate this to 32 bytes)
