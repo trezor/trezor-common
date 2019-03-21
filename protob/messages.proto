@@ -76,10 +76,11 @@ enum MessageType {
     MessageType_TxAck = 22 [(wire_in) = true];
     MessageType_GetAddress = 29 [(wire_in) = true];
     MessageType_Address = 30 [(wire_out) = true];
-    MessageType_SignTxInput = 37 [(wire_in) = true];
     MessageType_SignMessage = 38 [(wire_in) = true];
     MessageType_VerifyMessage = 39 [(wire_in) = true];
     MessageType_MessageSignature = 40 [(wire_out) = true];
+    MessageType_SignUtxo = 43 [(wire_in) = true];
+    MessageType_SignedUtxo = 44 [(wire_out) = true];
 
     // Crypto
     MessageType_CipherKeyValue = 23 [(wire_in) = true];
