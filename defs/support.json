@@ -11,6 +11,7 @@
       "bitcoin:LTC": true,
       "bitcoin:NMC": true,
       "bitcoin:TEST": true,
+      "bitcoin:XSN": true,
       "bitcoin:VTC": true,
       "bitcoin:ZEC": true,
       "eth:AKA": true,
