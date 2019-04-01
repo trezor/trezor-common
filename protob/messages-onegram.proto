@@ -44,8 +44,8 @@ message OnegramSignTx {
     }
 
     message OnegramTxHeader {
-        optional uint32 ref_block_num = 1;  // uint16 field
-        optional uint32 ref_block_prefix = 2;
+        optional uint32 head_block_number = 1;
+        optional bytes head_block_id = 2;
         optional uint32 expiration = 3;
     }
 }
