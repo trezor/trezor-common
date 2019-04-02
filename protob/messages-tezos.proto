@@ -139,10 +139,11 @@ message TezosSignedTx {
  */
 message TezosSignBakerOp {
     repeated uint32 address_n = 1;
-    optional bytes magic_byte = 2;
-    optional bytes chain_id = 3;
-    optional TezosEndorsement endorsement = 4;
-    optional TezosBlockHeader block_header = 5;
+    //force set the magic byte
+    //optional bytes magic_byte = 2;
+    optional bytes chain_id = 2;
+    optional TezosEndorsement endorsement = 3;
+    optional TezosBlockHeader block_header = 4;
 
     /**
      * Structure representing endorsement
@@ -150,8 +151,9 @@ message TezosSignBakerOp {
      */
     message TezosEndorsement {
         optional bytes branch = 1;
-        optional uint64 tag = 2;
-        optional uint64 level = 3;
+        //force set the tag
+        //optional uint64 tag = 2;
+        optional uint64 level = 2;
     }
 
     /**
