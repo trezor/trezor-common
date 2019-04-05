@@ -535,19 +535,6 @@
             "type": "coin",
             "wallet": []
         },
-        "bitcoin:POLIS": {
-            "links": {
-                "Github": "https://github.com/polispay/polis",
-                "Homepage": "https://www.polispay.org"
-            },
-            "marketcap_usd": 4719239,
-            "name": "Polis",
-            "shortcut": "POLIS",
-            "t1_enabled": "yes",
-            "t2_enabled": "yes",
-            "type": "coin",
-            "wallet": []
-        },
         "bitcoin:PTC": {
             "links": {
                 "Github": "https://github.com/FundacionPesetacoin/PesetacoinCore",
