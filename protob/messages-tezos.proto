@@ -192,5 +192,4 @@ message TezosSignedBakerOp {
  * @next Success
  */
 message TezosControlBaking {
-    optional bool baking = 1;
 }
