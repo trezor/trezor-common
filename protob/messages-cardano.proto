@@ -29,6 +29,13 @@ enum CardanoCertificateType {
     STAKE_REGISTRATION = 0;
     STAKE_DEREGISTRATION = 1;
     STAKE_DELEGATION = 2;
+    STAKEPOOL_REGISTRATION = 3;
+}
+
+enum CardanoPoolRelayType {
+    SINGLE_HOST_IP = 0;
+    SINGLE_HOST_NAME = 1;
+    MULTIPLE_HOST_NAME = 2;
 }
 
 /**
@@ -138,6 +145,50 @@ message CardanoSignTx {
         optional uint64 amount = 3;                                     // amount to spend
         optional CardanoAddressParametersType address_parameters = 4;   // parameters used to derive the address
     }
+
+    /**
+     * Stakepool owner parameters
+     */
+    message CardanoPoolOwnerType {
+        optional bytes staking_key_hash = 1;
+        repeated uint32 staking_key_path = 2;
+    }
+
+    /**
+     * Stakepool relay parameters
+     */
+    message CardanoPoolRelayParametersType {
+        required CardanoPoolRelayType type = 1;
+        optional bytes ipv4_address = 2;
+        optional bytes ipv6_address = 3;
+        optional string host_name = 4; 
+        optional uint32 port = 5;
+    }
+
+    /**
+     * Stakepool metadata parameters
+     */
+    message CardanoPoolMetadataType {
+        required string url = 1;
+        required bytes hash = 2;
+    }
+
+    /**
+     * Stakepool parameters
+     */
+    message CardanoPoolParametersType {
+        required bytes pool = 1;
+        required bytes vrf_key_hash = 2;
+        required uint64 pledge = 3;
+        required uint64 cost = 4;
+        required uint64 margin_numerator = 5;
+        required uint64 margin_denominator = 6;
+        required bytes reward_account_key_hash = 7;
+        repeated CardanoPoolOwnerType owners = 8;
+        repeated CardanoPoolRelayParametersType relays = 9;
+        optional CardanoPoolMetadataType metadata = 10;
+    }
+
     /**
      * Structure representing cardano transaction certificate
      */
@@ -145,6 +196,7 @@ message CardanoSignTx {
         optional CardanoCertificateType type = 1;   // certificate type
         repeated uint32 path = 2;                   // BIP-32 path to derive (staking) key
         optional bytes pool = 3;                    // pool hash
+        optional CardanoPoolParametersType pool_parameters = 4;
     }
     /**
      * Structure representing cardano transaction withdrawals
